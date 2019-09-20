@@ -8,6 +8,7 @@ import svgr from '@svgr/rollup'
 
 import pkg from './package.json'
 
+
 export default {
   input: 'src/index.js',
   output: [
@@ -31,7 +32,7 @@ export default {
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
+      plugins: ['external-helpers']
     }),
     resolve(),
     commonjs()

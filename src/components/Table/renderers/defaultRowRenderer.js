@@ -1,3 +1,4 @@
+import React from 'react'
 import { defaultCellRenderer } from './defaultCellRenderer'
 import { utils } from '../../../utils'
 
@@ -7,7 +8,7 @@ export function defaultRowRenderer({ onRowClick, cellRenderer, rowData, rowIndex
     <div
       {...rowProps}
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
-      style={{ height: rowHeight, width: '100%', display: 'flex', ...rowProps.style }}>
+      style={{ height: rowHeight, width: '100%', display: 'flex', ...rowProps && rowProps.style }}>
       {columns.map((column, cellIndex) => {
         const cellProps = {
           cellIndex,

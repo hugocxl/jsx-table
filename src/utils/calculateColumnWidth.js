@@ -1,5 +1,5 @@
 export function calculateColumnWidth({ width, columns }) {
-  if (!width) {
+  if (width) {
     return width
   } else {
     let unknownColumnsWidth = 0
@@ -16,7 +16,6 @@ export function calculateColumnWidth({ width, columns }) {
     if (unknownColumnsWidth === columns.length) {
       return `${100 / columns.length}%`
     }
-
 
     if (unknownColumnsWidth !== 0) {
       const calculatedWidth = columnsWidth.filter(el => el)

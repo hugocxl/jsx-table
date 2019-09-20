@@ -1,3 +1,8 @@
+import React from 'react'
+
+
 export function NoData() {
-  return 'No data'
+  return (
+    <span>No data</span>
+  )
 }

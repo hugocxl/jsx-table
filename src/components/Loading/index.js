@@ -1,3 +1,8 @@
+import React from 'react'
+
+
 export function Loading() {
-  return 'Loading...'
+  return (
+    <span>Loading...</span>
+  )
 }

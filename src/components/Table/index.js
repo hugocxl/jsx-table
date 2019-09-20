@@ -1,20 +1,20 @@
 'use strict'
 
+import React from 'react'
 import { defaultTableBodyRenderer, defaultTableHeaderRenderer, defaultNoDataRenderer } from './renderers'
 
 
-export const Table = (
-  {
-    columns, data, style,
-    tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
-    tableBodyRenderer, rowRenderer, cellRenderer, noDataRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
-    noDataComponent, noDataMessage,
-    loading, loadingRenderer, loadingComponent,
-    defaultSorted,
-    ...rest
-  }) => {
+export function Table({
+  columns, data, style,
+  tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
+  tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
+  noDataRenderer, noDataComponent, noDataMessage,
+  loading, loadingRenderer, loadingComponent,
+  defaultSorted,
+  ...rest
+}) {
 
-  const [sortedData, setSortedData] = React.useState(data)
+  // const [sortedData, setSortedData] = React.useState(data)
   // const [sortBy, setSortBy] = React.useState(defaultSorted ? defaultSorted.id : null)
   // const [sortDirection, setSortDirection] = React.useState(defaultSorted ? defaultSorted.desc ? SortDirection.DESC : SortDirection.ASC : null)
   //
@@ -38,7 +38,6 @@ export const Table = (
   //     return orderedTable.reverse()
   //   }
   // }
-
 
   function renderTableHeader(props) {
     if (disableHeader) {
@@ -70,7 +69,7 @@ export const Table = (
   }
 
   return (
-    <div style={{ height: '100%', width: '100%', overflow: 'hidden', ...style }}>
+    <div style={{ height: '100%', width: '100%', overflow: 'hidden', ...style, position: 'relative' }}>
       {renderTableHeader({
         columns,
         headerRowProps,
@@ -84,7 +83,7 @@ export const Table = (
       {renderTableBody({
         disableHeader,
         headerHeight,
-        data: sortedData,
+        data: data,
         rowHeight,
         columns,
         rowProps,
@@ -112,5 +111,4 @@ Table.defaultProps = {
   disableHeader: false,
   columns: null,
   data: null
-
 }

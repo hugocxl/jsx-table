@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2dcd1b2-9493-413e-a71c-d16b74cc5f4d" name="Default Changelist" comment="" />
+    <list default="true" id="e2dcd1b2-9493-413e-a71c-d16b74cc5f4d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/demo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/example/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/example/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Loading/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Loading/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NoData/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NoData/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/renderers/defaultCellRenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/renderers/defaultCellRenderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/renderers/defaultLoadingRenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/renderers/defaultLoadingRenderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/renderers/defaultNoDataRenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/renderers/defaultNoDataRenderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/renderers/defaultRowRenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/renderers/defaultRowRenderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Table/renderers/defaultTableBodyRenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/renderers/defaultTableBodyRenderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/calculateColumnWidth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/calculateColumnWidth.js" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +46,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -61,7 +78,7 @@
       <updated>1568950688666</updated>
       <workItem from="1568950689880" duration="9954000" />
       <workItem from="1568968112069" duration="3317000" />
-      <workItem from="1568990910938" duration="309000" />
+      <workItem from="1568990910938" duration="5861000" />
     </task>
     <servers />
   </component>

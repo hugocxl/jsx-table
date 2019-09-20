@@ -1,4 +1,18 @@
-export function defaultCellRenderer({ onCellClick, cellIndex, cellData, rowData, Cell, width, align, rowIndex, cellProps, cellComponentProps }) {
+import React from 'react'
+
+
+export function defaultCellRenderer({
+  onCellClick,
+  cellIndex,
+  cellData,
+  rowData,
+  Cell,
+  width,
+  align,
+  rowIndex,
+  cellProps,
+  cellComponentProps
+}) {
 
   return (
     <div
@@ -17,7 +31,7 @@ export function defaultCellRenderer({ onCellClick, cellIndex, cellData, rowData,
         alignItems: 'center',
         padding: '0px 10px',
         justifyContent: align || 'center',
-        ...cellProps.style
+        ...cellProps && cellProps.style
       }}>
       {Cell ? (
         <Cell cellData={cellData} rowData={rowData} cellComponentProps={cellComponentProps} rowIndex={rowIndex}/>
