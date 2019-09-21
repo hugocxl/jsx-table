@@ -10,34 +10,11 @@ export function Table({
   tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
   noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
   loading, loadingRenderer, loadingComponent,
+  onClickSortable, onClickHeader,
   ...rest
 }) {
 
   const tableBodyHeight = !disableHeader ? `calc(100% - ${headerHeight}px)` : '100%'
-  // const [sortedData, setSortedData] = React.useState(data)
-  // const [sortBy, setSortBy] = React.useState(defaultSorted ? defaultSorted.id : null)
-  // const [sortDirection, setSortDirection] = React.useState(defaultSorted ? defaultSorted.desc ? SortDirection.DESC : SortDirection.ASC : null)
-  //
-  //
-  // function sort({ sortBy, sortDirection }) {
-  //   const sortedList = sortList({ sortBy, sortDirection })
-  //
-  //   setSortBy(sortBy)
-  //   setSortDirection(sortDirection)
-  //   setSortedList(sortedList)
-  // }
-  //
-  // function sortList({ sortBy, sortDirection }) {
-  //   const orderedTable = _.sortBy(data, function(o) {
-  //     return o[sortBy]
-  //   })
-  //
-  //   if (sortDirection === SortDirection.ASC) {
-  //     return orderedTable
-  //   } else {
-  //     return orderedTable.reverse()
-  //   }
-  // }
 
   function renderTableHeader(props) {
     if (disableHeader) {
@@ -84,7 +61,9 @@ export function Table({
         headerHeight,
         headerComponentProps,
         headerRowRenderer,
-        headerCellRenderer
+        headerCellRenderer,
+        onClickHeader,
+        onClickSortable
       })}
       {renderTableBody({
         disableHeader,

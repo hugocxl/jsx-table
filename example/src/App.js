@@ -5,54 +5,37 @@ import { ReactAwesomeTable } from 'react-awesome-table'
 
 const data = [
   { name: 'Hugo', age: 30, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' },
-  { name: 'Angeles', age: 32, country: 'Spain', city: 'Barcelona' }
+  { name: 'Angeles', age: 12, country: 'Spain', city: 'Barcelona' },
+  { name: 'Ana', age: 42, country: 'Spain', city: 'Barcelona' },
+  { name: 'Fer', age: 52, country: 'Spain', city: 'Barcelona' },
+  { name: 'Sonia', age: 62, country: 'Spain', city: 'Barcelona' },
+  { name: 'Rosita', age: 72, country: 'Spain', city: 'Barcelona' },
+  { name: 'Mari', age: 3112, country: 'Spain', city: 'Barcelona' },
+  { name: 'Nando', age: 2, country: 'Spain', city: 'Barcelona' },
+  { name: 'Ruben', age: 0, country: 'Spain', city: 'Barcelona' },
+  { name: 'Paula', age: -1, country: 'Spain', city: 'Barcelona' },
+  { name: 'Maria', age: -5, country: 'Spain', city: 'Barcelona' },
+  { name: 'Angeles', age: -100, country: 'Spain', city: 'Barcelona' }
 ]
 
 const columns = [
-  { Header: 'Name', id: 'name' },
-  { Header: 'Age', id: 'age' },
-  { Header: 'Country', id: 'country' },
-  { Header: 'City', id: 'city' }
+  {
+    Header: 'Name',
+    id: 'name',
+    sortable: true
+  },
+  {
+    Header: 'Age',
+    id: 'age'
+  },
+  {
+    Header: 'Country',
+    id: 'country'
+  },
+  {
+    Header: 'City',
+    id: 'city'
+  }
 ]
 
 export function App() {

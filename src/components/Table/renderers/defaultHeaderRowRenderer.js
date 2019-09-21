@@ -24,6 +24,7 @@ export function defaultHeaderRowRenderer({
           headerIndex,
           align: column.align,
           id: column.id,
+          sortable: column.sortable,
           ...rest
         }
 

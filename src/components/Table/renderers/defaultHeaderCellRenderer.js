@@ -6,12 +6,20 @@ export function defaultHeaderCellRenderer({
   width,
   align,
   headerCellProps,
-  headerComponentProps
+  headerComponentProps,
+  onClickHeader,
+  onClickSortable,
+  sortable,
+  id
 }) {
   return (
     <div
       className={'AwesomeTable__header-row-cell'}
       style={{ width, justifyContent: align || 'center' }}
+      onClick={() => {
+        onClickHeader && onClickHeader()
+        sortable && onClickSortable({ sortBy: id })
+      }}
       {...headerCellProps}
     >
       {typeof Header === 'function' ? (
