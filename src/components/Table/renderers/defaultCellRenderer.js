@@ -13,9 +13,9 @@ export function defaultCellRenderer({
   cellProps,
   cellComponentProps
 }) {
-
   return (
     <div
+      className={'AwesomeTable__body-cell'}
       onClick={() => onCellClick && onCellClick({
         cellData,
         cellIndex,
@@ -27,16 +27,13 @@ export function defaultCellRenderer({
       {...cellProps}
       style={{
         width,
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0px 10px',
         justifyContent: align || 'center',
         ...cellProps && cellProps.style
       }}>
       {Cell ? (
         <Cell cellData={cellData} rowData={rowData} cellComponentProps={cellComponentProps} rowIndex={rowIndex}/>
       ) : (
-        <span>{cellData}</span>
+        <span className={'AwesomeTable__body-cell-text'}>{cellData}</span>
       )}
     </div>
   )

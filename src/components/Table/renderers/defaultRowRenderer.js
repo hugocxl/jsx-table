@@ -20,11 +20,9 @@ export function defaultRowRenderer({
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
       style={{
         height: rowHeight,
-        width: '100%',
-        display: 'flex',
-        borderBottom: '1px solid #dadada',
         ...rowProps && rowProps.style
       }}>
+
       {columns.map((column, cellIndex) => {
         const cellProps = {
           cellIndex,

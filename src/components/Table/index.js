@@ -1,6 +1,5 @@
 'use strict'
 
-import './styles.css'
 import React from 'react'
 import { defaultTableBodyRenderer, defaultTableHeaderRenderer, defaultNoDataRenderer } from './renderers'
 
