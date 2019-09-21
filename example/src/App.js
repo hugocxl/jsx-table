@@ -76,11 +76,10 @@ export function App() {
         data={data}
         columns={columns}
         onRowClick={row => console.log(row)}
-        noDataMessage={'noDataaa'}
-        noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
+        // noDataMessage={'There is no data'}
+        // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
         // loading={loading}
       />
     </div>
   )
-
 }

@@ -5,12 +5,13 @@ import { NoData } from '../../NoData'
 export function defaultNoDataRenderer({
   noDataComponent,
   tableBodyHeight,
+  noDataProps,
   ...rest
 }) {
   return (
     <div
       className={'AwesomeTable__body-nodata'}
-      style={{ height: tableBodyHeight }}>
+      style={{ height: tableBodyHeight, ...noDataProps && noDataProps.style }}>
       {noDataComponent ? (
         noDataComponent(rest)
       ) : (

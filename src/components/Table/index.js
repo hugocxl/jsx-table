@@ -8,7 +8,7 @@ export function Table({
   columns, data, style, defaultSorted, disabled,
   tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
   tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
-  noDataRenderer, noDataComponent, noDataMessage,
+  noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
   loading, loadingRenderer, loadingComponent,
   ...rest
 }) {
@@ -54,6 +54,8 @@ export function Table({
       return renderNoData({
         noDataComponent,
         noDataMessage,
+        noDataProps,
+        noDataComponentProps,
         tableBodyHeight
       })
     } else {
