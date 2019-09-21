@@ -1,17 +1,17 @@
 import React from 'react'
 
 
-export function defaultHeaderCellRenderer({ Header, width, align, headerCellProps, headerComponentProps }) {
+export function defaultHeaderCellRenderer({
+  Header,
+  width,
+  align,
+  headerCellProps,
+  headerComponentProps
+}) {
   return (
     <div
-      style={{
-        width,
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        padding: typeof Header === 'function' ? 0 : '0px 10px',
-        justifyContent: align || 'center'
-      }}
+      className={'AwesomeTable__header-row-cell'}
+      style={{ width, justifyContent: align || 'center' }}
       {...headerCellProps}
     >
       {typeof Header === 'function' ? (
