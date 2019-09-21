@@ -13,6 +13,7 @@ export function Table({
   ...rest
 }) {
 
+  const tableBodyHeight = !disableHeader ? `calc(100% - ${headerHeight}px)` : '100%'
   // const [sortedData, setSortedData] = React.useState(data)
   // const [sortBy, setSortBy] = React.useState(defaultSorted ? defaultSorted.id : null)
   // const [sortDirection, setSortDirection] = React.useState(defaultSorted ? defaultSorted.desc ? SortDirection.DESC : SortDirection.ASC : null)
@@ -52,7 +53,8 @@ export function Table({
     if (!data || (data.length === 0 && !loading)) {
       return renderNoData({
         noDataComponent,
-        noDataMessage
+        noDataMessage,
+        tableBodyHeight
       })
     } else {
       return tableBodyRenderer
@@ -98,9 +100,7 @@ export function Table({
         cellRenderer,
         onRowClick,
         onCellClick,
-        tableBodyHeight: !disableHeader
-          ? `calc(100% - ${headerHeight}px)`
-          : '100%'
+        tableBodyHeight
       })}
 
     </div>

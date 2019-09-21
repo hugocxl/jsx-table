@@ -1,8 +1,10 @@
 import React from 'react'
 
 
-export function NoData() {
+export function NoData({ noDataMessage }) {
   return (
-    <span>No data</span>
+    <span className={'AwesomeTable__body-nodata-text'}>
+      {noDataMessage || 'No data'}
+    </span>
   )
 }
