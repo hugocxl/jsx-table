@@ -3,12 +3,28 @@ import { defaultCellRenderer } from './defaultCellRenderer'
 import { utils } from '../../../utils'
 
 
-export function defaultRowRenderer({ onRowClick, cellRenderer, rowData, rowIndex, rowHeight, columns, rowProps, ...rest }) {
+export function defaultRowRenderer({
+  onRowClick,
+  cellRenderer,
+  rowData,
+  rowIndex,
+  rowHeight,
+  columns,
+  rowProps,
+  ...rest
+}) {
   return (
     <div
+      className={'AwesomeTable__body-row'}
       {...rowProps}
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
-      style={{ height: rowHeight, width: '100%', display: 'flex', ...rowProps && rowProps.style }}>
+      style={{
+        height: rowHeight,
+        width: '100%',
+        display: 'flex',
+        borderBottom: '1px solid #dadada',
+        ...rowProps && rowProps.style
+      }}>
       {columns.map((column, cellIndex) => {
         const cellProps = {
           cellIndex,

@@ -1,6 +1,7 @@
 import React from 'react'
 import { defaultRowRenderer } from './defaultRowRenderer'
 import { defaultLoadingRenderer } from './defaultLoadingRenderer'
+import cx from 'classnames'
 
 
 export function defaultTableBodyRenderer({
@@ -22,13 +23,9 @@ export function defaultTableBodyRenderer({
         defaultLoadingRenderer({ loadingComponent, height: tableBodyHeight })
       ))}
 
-      <div style={{
-        width: '100%',
-        overflow: 'hidden auto',
-        height: tableBodyHeight,
-        maxHeight: tableBodyHeight,
-        opacity: loading ? 0.25 : 1
-      }}>
+      <div
+        className={cx('AwesomeTable__body', { loading })}
+        style={{ height: tableBodyHeight, maxHeight: tableBodyHeight }}>
         {data.map((rowData, rowIndex) => {
           const rowProps = {
             rowData,

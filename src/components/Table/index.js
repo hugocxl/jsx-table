@@ -1,16 +1,16 @@
 'use strict'
 
+import './styles.css'
 import React from 'react'
 import { defaultTableBodyRenderer, defaultTableHeaderRenderer, defaultNoDataRenderer } from './renderers'
 
 
 export function Table({
-  columns, data, style,
+  columns, data, style, defaultSorted, disabled,
   tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
   tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
   noDataRenderer, noDataComponent, noDataMessage,
   loading, loadingRenderer, loadingComponent,
-  defaultSorted,
   ...rest
 }) {
 
@@ -69,7 +69,10 @@ export function Table({
   }
 
   return (
-    <div style={{ height: '100%', width: '100%', overflow: 'hidden', ...style, position: 'relative' }}>
+    <div
+      role={'table'}
+      className={'AwesomeTable'}
+      style={{ ...style }}>
       {renderTableHeader({
         columns,
         headerRowProps,

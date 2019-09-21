@@ -7,7 +7,14 @@ export function defaultHeaderRowRenderer({ columns, headerCellRenderer, headerHe
 
   return (
     <div
-      style={{ display: 'flex', width: '100%', height: headerHeight }}
+      role={'table'}
+      className={'AwesomeTable__header-row'}
+      style={{
+        display: 'flex',
+        width: '100%',
+        height: headerHeight,
+        borderBottom: '1px solid #bababa'
+      }}
       {...headerRowProps}>
       {columns.map((column, headerIndex) => {
         const rowProps = {
