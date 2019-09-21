@@ -10,7 +10,7 @@ export function Table({
   tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
   noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
   loading, loadingRenderer, loadingComponent,
-  onClickSortable, onClickHeader,
+  onSortableClick, onHeaderClick,
   ...rest
 }) {
 
@@ -62,8 +62,8 @@ export function Table({
         headerComponentProps,
         headerRowRenderer,
         headerCellRenderer,
-        onClickHeader,
-        onClickSortable
+        onHeaderClick,
+        onSortableClick
       })}
       {renderTableBody({
         disableHeader,
@@ -89,7 +89,7 @@ export function Table({
 }
 
 Table.defaultProps = {
-  rowHeight: 30,
+  rowHeight: 25,
   headerHeight: 30,
   disableHeader: false,
   columns: null,

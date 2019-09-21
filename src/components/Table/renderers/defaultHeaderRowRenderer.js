@@ -25,6 +25,7 @@ export function defaultHeaderRowRenderer({
           align: column.align,
           id: column.id,
           sortable: column.sortable,
+          columnSortMethod: column.columnSortMethod,
           ...rest
         }
 
