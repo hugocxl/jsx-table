@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2dcd1b2-9493-413e-a71c-d16b74cc5f4d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/HOCs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/HOCs/withRowSelection.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Pagination/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/example/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/example/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HOCs/withPagination.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/HOCs/withPagination.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/HOCs/withSortBy.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/HOCs/withSortBy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Table/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Table/renderers/defaultHeaderCellRenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/renderers/defaultHeaderCellRenderer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Table/renderers/defaultHeaderRowRenderer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Table/renderers/defaultHeaderRowRenderer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/index.css" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +73,7 @@
       <updated>1568950688666</updated>
       <workItem from="1568950689880" duration="9954000" />
       <workItem from="1568968112069" duration="3317000" />
-      <workItem from="1568990910938" duration="17993000" />
+      <workItem from="1568990910938" duration="25513000" />
     </task>
     <servers />
   </component>

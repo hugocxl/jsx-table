@@ -3,6 +3,8 @@
 import React from 'react'
 import { defaultTableBodyRenderer, defaultTableHeaderRenderer, defaultNoDataRenderer } from './renderers'
 
+import { Pagination } from '../Pagination'
+
 
 export function Table({
   columns, data, style, defaultSorted, disabled,
@@ -11,10 +13,11 @@ export function Table({
   noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
   loading, loadingRenderer, loadingComponent,
   onSortableClick, onHeaderClick,
+  onNextPageClick, onPreviousPageClick, currentPage,
   ...rest
 }) {
 
-  const tableBodyHeight = !disableHeader ? `calc(100% - ${headerHeight}px)` : '100%'
+  const tableBodyHeight = !disableHeader ? `calc(100% - ${headerHeight}px - 20px)` : '100%'
 
   function renderTableHeader(props) {
     if (disableHeader) {
@@ -83,6 +86,11 @@ export function Table({
         onCellClick,
         tableBodyHeight
       })}
+      <Pagination
+        onNextPageClick={onNextPageClick}
+        onPreviousPageClick={onPreviousPageClick}
+        currentPage={currentPage}
+      />
 
     </div>
   )

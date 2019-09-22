@@ -7,9 +7,9 @@
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
+    "react-awesome-table": "link:..",
     "react-dom": "link:../node_modules/react-dom",
-    "react-scripts": "^1.1.4",
-    "react-awesome-table": "link:.."
+    "react-scripts": "^1.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
