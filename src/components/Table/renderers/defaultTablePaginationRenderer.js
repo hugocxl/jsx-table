@@ -10,7 +10,7 @@ export function defaultTablePaginationRenderer({
 }) {
   return (
     <div
-      className={'AwesomeTable_pagination'}
+      className={'AwesomeTable__pagination'}
       style={{
         height: paginationHeight,
         ...paginationProps && paginationProps.style

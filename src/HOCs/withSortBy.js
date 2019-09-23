@@ -61,6 +61,12 @@ export const withSortBy = Table => ({
   }
 
   return (
-    <Table data={sortedData} onSortableClick={onSortableClick} {...rest}/>
+    <Table
+      sortBy={sortBy}
+      sortDirection={sortDirection}
+      data={sortedData}
+      onSortableClick={onSortableClick}
+      {...rest}
+    />
   )
 }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { SortIndicator } from '../../SortIndicator'
 
 
 export function defaultHeaderCellRenderer({
@@ -11,7 +12,9 @@ export function defaultHeaderCellRenderer({
   onSortableClick,
   sortable,
   id,
-  columnSortMethod
+  columnSortMethod,
+  sortBy,
+  sortDirection
 }) {
   return (
     <div
@@ -27,13 +30,13 @@ export function defaultHeaderCellRenderer({
           event
         })
       }}
-      {...headerCellProps}
-    >
+      {...headerCellProps}>
       {typeof Header === 'function' ? (
         <Header {...headerComponentProps}/>
       ) : (
         <span>{Header}</span>
       )}
+      {id === sortBy && <SortIndicator sortDirection={sortDirection}/>}
     </div>
   )
 }

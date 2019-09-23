@@ -15,7 +15,8 @@ export const Table = ({
   tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
   noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
   loading, loadingRenderer, loadingComponent,
-  onSortableClick, onHeaderClick,
+  onSortableClick, sortDirection, sortBy,
+  onHeaderClick,
   changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
   virtualized,
   ...rest
@@ -97,7 +98,9 @@ export const Table = ({
         headerRowRenderer,
         headerCellRenderer,
         onHeaderClick,
-        onSortableClick
+        onSortableClick,
+        sortDirection,
+        sortBy
       })}
       {renderTableBody({
         data,

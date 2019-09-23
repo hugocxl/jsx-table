@@ -92,3 +92,10 @@
 .AwesomeTable__body-nodata-text {
 
 }
+
+.AwesomeTable__pagination {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}

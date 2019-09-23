@@ -65,6 +65,7 @@ export function App() {
         rowHeight={20}
         headerHeight={20}
         pagination={true}
+        paginationHeight={20}
         pageSize={30}
         onPageChange={props => console.log('PAGINATION', props)}
         defaultPage={2}
