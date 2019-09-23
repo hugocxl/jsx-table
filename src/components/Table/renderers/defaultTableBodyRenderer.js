@@ -1,6 +1,5 @@
 import React from 'react'
-import { defaultRowRenderer } from './defaultRowRenderer'
-import { defaultLoadingRenderer } from './defaultLoadingRenderer'
+import { defaultRowRenderer, defaultLoadingRenderer } from './index'
 import cx from 'classnames'
 
 
@@ -9,46 +8,39 @@ class BodyRender extends React.Component {
     super(props)
     this.ref = React.createRef()
     this.state = {
-      rows: []
+      scrollTop: null
     }
   }
 
   componentDidMount() {
     this.setState({
-      rows: this.renderContent()
+      control: this.ref.current.scrollTop
     })
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const a = JSON.stringify(this.props.sortBy)
-    const b = JSON.stringify(prevProps.sortBy)
-
-    if (a !== b) {
-      this.setState({
-        rows: this.renderContent()
-      })
-    }
-  }
-
   renderContent = () => {
-    const rows = []
-
     if (!this.ref.current) {
       return null
     }
+    const { data, rowRenderer, rowHeight, ...rest } = this.props
+    const { scrollTop, clientHeight } = this.ref.current
+    const rows = []
 
-    const firstRowIndex = Math.round(this.ref.current.scrollTop / this.props.rowHeight)
-    const lastRowIndex = Math.round((this.ref.current.scrollTop + this.ref.current.clientHeight) / this.props.rowHeight)
+    const firstRowIndex = Math.round(scrollTop / rowHeight)
+    const lastRowIndex = Math.round((scrollTop + clientHeight) / rowHeight)
 
     for (let i = firstRowIndex; i < lastRowIndex; i++) {
       const rowProps = {
-        rowData: this.props.data[i],
+        rowData: data[i],
+        rowHeight,
         selected: false,
         rowIndex: i,
-        ...this.props
+        ...rest
       }
       rows.push(
-        defaultRowRenderer(rowProps)
+        rowRenderer
+          ? rowRenderer(rowProps)
+          : defaultRowRenderer(rowProps)
       )
     }
     return rows
@@ -56,22 +48,12 @@ class BodyRender extends React.Component {
 
   onScroll = () => {
     this.setState({
-      rows: this.renderContent()
+      control: this.ref.current.scrollTop
     })
   }
 
   render() {
-    const {
-      tableBodyHeight,
-      rowRenderer,
-      disableHeader,
-      headerHeight,
-      data,
-      loadingRenderer,
-      loadingComponent,
-      loading,
-      ...rest
-    } = this.props
+    const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading } = this.props
 
     return (
       <React.Fragment>
@@ -84,12 +66,11 @@ class BodyRender extends React.Component {
           className={cx('AwesomeTable__body', { loading })}
           onScroll={this.onScroll}
           ref={this.ref}
-          style={{ height: tableBodyHeight, overflow: 'scroll' }}>
+          style={{ height: tableBodyHeight, overflow: 'auto' }}>
           <div
             style={{
               position: 'relative',
-              overflow: 'scroll',
-              height: this.props.data.length * this.props.rowHeight
+              height: data && (data.length * rowHeight)
             }}>
             {this.renderContent()}
           </div>

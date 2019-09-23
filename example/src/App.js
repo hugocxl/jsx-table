@@ -42,7 +42,8 @@ const columns = [
 ]
 
 export function App() {
-  // const [loading, setLoading] = React.useState(false)
+  const [loading, setLoading] = React.useState(false)
+  const [data, setData] = React.useState(getData(''))
 
   // React.useEffect(() => {
   //   window.setTimeout(() => {
@@ -59,12 +60,12 @@ export function App() {
       justifyContent: 'center'
     }}>
       <ReactAwesomeTable
-        data={getData(1000)}
+        data={getData(100)}
         columns={columns}
         rowHeight={20}
         headerHeight={30}
-        // pagination={true}
-        // pageSize={20}
+        pagination={true}
+        pageSize={20}
         // onRowClick={row => console.log(row)}
         // onHeaderClick={header => console.log(header)}
         // onColumnSort={props => console.log(props)}

@@ -35,7 +35,7 @@ export const withRowSelection = Table => function({
           <input
             type={'checkbox'}
             checked={cellData}
-            onChange={() => onSelectableClick({ rowIndex })}
+            onClick={() => onSelectableClick({ rowIndex })}
           />
         )
       }

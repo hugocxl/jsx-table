@@ -19,9 +19,7 @@ export const defaultRowRenderer = ({
 
   return (
     <div
-      className={cx('AwesomeTable__body-row'
-        // { selected: rowData.selected }
-      )}
+      className={cx('AwesomeTable__body-row', { selected: rowData && rowData.selected })}
       {...rowProps}
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
       style={{
@@ -32,7 +30,7 @@ export const defaultRowRenderer = ({
         ...rowProps && rowProps.style
       }}>
 
-      {columns.map((column, cellIndex) => {
+      {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
           cellIndex,
           cellData: rowData[column.id],

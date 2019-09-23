@@ -69,9 +69,7 @@ export const Table = ({
         onSortableClick
       })}
       {renderTableBody({
-        disableHeader,
-        headerHeight,
-        data: data,
+        data,
         rowHeight,
         columns,
         rowProps,
@@ -86,11 +84,11 @@ export const Table = ({
         onCellClick,
         tableBodyHeight
       })}
-      <Pagination
-        onNextPageClick={onNextPageClick}
-        onPreviousPageClick={onPreviousPageClick}
-        currentPage={currentPage}
-      />
+      {/*<Pagination*/}
+      {/*  onNextPageClick={onNextPageClick}*/}
+      {/*  onPreviousPageClick={onPreviousPageClick}*/}
+      {/*  currentPage={currentPage}*/}
+      {/*/>*/}
 
     </div>
   )
