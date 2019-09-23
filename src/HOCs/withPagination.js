@@ -44,6 +44,7 @@ export const withPagination = Table => function({
       onNextPageClick={onNextPageClick}
       onPreviousPageClick={onPreviousPageClick}
       currentPage={currentPage + 1}
+      changePageTo={setCurrentPage}
       data={currentPageData}
       {...rest}
     />

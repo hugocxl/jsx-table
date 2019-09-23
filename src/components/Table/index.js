@@ -1,9 +1,12 @@
 'use strict'
 
 import React from 'react'
-import { defaultTableBodyRenderer, defaultTableHeaderRenderer, defaultNoDataRenderer } from './renderers'
-
-import { Pagination } from '../Pagination'
+import {
+  defaultTableBodyRenderer,
+  defaultTableHeaderRenderer,
+  defaultNoDataRenderer,
+  defaultTablePaginationRenderer
+} from './renderers'
 
 
 export const Table = ({
@@ -13,7 +16,7 @@ export const Table = ({
   noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
   loading, loadingRenderer, loadingComponent,
   onSortableClick, onHeaderClick,
-  pagination, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
+  changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
   virtualized,
   ...rest
 }) => {
@@ -57,6 +60,16 @@ export const Table = ({
         ? tableBodyRenderer(props)
         : defaultTableBodyRenderer(props)
     }
+  }
+
+  function renderTableFooter() {
+
+  }
+
+  function renderTablePagination(props) {
+    return tablePaginationRenderer
+      ? tablePaginationRenderer(props)
+      : defaultTablePaginationRenderer(props)
   }
 
   function renderNoData(props) {
@@ -103,11 +116,16 @@ export const Table = ({
         tableBodyHeight,
         virtualized
       })}
-      <Pagination
-        onNextPageClick={onNextPageClick}
-        onPreviousPageClick={onPreviousPageClick}
-        currentPage={currentPage}
-      />
+      {renderTablePagination({
+        changePageTo,
+        pagination,
+        paginationHeight,
+        onNextPageClick,
+        onPreviousPageClick,
+        currentPage,
+        paginationComponent,
+        paginationProps
+      })}
 
     </div>
   )
