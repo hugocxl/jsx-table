@@ -60,13 +60,15 @@ export function App() {
       justifyContent: 'center'
     }}>
       <ReactAwesomeTable
-        data={getData(50)}
+        data={getData(100)}
         columns={columns}
         rowHeight={20}
-        headerHeight={30}
+        headerHeight={20}
         pagination={true}
-        pageSize={20}
-        virtualized={true}
+        pageSize={30}
+        onPageChange={props => console.log('PAGINATION', props)}
+        defaultPage={2}
+        // virtualized={true}
         // onRowClick={row => console.log(row)}
         // onHeaderClick={header => console.log(header)}
         // onColumnSort={props => console.log(props)}

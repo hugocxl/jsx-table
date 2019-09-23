@@ -7,18 +7,31 @@ import { Pagination } from '../Pagination'
 
 
 export const Table = ({
-  columns, data, style, defaultSorted, disabled,
+  columns, data, style, width, height, defaultSorted, disabled,
   tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
   tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
   noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
   loading, loadingRenderer, loadingComponent,
   onSortableClick, onHeaderClick,
-  onNextPageClick, onPreviousPageClick, currentPage,
+  pagination, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
   virtualized,
   ...rest
 }) => {
 
-  const tableBodyHeight = !disableHeader ? `calc(100% - ${headerHeight}px - 20px)` : '100%'
+  const tableBodyHeight = getBodyHeight()
+
+  function getBodyHeight() {
+    let height = '100%'
+    if (!disableHeader) {
+      height += ` - ${headerHeight}px`
+    }
+
+    if (pagination) {
+      height += ` - ${paginationHeight}px`
+    }
+
+    return `calc(${height})`
+  }
 
   function renderTableHeader(props) {
     if (disableHeader) {
@@ -56,7 +69,11 @@ export const Table = ({
     <div
       role={'table'}
       className={'AwesomeTable'}
-      style={{ ...style }}>
+      style={{
+        height,
+        width,
+        ...style
+      }}>
       {renderTableHeader({
         columns,
         headerRowProps,
@@ -86,11 +103,11 @@ export const Table = ({
         tableBodyHeight,
         virtualized
       })}
-      {/*<Pagination*/}
-      {/*  onNextPageClick={onNextPageClick}*/}
-      {/*  onPreviousPageClick={onPreviousPageClick}*/}
-      {/*  currentPage={currentPage}*/}
-      {/*/>*/}
+      <Pagination
+        onNextPageClick={onNextPageClick}
+        onPreviousPageClick={onPreviousPageClick}
+        currentPage={currentPage}
+      />
 
     </div>
   )
@@ -98,7 +115,10 @@ export const Table = ({
 
 Table.defaultProps = {
   rowHeight: 25,
+  height: '100%',
+  width: '100%',
   headerHeight: 30,
+  paginationHeight: 20,
   disableHeader: false,
   columns: null,
   data: null
