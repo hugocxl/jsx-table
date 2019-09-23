@@ -21,6 +21,19 @@ const columns = [
     }
   },
   {
+    Header: 'completed',
+    id: 'completed',
+    sortable: true,
+    Cell: ({ cellData }) => {
+      return (
+        <div style={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center' }}>
+          <div style={{ height: '60%', background: 'chartreuse', width: `${cellData}%` }}/>
+        </div>
+
+      )
+    }
+  },
+  {
     Header: 'Genre',
     id: 'genre',
     sortable: true
@@ -64,12 +77,12 @@ export function App() {
         columns={columns}
         rowHeight={20}
         headerHeight={20}
-        pagination={true}
-        paginationHeight={20}
-        pageSize={30}
+        // pagination={true}
+        // paginationHeight={20}
+        // pageSize={30}
         onPageChange={props => console.log('PAGINATION', props)}
         defaultPage={2}
-        // virtualized={true}
+        virtualized={true}
         // onRowClick={row => console.log(row)}
         // onHeaderClick={header => console.log(header)}
         // onColumnSort={props => console.log(props)}

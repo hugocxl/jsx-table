@@ -1,5 +1,6 @@
 import React from 'react'
-import { defaultRowRenderer, defaultLoadingRenderer } from './index'
+import { defaultRowRenderer } from './defaultRowRenderer'
+import { defaultLoadingRenderer } from './defaultLoadingRenderer'
 import cx from 'classnames'
 
 

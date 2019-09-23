@@ -8,6 +8,7 @@ export function getData(rows) {
   for (let i = 0; i < rows; i++) {
     output.push({
       name: getName(getRandomInt(10)),
+      completed: getCompleted(getRandomInt(100)),
       age: getAge(getRandomInt(10)),
       country: getCountry(getRandomInt(10)),
       genre: getGenre(getRandomInt(10)),
@@ -16,6 +17,10 @@ export function getData(rows) {
   }
 
   return output
+}
+
+function getCompleted(index) {
+  return index
 }
 
 function getName(index) {
