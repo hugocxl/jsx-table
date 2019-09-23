@@ -59,7 +59,7 @@ export function App() {
       justifyContent: 'center'
     }}>
       <ReactAwesomeTable
-        data={getData(100)}
+        data={getData(1000)}
         columns={columns}
         rowHeight={20}
         headerHeight={30}

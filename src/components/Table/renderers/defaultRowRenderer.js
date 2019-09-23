@@ -17,22 +17,17 @@ export const defaultRowRenderer = ({
   ...rest
 }) => {
 
-  function isRowVisible() {
-    const rowPosition = rowIndex * rowHeight
-
-    if (bodyHeight && bodyScrollTop) {
-      return (rowPosition > bodyScrollTop - 400) && (rowPosition < (bodyScrollTop + bodyHeight) + 400)
-    } else {
-      return true
-    }
-  }
-
   return (
     <div
-      className={cx('AwesomeTable__body-row', { selected: rowData.selected })}
+      className={cx('AwesomeTable__body-row'
+        // { selected: rowData.selected }
+      )}
       {...rowProps}
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
       style={{
+        position: 'absolute',
+        left: 0,
+        top: rowHeight * rowIndex,
         height: rowHeight,
         ...rowProps && rowProps.style
       }}>

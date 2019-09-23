@@ -14,7 +14,5 @@ export const withVirtualization = Table => props => {
 
   }
 
-  debugger
-
   return <Table ref={ref} {...props}/>
 }

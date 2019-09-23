@@ -9,28 +9,58 @@ class BodyRender extends React.Component {
     super(props)
     this.ref = React.createRef()
     this.state = {
-      height: 0,
-      scroll: 0
+      rows: []
     }
   }
 
   componentDidMount() {
     this.setState({
-      height: this.ref.current.clientHeight,
-      scroll: this.ref.current.scrollTop
+      rows: this.renderContent()
     })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const a = JSON.stringify(this.props.sortBy)
+    const b = JSON.stringify(prevProps.sortBy)
+
+    if (a !== b) {
+      this.setState({
+        rows: this.renderContent()
+      })
+    }
+  }
+
+  renderContent = () => {
+    const rows = []
+
+    if (!this.ref.current) {
+      return null
+    }
+
+    const firstRowIndex = Math.round(this.ref.current.scrollTop / this.props.rowHeight)
+    const lastRowIndex = Math.round((this.ref.current.scrollTop + this.ref.current.clientHeight) / this.props.rowHeight)
+
+    for (let i = firstRowIndex; i < lastRowIndex; i++) {
+      const rowProps = {
+        rowData: this.props.data[i],
+        selected: false,
+        rowIndex: i,
+        ...this.props
+      }
+      rows.push(
+        defaultRowRenderer(rowProps)
+      )
+    }
+    return rows
   }
 
   onScroll = () => {
     this.setState({
-      height: this.ref.current.clientHeight,
-      scroll: this.ref.current.scrollTop
+      rows: this.renderContent()
     })
   }
 
   render() {
-    console.log('render', this.state.scroll, this.state.height)
-
     const {
       tableBodyHeight,
       rowRenderer,
@@ -51,23 +81,18 @@ class BodyRender extends React.Component {
         ))}
 
         <div
+          className={cx('AwesomeTable__body', { loading })}
           onScroll={this.onScroll}
           ref={this.ref}
-          className={cx('AwesomeTable__body', { loading })}
-          style={{ height: tableBodyHeight, maxHeight: tableBodyHeight }}>
-          {data.map((rowData, rowIndex) => {
-            const rowProps = {
-              // bodyScrollTop: scrollTop,
-              // bodyHeight: height,
-              rowData,
-              rowIndex,
-              ...rest
-            }
-
-            return rowRenderer
-              ? rowRenderer(rowProps)
-              : defaultRowRenderer(rowProps)
-          })}
+          style={{ height: tableBodyHeight, overflow: 'scroll' }}>
+          <div
+            style={{
+              position: 'relative',
+              overflow: 'scroll',
+              height: this.props.data.length * this.props.rowHeight
+            }}>
+            {this.renderContent()}
+          </div>
         </div>
       </React.Fragment>
     )
