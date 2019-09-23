@@ -26,7 +26,7 @@ export const withPagination = Table => function({
     }
   }
 
-  function onPreviousPageClhick() {
+  function onPreviousPageClick() {
     if (currentPage >= 1) {
       onPageChange && onPageChange({
         pageSize,
