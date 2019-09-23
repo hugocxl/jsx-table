@@ -1,0 +1,88 @@
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max))
+}
+
+export function getData(rows) {
+  const output = []
+
+  for (let i = 0; i < rows; i++) {
+    output.push({
+      name: getName(getRandomInt(10)),
+      age: getAge(getRandomInt(10)),
+      country: getCountry(getRandomInt(10)),
+      genre: getGenre(getRandomInt(10)),
+      city: getCity(getRandomInt(10))
+    })
+  }
+
+  return output
+}
+
+function getName(index) {
+  switch (true) {
+    case index < 2:
+      return `Hugo`
+    case index >= 2 && index < 4:
+      return `Fer`
+    case index >= 4 && index < 6:
+      return `Angeles`
+    case index >= 6 && index < 8:
+      return `Sonia`
+    case index >= 8 && index < 10:
+      return `Ana`
+  }
+}
+
+function getAge(index) {
+  switch (true) {
+    case index < 2:
+      return 30
+    case index >= 2 && index < 4:
+      return 34
+    case index >= 4 && index < 6:
+      return 60
+    case index >= 6 && index < 8:
+      return 52
+    case index >= 8 && index < 10:
+      return 20
+  }
+}
+
+function getCountry(index) {
+  switch (true) {
+    case index < 2:
+      return `Spain`
+    case index >= 2 && index < 4:
+      return `France`
+    case index >= 4 && index < 6:
+      return `Italy`
+    case index >= 6 && index < 8:
+      return `Germany`
+    case index >= 8 && index < 10:
+      return `Portugal`
+  }
+}
+
+function getGenre(index) {
+  switch (true) {
+    case index <= 5:
+      return 'Male'
+    case index > 5:
+      return 'Female'
+  }
+}
+
+function getCity(index) {
+  switch (true) {
+    case index < 2:
+      return `London`
+    case index >= 2 && index < 4:
+      return `Madrid`
+    case index >= 4 && index < 6:
+      return `Barcelona`
+    case index >= 6 && index < 8:
+      return `Lisbon`
+    case index >= 8 && index < 10:
+      return `Berlin`
+  }
+}

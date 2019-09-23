@@ -1,9 +1,10 @@
 import React from 'react'
 import { defaultCellRenderer } from './defaultCellRenderer'
 import { utils } from '../../../utils'
+import cx from 'classnames'
 
 
-export function defaultRowRenderer({
+export const defaultRowRenderer = ({
   onRowClick,
   cellRenderer,
   rowData,
@@ -11,11 +12,24 @@ export function defaultRowRenderer({
   rowHeight,
   columns,
   rowProps,
+  bodyScrollTop,
+  bodyHeight,
   ...rest
-}) {
+}) => {
+
+  function isRowVisible() {
+    const rowPosition = rowIndex * rowHeight
+
+    if (bodyHeight && bodyScrollTop) {
+      return (rowPosition > bodyScrollTop - 400) && (rowPosition < (bodyScrollTop + bodyHeight) + 400)
+    } else {
+      return true
+    }
+  }
+
   return (
     <div
-      className={'AwesomeTable__body-row'}
+      className={cx('AwesomeTable__body-row', { selected: rowData.selected })}
       {...rowProps}
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
       style={{

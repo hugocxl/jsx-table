@@ -6,7 +6,7 @@ import { defaultTableBodyRenderer, defaultTableHeaderRenderer, defaultNoDataRend
 import { Pagination } from '../Pagination'
 
 
-export function Table({
+export const Table = ({
   columns, data, style, defaultSorted, disabled,
   tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
   tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
@@ -15,7 +15,7 @@ export function Table({
   onSortableClick, onHeaderClick,
   onNextPageClick, onPreviousPageClick, currentPage,
   ...rest
-}) {
+}) => {
 
   const tableBodyHeight = !disableHeader ? `calc(100% - ${headerHeight}px - 20px)` : '100%'
 
