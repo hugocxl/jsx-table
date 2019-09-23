@@ -3,4 +3,4 @@ import { Table } from './components'
 import { withSortBy, withRowSelection, withPagination, withVirtualization } from './HOCs'
 
 
-export const ReactAwesomeTable = withSortBy(Table)
+export const ReactAwesomeTable = withRowSelection(withSortBy(Table))

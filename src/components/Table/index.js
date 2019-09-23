@@ -14,6 +14,7 @@ export const Table = ({
   loading, loadingRenderer, loadingComponent,
   onSortableClick, onHeaderClick,
   onNextPageClick, onPreviousPageClick, currentPage,
+  virtualized,
   ...rest
 }) => {
 
@@ -82,7 +83,8 @@ export const Table = ({
         cellRenderer,
         onRowClick,
         onCellClick,
-        tableBodyHeight
+        tableBodyHeight,
+        virtualized
       })}
       {/*<Pagination*/}
       {/*  onNextPageClick={onNextPageClick}*/}

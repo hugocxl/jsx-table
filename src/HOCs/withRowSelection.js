@@ -9,45 +9,43 @@ export const withRowSelection = Table => function({
   ...rest
 }) {
 
-  const [selectedRows, setSelectedRows] = React.useState(data.map(el => ({
-    ...el,
-    selected: el.selected || false
-  })))
-
-  function onSelectableClick({ rowIndex }) {
-    let nextSelectedRows = [...selectedRows]
-
-    nextSelectedRows[rowIndex] = {
-      ...nextSelectedRows[rowIndex],
-      selected: !nextSelectedRows[rowIndex].selected
-    }
-
-    setSelectedRows(nextSelectedRows)
+  function getSelectedRows() {
+    return data.filter(row => row.selected)
   }
 
-  const withSelectColumns = [
-    {
-      Header: '',
-      id: 'selected',
-      width: 35,
-      Cell: ({ cellData, rowIndex }) => {
-        return (
-          <input
-            type={'checkbox'}
-            checked={cellData}
-            onClick={() => onSelectableClick({ rowIndex })}
-          />
-        )
-      }
-    },
-    ...columns
-  ]
+  function getColumns() {
+    return [
+      {
+        Header: '',
+        id: 'selected',
+        width: 35,
+        sortable: true,
+        Cell: ({ cellData, rowIndex, rowData }) => {
+          return (
+            <input
+              type={'checkbox'}
+              checked={cellData}
+              onChange={() => {
+                onRowSelect && onRowSelect({
+                  rowIndex,
+                  cellData,
+                  rowData,
+                  selectedRows: getSelectedRows(),
+                  data
+                })
+              }}
+            />
+          )
+        }
+      },
+      ...columns
+    ]
+  }
 
   return (
     <Table
-      onRowSelect={onRowSelect}
-      columns={withSelectColumns}
-      data={selectedRows}
+      columns={getColumns()}
+      data={data}
       {...rest}
     />
   )

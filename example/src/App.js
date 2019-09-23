@@ -60,12 +60,13 @@ export function App() {
       justifyContent: 'center'
     }}>
       <ReactAwesomeTable
-        data={getData(100)}
+        data={getData(50)}
         columns={columns}
         rowHeight={20}
         headerHeight={30}
         pagination={true}
         pageSize={20}
+        virtualized={true}
         // onRowClick={row => console.log(row)}
         // onHeaderClick={header => console.log(header)}
         // onColumnSort={props => console.log(props)}

@@ -13,12 +13,29 @@ class BodyRender extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
+    this.props.virtualized && this.setState({
       control: this.ref.current.scrollTop
     })
   }
 
-  renderContent = () => {
+  renderRows = () => {
+    const { data, rowRenderer, rowHeight, ...rest } = this.props
+
+    return data.map((el, i) => {
+      const rowProps = {
+        rowData: el,
+        rowHeight,
+        selected: false,
+        rowIndex: i,
+        ...rest
+      }
+      return rowRenderer
+        ? rowRenderer(rowProps)
+        : defaultRowRenderer(rowProps)
+    })
+  }
+
+  renderVirtualizedRows = () => {
     if (!this.ref.current) {
       return null
     }
@@ -53,7 +70,7 @@ class BodyRender extends React.Component {
   }
 
   render() {
-    const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading } = this.props
+    const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading, virtualized } = this.props
 
     return (
       <React.Fragment>
@@ -66,13 +83,17 @@ class BodyRender extends React.Component {
           className={cx('AwesomeTable__body', { loading })}
           onScroll={this.onScroll}
           ref={this.ref}
-          style={{ height: tableBodyHeight, overflow: 'auto' }}>
+          style={{ height: tableBodyHeight, overflow: 'hidden auto' }}>
           <div
             style={{
               position: 'relative',
               height: data && (data.length * rowHeight)
             }}>
-            {this.renderContent()}
+            {virtualized ? (
+              this.renderVirtualizedRows()
+            ) : (
+              this.renderRows()
+            )}
           </div>
         </div>
       </React.Fragment>
