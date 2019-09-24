@@ -4,21 +4,23 @@ import { utils } from '../../../utils'
 import cx from 'classnames'
 
 
-export const defaultRowRenderer = ({
-  onRowClick,
-  cellRenderer,
-  rowData,
-  rowIndex,
-  rowHeight,
-  columns,
-  rowProps,
-  bodyScrollTop,
-  bodyHeight,
-  ...rest
-}) => {
+export const defaultRowRenderer = (
+  {
+    onRowClick,
+    cellRenderer,
+    rowData,
+    rowIndex,
+    rowHeight,
+    columns,
+    rowProps,
+    bodyScrollTop,
+    bodyHeight,
+    ...rest
+  }) => {
 
   return (
     <div
+      key={rowIndex}
       className={cx('AwesomeTable__body-row', { selected: rowData && rowData.selected })}
       {...rowProps}
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
@@ -33,8 +35,8 @@ export const defaultRowRenderer = ({
       {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
           cellIndex,
-          cellData: rowData[column.id],
-          Cell: column.Cell,
+          cellData: rowData[column.dataKey],
+          cell: column.cell,
           rowData,
           align: column.align,
           rowIndex,

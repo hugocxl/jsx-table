@@ -26,6 +26,26 @@ class Example extends Component {
 }
 ```
 
+## Tasks
+- [x] Virtualization
+- [x] Sorting
+- [x] Pagination
+- [ ] Implement memoize-one
+- [ ] Filters
+- [ ] Custom column sorting
+- [ ] Grouping
+- [ ] Editing
+- [ ] Freeze columns
+- [ ] Row selection
+- [ ] Download data
+- [ ] Resizable columns
+- [ ] Dnd columns/rows (react-sortable-hoc)
+- [ ] Multi colum sorting
+- [ ] Infinite loading
+
+
+
+
 
 ## License
 

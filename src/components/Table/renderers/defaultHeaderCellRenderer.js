@@ -2,41 +2,43 @@ import React from 'react'
 import { SortIndicator } from '../../SortIndicator'
 
 
-export function defaultHeaderCellRenderer({
-  Header,
-  width,
-  align,
-  headerCellProps,
-  headerComponentProps,
-  onHeaderClick,
-  onSortableClick,
-  sortable,
-  id,
-  columnSortMethod,
-  sortBy,
-  sortDirection
-}) {
+export function defaultHeaderCellRenderer(
+  {
+    header,
+    width,
+    align,
+    headerCellProps,
+    headerComponentProps,
+    onHeaderClick,
+    onSortableClick,
+    sortable,
+    dataKey,
+    columnSortMethod,
+    sortBy,
+    sortDirection
+  }) {
+
   return (
     <div
       className={'AwesomeTable__header-row-cell'}
       style={{ width, justifyContent: align || 'center' }}
       onClick={event => {
-        sortable && onSortableClick({ sortBy: id, event, columnSortMethod })
+        sortable && onSortableClick({ sortBy: dataKey, event, columnSortMethod })
         onHeaderClick && onHeaderClick({
-          Header,
-          id,
+          header,
+          dataKey,
           headerCellProps,
           headerComponentProps,
           event
         })
       }}
       {...headerCellProps}>
-      {typeof Header === 'function' ? (
-        <Header {...headerComponentProps}/>
+      {typeof header === 'function' ? (
+        header(headerComponentProps)
       ) : (
-        <span>{Header}</span>
+        <div>{header}</div>
       )}
-      {id === sortBy && <SortIndicator sortDirection={sortDirection}/>}
+      {dataKey === sortBy && <SortIndicator sortDirection={sortDirection}/>}
     </div>
   )
 }

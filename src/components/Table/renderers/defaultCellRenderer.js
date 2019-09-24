@@ -1,20 +1,22 @@
 import React from 'react'
 
 
-export function defaultCellRenderer({
-  onCellClick,
-  cellIndex,
-  cellData,
-  rowData,
-  Cell,
-  width,
-  align,
-  rowIndex,
-  cellProps,
-  cellComponentProps
-}) {
+export function defaultCellRenderer(
+  {
+    onCellClick,
+    cellIndex,
+    cellData,
+    rowData,
+    cell,
+    width,
+    align,
+    rowIndex,
+    cellProps,
+    cellComponentProps
+  }) {
   return (
     <div
+      key={cellIndex}
       className={'AwesomeTable__body-cell'}
       onClick={() => onCellClick && onCellClick({
         cellData,
@@ -30,10 +32,10 @@ export function defaultCellRenderer({
         justifyContent: align || 'center',
         ...cellProps && cellProps.style
       }}>
-      {Cell ? (
-        <Cell cellData={cellData} rowData={rowData} cellComponentProps={cellComponentProps} rowIndex={rowIndex}/>
+      {cell && typeof cell === 'function' ? (
+        cell({ cellData, rowData, cellComponentProps, rowIndex, cellIndex })
       ) : (
-        <span className={'AwesomeTable__body-cell-text'}>{cellData}</span>
+        <div className={'AwesomeTable__body-cell-text'}>{cellData}</div>
       )}
     </div>
   )

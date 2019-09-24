@@ -1,6 +1,6 @@
 {
-  "name": "react-awesome-table-example",
-  "homepage": "https://hcorta.github.io/react-awesome-table",
+  "name": "react-ninja-table-example",
+  "homepage": "https://hcorta.github.io/react-ninja-table",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -8,7 +8,7 @@
     "gh-pages": "^2.1.1",
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
-    "react-awesome-table": "link:..",
+    "react-ninja-table": "link:..",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "^1.1.4"
   },

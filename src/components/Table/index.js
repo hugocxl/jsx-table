@@ -9,20 +9,22 @@ import {
 } from './renderers'
 
 
-export const Table = ({
-  columns, data, style, width, height, defaultSorted, disabled,
-  tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
-  tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
-  noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
-  loading, loadingRenderer, loadingComponent,
-  onSortableClick, sortDirection, sortBy,
-  onHeaderClick,
-  changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
-  virtualized,
-  ...rest
-}) => {
+export const Table = (
+  {
+    children, data, style, width, height, defaultSorted, disabled,
+    tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
+    tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
+    noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
+    loading, loadingRenderer, loadingComponent,
+    onSortableClick, sortDirection, sortBy,
+    onHeaderClick,
+    changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
+    virtualized,
+    ...rest
+  }) => {
 
   const tableBodyHeight = getBodyHeight()
+  const columns = children.map(el => el.props)
 
   function getBodyHeight() {
     let height = '100%'

@@ -3,14 +3,14 @@ import { utils } from '../../../utils'
 import { defaultHeaderCellRenderer } from './defaultHeaderCellRenderer'
 
 
-export function defaultHeaderRowRenderer({
-  columns,
-  headerCellRenderer,
-  headerHeight,
-  headerRowProps,
-  ...rest
-}) {
-
+export function defaultHeaderRowRenderer(
+  {
+    columns,
+    headerCellRenderer,
+    headerHeight,
+    headerRowProps,
+    ...rest
+  }) {
   return (
     <div
       role={'table'}
@@ -19,11 +19,11 @@ export function defaultHeaderRowRenderer({
       {columns.map((column, headerIndex) => {
         const rowProps = {
           column,
-          Header: column.Header,
+          header: column.header,
           width: utils.calculateColumnWidth({ width: column.width, columns }),
           headerIndex,
           align: column.align,
-          id: column.id,
+          dataKey: column.dataKey,
           sortable: column.sortable,
           columnSortMethod: column.columnSortMethod,
           ...rest
