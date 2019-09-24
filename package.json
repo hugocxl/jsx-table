@@ -1,10 +1,11 @@
 {
-  "name": "react-awesome-table",
+  "name": "react-tabular-data",
   "version": "1.0.0",
   "description": "An awesome table for React",
   "author": "hcorta",
   "license": "MIT",
   "repository": "hcorta/react-awesome-table",
+  "homepage": "https://hcorta.github.io/react-awesome-table",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -22,13 +23,12 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
+    "classnames": "^2.2.6",
     "prop-types": "^15.5.4",
     "react": "16.8.1",
-    "react-dom": "16.8.1",
-    "classnames": "^2.2.6"
+    "react-dom": "16.8.1"
   },
   "devDependencies": {
-    "classnames": "^2.2.6",
     "@svgr/rollup": "^2.4.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
@@ -36,6 +36,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "classnames": "^2.2.6",
     "cross-env": "^5.1.4",
     "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",
@@ -45,7 +46,7 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
-    "gh-pages": "^1.2.0",
+    "gh-pages": "^2.1.1",
     "react": "16.8.1",
     "react-dom": "16.8.1",
     "react-scripts": "^1.1.4",
