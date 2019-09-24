@@ -56,14 +56,8 @@ function Example () {
     ]
 
     const columns = [
-      {
-        header: 'Name',
-        dataKey: 'name'
-      },
-      {
-        header: 'Age',
-        dataKey: 'age'
-      }
+        { header: 'Name', dataKey: 'name' },
+        { header: 'Age', dataKey: 'age' }
     ]
 
     return (
@@ -104,55 +98,54 @@ function Example () {
     const data = [
         { name: 'Hugo', genre: 'Male', age: 30, country: 'Spain' },
         { name: 'Helen', genre: 'Female', age: 32, country: 'France' },
+        ...
     ]
 
     return (
-        <Table data={data}>
-            <Table
-                id={'ninja-table'}
-                className={'custom-table-class'}
-                headerClassName={'custom-header-class'}
-                rowClassName={'custom-row-class'}
-                loading={loading}
-                height={700}
-                width={'100%'}
-                data={data}
-                rowHeight={20}
-                headerHeight={25}
-                overscanRowCount={50}
-                virtualized={false}
-                onRowClick={row => console.log('Row', row)}
-                onCellClick={cell => console.log('Cell', cell)}
-                onHeaderClick={header => console.log('Header', header)}
-                onColumnSort={props => console.log(props)}
-                noDataMessage={'There is no data to display'}
-                noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
-              >
-                    <Column
-                      header={'Name'}
-                      width={'20%}
-                      dataKey={'name'}
-                      sortable={true}
-                    />
-                    <Column
-                      header={'Genre'}
-                      width={200}
-                      dataKey={'genre'}
-                      sortable={true}
-                      columnSortMethod={customColumnSort}
-                    />
-                    <Column
-                      header={CustomColumnHeader}
-                      dataKey={'age'}
-                      sortable={true}
-                    />
-                    <Column
-                      header={'Country'}
-                      dataKey={'country'}
-                      sortable={true}
-                      cell={CustomColumnCell}
-                    />
-              </Table>
+        <Table
+            id={'ninja-table'}
+            className={'custom-table-class'}
+            headerClassName={'custom-header-class'}
+            rowClassName={'custom-row-class'}
+            loading={loading}
+            height={700}
+            width={'100%'}
+            data={data}
+            rowHeight={20}
+            headerHeight={25}
+            overscanRowCount={50}
+            virtualized={false}
+            onRowClick={row => console.log('Row', row)}
+            onCellClick={cell => console.log('Cell', cell)}
+            onHeaderClick={header => console.log('Header', header)}
+            onColumnSort={props => console.log(props)}
+            noDataMessage={'There is no data to display'}
+            noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
+           >
+                <Column
+                  header={'Name'}
+                  width={'20%}
+                  dataKey={'name'}
+                  sortable={true}
+                />
+                <Column
+                  header={'Genre'}
+                  width={200}
+                  dataKey={'genre'}
+                  sortable={true}
+                  columnSortMethod={customColumnSort}
+                />
+                <Column
+                  header={CustomColumnHeader}
+                  dataKey={'age'}
+                  sortable={true}
+                />
+                <Column
+                  header={'Country'}
+                  dataKey={'country'}
+                  sortable={true}
+                  cell={CustomColumnCell}
+                />
         </Table>
 }
 
