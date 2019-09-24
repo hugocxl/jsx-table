@@ -9,6 +9,8 @@ export function defaultCellRenderer(
     rowData,
     cell,
     width,
+    minWidth,
+    maxWidth,
     align,
     rowIndex,
     cellProps,
@@ -18,7 +20,8 @@ export function defaultCellRenderer(
     <div
       key={cellIndex}
       className={'AwesomeTable__body-cell'}
-      onClick={() => onCellClick && onCellClick({
+      onClick={event => onCellClick && onCellClick({
+        event,
         cellData,
         cellIndex,
         rowData,
@@ -28,6 +31,8 @@ export function defaultCellRenderer(
       })}
       {...cellProps}
       style={{
+        minWidth,
+        maxWidth,
         width,
         justifyContent: align || 'center',
         ...cellProps && cellProps.style

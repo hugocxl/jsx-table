@@ -33,12 +33,13 @@ class Example extends Component {
 - [x] Pagination
 - [x] Custom column sorting
 - [x] Memoized columns
-- [ ] Pass dom event on table events
-- [ ] Custom CSS classnames to elements
+- [x] Pass dom event on table events
+- [ ] Footer
+- [x] Custom CSS classnames to elements
 - [x] Optional custom id to attach to root Table element
-- [ ] onScroll prop
+- [x] onScroll prop
 - [ ] scrollToIndex, scrollTop, scrollToAlignment
-- [ ] rowCount prop => Number of rows in table
+- [ ] rowCount prop - Number of rows in table
 - [ ] Colum - maxWidth, minWidth props
 - [ ] Pagination review
 - [ ] Sort review (sortable prop + sortMethod)

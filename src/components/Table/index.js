@@ -16,12 +16,11 @@ export const Table = (
   {
     className, headerClassName, rowClassName,
     id, children, columns, data, style, width, height, defaultSorted, disabled,
-    tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
+    tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps, onHeaderClick,
     tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
     noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
     loading, loadingRenderer, loadingComponent,
     onSortableClick, sortDirection, sortBy,
-    onHeaderClick,
     changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
     virtualized,
     ...rest

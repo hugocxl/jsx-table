@@ -24,7 +24,7 @@ export const defaultRowRenderer = (
       key={rowIndex}
       className={cx('AwesomeTable__body-row', rowClassName, { selected: rowData && rowData.selected })}
       {...rowProps}
-      onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
+      onClick={event => onRowClick && onRowClick({ event, rowData, rowIndex, rowProps })}
       style={{
         position: 'absolute',
         left: 0,
@@ -41,6 +41,8 @@ export const defaultRowRenderer = (
           rowData,
           align: column.align,
           rowIndex,
+          minWidth: column.minWidth,
+          maxWidth: column.maxWidth,
           width: utils.calculateColumnWidth({
             width: column.width,
             columns

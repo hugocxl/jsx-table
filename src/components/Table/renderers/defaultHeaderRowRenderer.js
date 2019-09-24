@@ -23,6 +23,8 @@ export function defaultHeaderRowRenderer(
           column,
           header: column.header,
           width: utils.calculateColumnWidth({ width: column.width, columns }),
+          minWidth: column.minWidth,
+          maxWidth: column.maxWidth,
           headerIndex,
           align: column.align,
           dataKey: column.dataKey,
