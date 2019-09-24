@@ -40,10 +40,10 @@ class Example extends Component {
 - [x] onScroll prop
 - [ ] scrollToIndex, scrollTop, scrollToAlignment
 - [ ] rowCount prop - Number of rows in table
-- [ ] Colum - maxWidth, minWidth props
+- [x] Colum - maxWidth, minWidth props
 - [ ] Pagination review
 - [ ] Sort review (sortable prop + sortMethod)
-- [ ] overscanRowCount Prop
+- [x] overscanRowCount Prop
 - [ ] Filters
 - [ ] Grouping
 - [ ] Editing

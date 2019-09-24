@@ -40,12 +40,15 @@ class BodyRender extends React.Component {
     if (!this.ref.current) {
       return null
     }
-    const { data, rowRenderer, rowHeight, ...rest } = this.props
+    const { data, rowRenderer, rowHeight, overscanRowCount, ...rest } = this.props
     const { scrollTop, clientHeight } = this.ref.current
     const rows = []
 
-    const firstRowIndex = Math.round(scrollTop / rowHeight)
-    const lastRowIndex = Math.round((scrollTop + clientHeight) / rowHeight)
+    const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount
+    const lastRowIndexCalc = Math.round((scrollTop + clientHeight) / rowHeight) + overscanRowCount
+
+    const firstRowIndex = firstRowIndexCalc > 0 ? firstRowIndexCalc : 0
+    const lastRowIndex = lastRowIndexCalc < data.length ? lastRowIndexCalc : data.length
 
     for (let i = firstRowIndex; i < lastRowIndex; i++) {
       const rowProps = {

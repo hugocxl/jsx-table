@@ -15,7 +15,7 @@ import {
 export const Table = (
   {
     className, headerClassName, rowClassName,
-    id, children, columns, data, style, width, height, defaultSorted, disabled,
+    id, children, columns, data, style, width, height, defaultSorted, disabled, overscanRowCount,
     tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps, onHeaderClick,
     tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
     noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
@@ -127,7 +127,8 @@ export const Table = (
         onRowClick,
         onCellClick,
         tableBodyHeight,
-        virtualized
+        virtualized,
+        overscanRowCount
       })}
       {renderTablePagination({
         changePageTo,
@@ -145,6 +146,7 @@ export const Table = (
 }
 
 Table.defaultProps = {
+  overscanRowCount: 10,
   rowHeight: 25,
   height: '100%',
   width: '100%',

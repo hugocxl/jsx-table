@@ -56,6 +56,7 @@ export function App() {
         data={getData(15000)}
         rowHeight={20}
         headerHeight={25}
+        // overscanRowCount={50}
         // pagination={true}
         // paginationHeight={20}
         // pageSize={30}
