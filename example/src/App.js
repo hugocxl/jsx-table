@@ -53,6 +53,7 @@ export function App() {
         headerClassName={'header-classname-demo'}
         rowClassName={'row-classname-demo'}
         height={700}
+        width={'100%'}
         data={getData(15000)}
         rowHeight={20}
         headerHeight={25}

@@ -1,13 +1,13 @@
 # react-ninja-table
 
-> An awesome table for React
+🔣👺 A **simple** but **powerful lightweight** (6.4kB) table for React with **highly-customizable options**.  https://hcorta.github.io/react-ninja-table/
 
 [![NPM](https://img.shields.io/npm/v/react-awesome-table.svg)](https://www.npmjs.com/package/react-awesome-table) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 ## Install
 
 ```bash
-npm install --save react-awesome-table
+yarn add react-ninja-table
 ```
 
 ## Usage
@@ -35,6 +35,7 @@ class Example extends Component {
 - [x] Memoized columns
 - [x] Pass dom event on table events
 - [ ] Footer
+- [ ] Fix height prop
 - [x] Custom CSS classnames to elements
 - [x] Optional custom id to attach to root Table element
 - [x] onScroll prop
