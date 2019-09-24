@@ -124,7 +124,7 @@ function Example () {
            >
                 <Column
                   header={'Name'}
-                  width={'20%}
+                  width={'20%'}
                   dataKey={'name'}
                   sortable={true}
                 />
