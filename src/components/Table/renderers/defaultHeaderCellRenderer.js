@@ -29,7 +29,6 @@ export function defaultHeaderCellRenderer(
           dataKey,
           headerCellProps,
           headerComponentProps,
-          event
         })
       }}
       {...headerCellProps}>

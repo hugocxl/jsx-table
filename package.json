@@ -1,10 +1,13 @@
 {
   "name": "react-ninja-table",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "A React table for ninjas",
-  "author": "hcorta",
+  "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
   "license": "MIT",
-  "repository": "hcorta/react-ninja-table",
+  "repository": {
+    "type": "git",
+    "url": "https://hcorta.github.io/react-ninja-table"
+  },
   "homepage": "https://hcorta.github.io/react-ninja-table",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -22,11 +25,14 @@
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
   },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "memoize-one": "^5.0.0",
+    "prop-types": "^15.7.0"
+  },
   "peerDependencies": {
-    "classnames": "^2.2.6",
-    "prop-types": "^15.5.4",
-    "react": "16.8.1",
-    "react-dom": "16.8.1"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
@@ -36,7 +42,6 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "classnames": "^2.2.6",
     "cross-env": "^5.1.4",
     "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",

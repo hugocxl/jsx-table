@@ -1,6 +1,8 @@
 'use strict'
 
 import React from 'react'
+import memoize from 'memoize-one'
+import { utils } from "../../utils"
 import {
   defaultTableBodyRenderer,
   defaultTableHeaderRenderer,
@@ -11,7 +13,7 @@ import {
 
 export const Table = (
   {
-    children, data, style, width, height, defaultSorted, disabled,
+    children, columns, data, style, width, height, defaultSorted, disabled,
     tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
     tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
     noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
@@ -24,7 +26,10 @@ export const Table = (
   }) => {
 
   const tableBodyHeight = getBodyHeight()
-  const columns = children.map(el => el.props)
+  const getColumns = memoize((columns, children) => {
+    return columns || utils.normalizeColumns(children)
+  })
+  const tableColumns = getColumns(columns, children)
 
   function getBodyHeight() {
     let height = '100%'
@@ -91,7 +96,7 @@ export const Table = (
         ...style
       }}>
       {renderTableHeader({
-        columns,
+        columns: tableColumns,
         headerRowProps,
         headerCellProps,
         disableHeader,
@@ -107,7 +112,7 @@ export const Table = (
       {renderTableBody({
         data,
         rowHeight,
-        columns,
+        columns: tableColumns,
         rowProps,
         cellProps,
         cellComponentProps,

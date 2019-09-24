@@ -30,9 +30,10 @@ class Example extends Component {
 - [x] Virtualization
 - [x] Sorting
 - [x] Pagination
+- [x] Custom column sorting
 - [ ] Implement memoize-one
+- [ ] Pass dom event on table events
 - [ ] Filters
-- [ ] Custom column sorting
 - [ ] Grouping
 - [ ] Editing
 - [ ] Freeze columns

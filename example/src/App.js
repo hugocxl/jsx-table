@@ -24,6 +24,11 @@ function customColumnSort({ a, b, sortBy, sortDirection }) {
   }
 }
 
+function alertMessage(el, data) {
+  return window.alert(`${el} clicked!
+  ${JSON.stringify(data)}`)
+}
+
 export function App() {
   const [loading, setLoading] = React.useState(false)
   const [data, setData] = React.useState(getData(''))
@@ -36,24 +41,26 @@ export function App() {
 
   return (
     <div style={{
-      height: 500,
+      height: '100%',
       width: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
     }}>
       <ReactNinjaTable
-        data={getData(100)}
-        rowHeight={25}
+        height={700}
+        data={getData(15000)}
+        rowHeight={20}
         headerHeight={25}
         // pagination={true}
         // paginationHeight={20}
         // pageSize={30}
+        // defaultPage={2}
         onPageChange={props => console.log('PAGINATION', props)}
-        defaultPage={2}
         virtualized={true}
-        // onRowClick={row => console.log(row)}
-        // onHeaderClick={header => console.log(header)}
+        // onRowClick={row => alertMessage('Row', row)}
+        // onCellClick={cell => alertMessage('Cell', cell)}
+        // onHeaderClick={header => alertMessage('Header', header)}
         // onColumnSort={props => console.log(props)}
         // noDataMessage={'There is no data'}
         // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
