@@ -1,6 +1,5 @@
 <div align="center">
   <img src="media/header.png" width="100%" align="center">
-  <p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
 </div>
 
 <div align="center">
@@ -13,6 +12,10 @@
   [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
   
+</div>
+
+<div align="center">
+  <p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
 </div>
 
 ***
