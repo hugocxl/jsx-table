@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ReactNinjaTable, Column } from 'react-ninja-table'
+import { Table, Column } from 'react-ninja-table'
 
 import { getData } from './getData'
 
@@ -47,7 +47,7 @@ export function App() {
       alignItems: 'center',
       justifyContent: 'center'
     }}>
-      <ReactNinjaTable
+      <Table
         id={'ninja-id'}
         className={'instance-class'}
         headerClassName={'header-classname-demo'}
@@ -108,7 +108,7 @@ export function App() {
           sortable={true}
         />
 
-      </ReactNinjaTable>
+      </Table>
 
     </div>
   )
