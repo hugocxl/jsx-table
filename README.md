@@ -1,9 +1,21 @@
-# react-ninja-table
+<div align="center">
+  <img src="media/header.png" width="100%" align="center">
+  <p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
+</div>
 
-🔣👺 A **simple** but **powerful lightweight** (6.4kB) table for React with **highly-customizable options**.  https://hcorta.github.io/react-ninja-table/
+<div align="center">
 
-[![NPM](https://img.shields.io/npm/v/react-awesome-table.svg)](https://www.npmjs.com/package/react-awesome-table) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+  [![NPM](https://img.shields.io/npm/v/react-awesome-table.svg)](https://www.npmjs.com/package/react-awesome-table)
+  [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+  [![Build Status](https://travis-ci.com/hcorta/react-ninja-table.svg?branch=master)](https://travis-ci.com/hcorta/react-ninja-table)
+  [![dependencies Status](https://david-dm.org/hcorta/react-ninja-table/status.svg)](https://david-dm.org/hcorta/react-ninja-table)
+  [![devDependencies Status](https://david-dm.org/hcorta/react-ninja-table/dev-status.svg)](https://david-dm.org/hcorta/react-ninja-table?type=dev)
+  [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+  
+</div>
 
+***
 ## Install
 
 ```bash

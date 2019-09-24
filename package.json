@@ -1,7 +1,7 @@
 {
   "name": "react-ninja-table",
   "version": "0.2.1",
-  "description": "A React table for ninjas",
+  "description": "A simple but powerful lightweight (6.4kB) table for React with highly-customizable options.",
   "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
   "license": "MIT",
   "repository": {
@@ -16,6 +16,16 @@
     "node": ">=8",
     "npm": ">=5"
   },
+  "keywords": [
+    "react",
+    "table",
+    "react-table",
+    "datagrid",
+    "data",
+    "data-tables",
+    "grid",
+    "react-component"
+  ],
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
