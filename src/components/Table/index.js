@@ -3,7 +3,7 @@
 import React from 'react'
 import memoize from 'memoize-one'
 import cx from 'classnames'
-import { utils } from "../../utils"
+import { utils } from '../../utils'
 import {
   defaultTableBodyRenderer,
   defaultTableHeaderRenderer,
@@ -26,7 +26,6 @@ export const Table = (
     virtualized,
     ...rest
   }) => {
-
   const tableBodyHeight = getBodyHeight()
   const getColumns = memoize((columns, children) => {
     return columns || utils.normalizeColumns(children)

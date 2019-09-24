@@ -1,7 +1,7 @@
 import './styles/index.css'
 import { Table, Column } from './components'
-import { withSortBy, withRowSelection, withPagination } from './HOCs'
+import { withSortBy, withRowSelection, withData, withPagination } from './HOCs'
 
 
-export const ReactNinjaTable = withSortBy(Table)
+export const ReactNinjaTable = withData(withSortBy(Table))
 export * from './components/Column'
