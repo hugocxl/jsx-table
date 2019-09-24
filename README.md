@@ -2,7 +2,7 @@
   <img src="media/header.png" width="100%" align="center">
 </div>
 
-<div align="center">
+<div align="center" style="padding-top:10px">
 
   [![NPM](https://img.shields.io/npm/v/react-awesome-table.svg)](https://www.npmjs.com/package/react-awesome-table)
   [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
