@@ -1,10 +1,12 @@
 import React from 'react'
 import { utils } from '../../../utils'
 import { defaultHeaderCellRenderer } from './defaultHeaderCellRenderer'
+import cx from 'classnames'
 
 
 export function defaultHeaderRowRenderer(
   {
+    headerClassName,
     columns,
     headerCellRenderer,
     headerHeight,
@@ -14,7 +16,7 @@ export function defaultHeaderRowRenderer(
   return (
     <div
       role={'table'}
-      className={'AwesomeTable__header-row'}
+      className={cx('AwesomeTable__header-row', headerClassName)}
       {...headerRowProps}>
       {columns.map((column, headerIndex) => {
         const rowProps = {

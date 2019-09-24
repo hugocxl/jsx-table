@@ -15,7 +15,7 @@ class BodyRender extends React.Component {
 
   componentDidMount() {
     this.props.virtualized && this.setState({
-      control: this.ref.current.scrollTop
+      scrollTop: this.ref.current.scrollTop
     })
   }
 
@@ -65,8 +65,15 @@ class BodyRender extends React.Component {
   }
 
   onScroll = () => {
+    const { scrollTop, clientHeight, scrollHeight } = this.ref.current
     this.setState({
-      control: this.ref.current.scrollTop
+      scrollTop
+    }, () => {
+      this.props.onScroll && this.props.onScroll({
+        scrollTop,
+        clientHeight,
+        scrollHeight
+      })
     })
   }
 

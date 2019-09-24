@@ -6,6 +6,7 @@ import cx from 'classnames'
 
 export const defaultRowRenderer = (
   {
+    rowClassName,
     onRowClick,
     cellRenderer,
     rowData,
@@ -21,7 +22,7 @@ export const defaultRowRenderer = (
   return (
     <div
       key={rowIndex}
-      className={cx('AwesomeTable__body-row', { selected: rowData && rowData.selected })}
+      className={cx('AwesomeTable__body-row', rowClassName, { selected: rowData && rowData.selected })}
       {...rowProps}
       onClick={() => onRowClick && onRowClick({ rowData, rowIndex, rowProps })}
       style={{

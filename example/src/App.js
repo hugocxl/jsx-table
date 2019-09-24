@@ -48,6 +48,10 @@ export function App() {
       justifyContent: 'center'
     }}>
       <ReactNinjaTable
+        id={'ninja-id'}
+        className={'instance-class'}
+        headerClassName={'header-classname-demo'}
+        rowClassName={'row-classname-demo'}
         height={700}
         data={getData(15000)}
         rowHeight={20}

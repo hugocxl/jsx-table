@@ -2,6 +2,7 @@
 
 import React from 'react'
 import memoize from 'memoize-one'
+import cx from 'classnames'
 import { utils } from "../../utils"
 import {
   defaultTableBodyRenderer,
@@ -13,7 +14,8 @@ import {
 
 export const Table = (
   {
-    children, columns, data, style, width, height, defaultSorted, disabled,
+    className, headerClassName, rowClassName,
+    id, children, columns, data, style, width, height, defaultSorted, disabled,
     tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps,
     tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
     noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
@@ -88,14 +90,16 @@ export const Table = (
 
   return (
     <div
+      id={id}
       role={'table'}
-      className={'AwesomeTable'}
+      className={cx('AwesomeTable', className)}
       style={{
         height,
         width,
         ...style
       }}>
       {renderTableHeader({
+        headerClassName,
         columns: tableColumns,
         headerRowProps,
         headerCellProps,
@@ -110,6 +114,7 @@ export const Table = (
         sortBy
       })}
       {renderTableBody({
+        rowClassName,
         data,
         rowHeight,
         columns: tableColumns,
