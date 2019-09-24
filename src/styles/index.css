@@ -3,14 +3,14 @@
   width: 100%;
   overflow: hidden;
   position: relative;
-  border: 1px solid #aaaaaa;
+  /*border: 1px solid #aaaaaa;*/
 }
 
 .AwesomeTable_header {
   width: 100%;
   z-index: 9;
   border-bottom: 1px solid #bababa;
-  background-color: #f5f5f5;
+  /*background-color: #f5f5f5;*/
 }
 
 .AwesomeTable__header-row {
@@ -26,7 +26,7 @@
   padding: 0 10px;
   cursor: pointer;
   font-weight: bold;
-  border-right: 1px solid #EBEBEB;
+  /*border-right: 1px solid #EBEBEB;*/
 }
 
 .AwesomeTable__header-row-cell:last-child {
@@ -61,7 +61,7 @@
 
 
 .AwesomeTable__body-row:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(78, 121, 148, 0.1);
 }
 
 .AwesomeTable__body-cell:last-child {

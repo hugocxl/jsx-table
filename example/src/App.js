@@ -75,6 +75,7 @@ export function App() {
           header={'Completed'}
           dataKey={'completed'}
           sortable={true}
+          width={100}
           cell={customCell}
         />
         <Column

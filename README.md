@@ -29,10 +29,21 @@ class Example extends Component {
 ## Tasks
 - [x] Virtualization
 - [x] Sorting
+- [x] loading status
 - [x] Pagination
 - [x] Custom column sorting
-- [ ] Implement memoize-one
+- [x] Memoized columns
 - [ ] Pass dom event on table events
+- [ ] Custom CSS classnames to elements
+- [ ] Optional custom id to attach to root Table element
+- [ ] onRowDoubleClick, onRowRightClick props
+- [ ] onScroll
+- [ ] scrollToIndex, scrollTop, scrollToAlignment
+- [ ] rowCount prop => Number of rows in table
+- [ ] Colum - maxWidth, minWidth props
+- [ ] Pagination review
+- [ ] Sort review (sortable prop + sortMethod)
+- [ ] overscanRowCount Prop
 - [ ] Filters
 - [ ] Grouping
 - [ ] Editing
