@@ -24,6 +24,16 @@
 #### ⚠️🚧🚧 Currently in development stage 🚧🚧⚠️️️️
 ***
 
+## Features
+* Lightweight (6.4kb gziped - no dependencies)
+* Auto out of the box, fully controllable API
+* Headless (100% customizable, Bring-your-own-UI)
+* Virtualization (no performance loss for long data lists)
+* Easy-to-customize styling
+* Sorting
+* Pagination
+
+
 ## Install
 
 ```bash
@@ -31,20 +41,124 @@ yarn add react-ninja-table
 ```
 
 ## Usage
+> Columns can be passed as array or components. Both cases are listed below.
+
+### Simple use case
 
 ```jsx
-import React, { Component } from 'react'
+import { Table, Column } from 'react-ninja-table'
 
-import MyComponent from 'react-awesome-table'
+function Example () {
 
-class Example extends Component {
-  render () {
+    const data = [
+        { name: 'Hugo', age: 30 },
+        { name: 'John', age: 32 }
+    ]
+
+    const columns = [
+      {
+        header: 'Name',
+        dataKey: 'name'
+      },
+      {
+        header: 'Age',
+        dataKey: 'age'
+      }
+    ]
+
     return (
-      <MyComponent />
-    )
-  }
+        <Table data={data} columns={columns}/>
+    )         
 }
 ```
+
+### Advanced use case
+
+```jsx
+import { Table, Column } from 'react-ninja-table'
+
+
+function CustomCell({ cellData, ...restOfCellProps }) {
+  return (
+    <span>{cellData}</span>
+  )
+}
+
+function CustomHeader({ cellData, ...restOfHeaderProps }) {
+  return (
+    <span>{cellData}</span>
+  )
+}
+
+function customColumnSort({ a, b, sortBy, sortDirection }) {
+  if (sortDirection === 'ASC') {
+    if (a[sortBy] < b[sortBy]) return -1
+    if (a[sortBy] > b[sortBy]) return 1
+  } else {
+    if (a[sortBy] < b[sortBy]) return 1
+    if (a[sortBy] > b[sortBy]) return -1
+  }
+}
+
+function Example () {
+    const data = [
+        { name: 'Hugo', genre: 'Male', age: 30, country: 'Spain' },
+        { name: 'Helen', genre: 'Female', age: 32, country: 'France' },
+    ]
+
+    return (
+        <Table data={data}>
+            <Table
+                id={'ninja-table'}
+                className={'custom-table-class'}
+                headerClassName={'custom-header-class'}
+                rowClassName={'custom-row-class'}
+                loading={loading}
+                height={700}
+                width={'100%'}
+                data={data}
+                rowHeight={20}
+                headerHeight={25}
+                overscanRowCount={50}
+                virtualized={false}
+                onRowClick={row => console.log('Row', row)}
+                onCellClick={cell => console.log('Cell', cell)}
+                onHeaderClick={header => console.log('Header', header)}
+                onColumnSort={props => console.log(props)}
+                noDataMessage={'There is no data to display'}
+                noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
+              >
+                    <Column
+                      header={'Name'}
+                      width={'20%}
+                      dataKey={'name'}
+                      sortable={true}
+                    />
+                    <Column
+                      header={'Genre'}
+                      width={200}
+                      dataKey={'genre'}
+                      sortable={true}
+                      columnSortMethod={customColumnSort}
+                    />
+                    <Column
+                      header={CustomColumnHeader}
+                      dataKey={'age'}
+                      sortable={true}
+                    />
+                    <Column
+                      header={'Country'}
+                      dataKey={'country'}
+                      sortable={true}
+                      cell={CustomColumnCell}
+                    />
+              </Table>
+        </Table>
+}
+
+```
+
+
 
 ## Tasks
 - [x] Virtualization
