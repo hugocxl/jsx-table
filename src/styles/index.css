@@ -25,7 +25,6 @@
   align-items: center;
   padding: 0 10px;
   cursor: pointer;
-  font-size: 10px;
   font-weight: bold;
   border-right: 1px solid #EBEBEB;
 }
@@ -78,8 +77,6 @@
 }
 
 .AwesomeTable__body-cell-text {
-  font-size: 11px;
-
 }
 
 .AwesomeTable__body-nodata {

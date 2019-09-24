@@ -1,4 +1,4 @@
-# react-awesome-table
+# react-ninja-table
 
 > An awesome table for React
 
@@ -25,7 +25,6 @@ class Example extends Component {
   }
 }
 ```
-
 
 
 ## License
