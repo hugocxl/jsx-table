@@ -1,7 +1,7 @@
 'use strict'
 
 import { BaseNotable } from './Base'
-import { withSortBy } from './HOCs'
+import { withSortBy, withAutoSizer } from './HOCs'
 
 
 export const Table = ({ autoSizer, sortable, ...rest }) => {
@@ -9,6 +9,10 @@ export const Table = ({ autoSizer, sortable, ...rest }) => {
 
   if (sortable) {
     component = withSortBy(component)
+  }
+
+  if (autoSizer) {
+    component = withAutoSizer(component)
   }
 
   return component({ autoSizer, sortable, ...rest })
