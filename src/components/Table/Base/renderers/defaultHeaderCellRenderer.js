@@ -1,5 +1,5 @@
 import React from 'react'
-import { SortIndicator } from '../../SortIndicator'
+import { SortIndicator } from '../../../SortIndicator'
 
 
 export function defaultHeaderCellRenderer(

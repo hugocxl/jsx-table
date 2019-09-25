@@ -54,6 +54,7 @@ export function App() {
       data={data}
       rowHeight={20}
       headerHeight={25}
+      autoSizer={true}
       overscanRowCount={0}
       // pagination={true}
       // paginationHeight={20}

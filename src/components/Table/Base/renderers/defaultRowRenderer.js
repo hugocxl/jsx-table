@@ -1,6 +1,6 @@
 import React from 'react'
 import { defaultCellRenderer } from './defaultCellRenderer'
-import { utils } from '../../../utils'
+import { utils } from '../../../../utils'
 import cx from 'classnames'
 
 
