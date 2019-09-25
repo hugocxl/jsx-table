@@ -1,14 +1,14 @@
 {
-  "name": "react-ninja-table",
+  "name": "react-notable",
   "version": "0.2.2",
-  "description": "A simple but powerful lightweight (6.4kB) table for React with highly-customizable options.",
+  "description": "A simple but powerful lightweight table for React with highly-customizable options.",
   "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://hcorta.github.io/react-ninja-table"
+    "url": "hhttps://github.com/hcorta/react-notable"
   },
-  "homepage": "https://hcorta.github.io/react-ninja-table",
+  "homepage": "https://hcorta.github.io/react-notable",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",

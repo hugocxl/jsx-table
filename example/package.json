@@ -1,6 +1,6 @@
 {
-  "name": "react-ninja-table-example",
-  "homepage": "https://hcorta.github.io/react-ninja-table",
+  "name": "react-notable-example",
+  "homepage": "https://hcorta.github.io/react-notable",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -8,7 +8,7 @@
     "gh-pages": "^2.1.1",
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
-    "react-ninja-table": "link:..",
+    "react-notable": "link:..",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "^1.1.4"
   },

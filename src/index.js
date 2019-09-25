@@ -5,3 +5,4 @@ import { withSortBy, withRowSelection, withData, withPagination } from './HOCs'
 
 export const Table = withData(withSortBy(BaseTable))
 export * from './components/Column'
+export * from './components/AutoSizer'

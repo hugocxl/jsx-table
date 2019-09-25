@@ -15,9 +15,9 @@ export const withSortBy = Table => ({
   const [sortDirection, setSortDirection] = React.useState(defaultSorted ? defaultSorted.desc ? SortDirection.DESC : SortDirection.ASC : SortDirection.DESC)
   const [sortedData, setSortedData] = useState(defaultSorted ? defaultSortData({ sortBy: defaultSorted.id }) : data)
 
-  React.useEffect(() => {
-    setSortedData(utils.defaultSortByKey(data, sortBy))
-  }, [data])
+  // React.useEffect(() => {
+  //   setSortedData(utils.defaultSortByKey(data, sortBy))
+  // }, [data])
 
   function defaultSortData({ sortBy }) {
     const orderedTable = utils.defaultSortByKey(sortedData, sortBy)
