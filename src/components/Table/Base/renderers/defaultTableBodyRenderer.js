@@ -14,10 +14,17 @@ class BodyRender extends React.Component {
   }
 
   componentDidMount() {
-    debugger
     this.props.virtualized && this.setState({
       scrollTop: this.ref.current.scrollTop
     })
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.height !== prevProps.height) {
+      this.setState({
+        scrollTop: this.ref.current.scrollTop
+      })
+    }
   }
 
   renderRows = () => {
@@ -43,6 +50,7 @@ class BodyRender extends React.Component {
     }
     const { data, rowRenderer, rowHeight, overscanRowCount, ...rest } = this.props
     const { scrollTop, clientHeight } = this.ref.current
+    console.log(scrollTop, clientHeight)
     const rows = []
 
     const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount
@@ -65,7 +73,6 @@ class BodyRender extends React.Component {
           : defaultRowRenderer(rowProps)
       )
     }
-    debugger
     return rows
   }
 
@@ -85,7 +92,7 @@ class BodyRender extends React.Component {
   render() {
     const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading, virtualized } = this.props
     const rows = virtualized ? this.renderVirtualizedRows() : this.renderRows()
-
+    console.log('ROWS', rows)
     return (
       <React.Fragment>
         {loading && (loadingRenderer ? (

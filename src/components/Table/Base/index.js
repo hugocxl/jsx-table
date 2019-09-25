@@ -14,6 +14,7 @@ import {
 
 export const BaseNotable = (
   {
+    refEl,
     className, headerClassName, rowClassName,
     id, children, columns, data, style, width, height, defaultSorted, disabled, overscanRowCount,
     tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps, onHeaderClick,
@@ -33,7 +34,7 @@ export const BaseNotable = (
     pagination,
     paginationHeight
   })
-  
+
   const getColumns = memoize((columns, children) => {
     return columns || utils.normalizeColumns(children)
   })
@@ -83,6 +84,7 @@ export const BaseNotable = (
 
   return (
     <div
+      ref={refEl}
       id={id}
       role={'table'}
       className={cx('AwesomeTable', className)}
@@ -110,6 +112,7 @@ export const BaseNotable = (
         rowClassName,
         data,
         rowHeight,
+        height,
         columns: tableColumns,
         rowProps,
         cellProps,

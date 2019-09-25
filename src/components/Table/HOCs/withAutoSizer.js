@@ -59,17 +59,8 @@ export const withAutoSizer = Table => {
       const { height, width } = this.state
       const { autoSizerClassName, autoSizerProps, ...rest } = this.props
 
-      const outerStyle = { overflow: 'visible', height: 0, width: 0 }
-      const childParams = { height, width }
-
       return (
-        <div
-          className={autoSizerClassName}
-          ref={this.autoSizer}
-          style={{ ...outerStyle }}
-        >
-          <Table {...rest} height={height} width={width}/>
-        </div>
+        <Table {...rest} height={height} width={width} refEl={this.autoSizer}/>
       )
     }
   }
