@@ -1,19 +1,20 @@
 'use strict'
 
+import React from 'react'
 import { BaseNotable } from './Base'
 import { withSortBy, withAutoSizer } from './HOCs'
 
 
 export const Table = ({ autoSizer, sortable, ...rest }) => {
-  let component = BaseNotable
+  let Component = BaseNotable
 
   if (sortable) {
-    component = withSortBy(component)
+    Component = withSortBy(Component)
   }
 
   if (autoSizer) {
-    component = withAutoSizer(component)
+    Component = withAutoSizer(Component)
   }
 
-  return component({ autoSizer, sortable, ...rest })
+  return <Component {...rest}/>
 }

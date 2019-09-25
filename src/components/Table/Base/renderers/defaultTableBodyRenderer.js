@@ -14,6 +14,7 @@ class BodyRender extends React.Component {
   }
 
   componentDidMount() {
+    debugger
     this.props.virtualized && this.setState({
       scrollTop: this.ref.current.scrollTop
     })
@@ -64,6 +65,7 @@ class BodyRender extends React.Component {
           : defaultRowRenderer(rowProps)
       )
     }
+    debugger
     return rows
   }
 
@@ -82,6 +84,7 @@ class BodyRender extends React.Component {
 
   render() {
     const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading, virtualized } = this.props
+    const rows = virtualized ? this.renderVirtualizedRows() : this.renderRows()
 
     return (
       <React.Fragment>
@@ -100,11 +103,7 @@ class BodyRender extends React.Component {
               position: 'relative',
               height: data && (data.length * rowHeight)
             }}>
-            {virtualized ? (
-              this.renderVirtualizedRows()
-            ) : (
-              this.renderRows()
-            )}
+            {rows}
           </div>
         </div>
       </React.Fragment>

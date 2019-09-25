@@ -1,8 +1,8 @@
 import React from 'react'
 
 
-export const withAutoSizer = Table => (
-  class extends React.PureComponent {
+export const withAutoSizer = Table => {
+  return class withAutoSizerClass extends React.PureComponent {
     constructor(props) {
       super(props)
 
@@ -73,4 +73,4 @@ export const withAutoSizer = Table => (
       )
     }
   }
-)
+}

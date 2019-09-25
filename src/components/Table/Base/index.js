@@ -26,24 +26,18 @@ export const BaseNotable = (
     ...rest
   }) => {
 
-  const tableBodyHeight = getBodyHeight()
+  const tableBodyHeight = utils.calculateBodyHeight({
+    height,
+    headerHeight,
+    disableHeader,
+    pagination,
+    paginationHeight
+  })
+  
   const getColumns = memoize((columns, children) => {
     return columns || utils.normalizeColumns(children)
   })
   const tableColumns = getColumns(columns, children)
-
-  function getBodyHeight() {
-    let height = '100%'
-    if (!disableHeader) {
-      height += ` - ${headerHeight}px`
-    }
-
-    if (pagination) {
-      height += ` - ${paginationHeight}px`
-    }
-
-    return `calc(${height})`
-  }
 
   function renderTableHeader(props) {
     if (disableHeader) {
