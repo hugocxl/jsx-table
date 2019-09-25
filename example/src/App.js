@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Table, Column, AutoSizer } from 'react-notable'
+import { Table, Column } from 'react-notable'
 
 import { getData } from './getData'
 
@@ -43,35 +43,32 @@ export function App() {
   ]
 
   return (
-    <AutoSizer>
-      {({ height, width }) => (
-        <Table
-          id={'ninja-id'}
-          className={'instance-class'}
-          headerClassName={'header-classname-demo'}
-          rowClassName={'row-classname-demo'}
-          height={height}
-          columns={columns}
-          width={width}
-          data={data}
-          rowHeight={20}
-          headerHeight={25}
-          overscanRowCount={0}
-          // pagination={true}
-          // paginationHeight={20}
-          // pageSize={30}
-          // defaultPage={2}
-          onPageChange={props => console.log('PAGINATION', props)}
-          virtualized={true}
-          // onRowClick={row => alertMessage('Row', row)}
-          // onCellClick={cell => alertMessage('Cell', cell)}
-          // onHeaderClick={header => alertMessage('Header', header)}
-          // onColumnSort={props => console.log(props)}
-          // noDataMessage={'There is no data'}
-          // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
-          loading={loading}
-        />
-      )}
-    </AutoSizer>
+    <Table
+      id={'ninja-id'}
+      className={'instance-class'}
+      headerClassName={'header-classname-demo'}
+      rowClassName={'row-classname-demo'}
+      height={500}
+      columns={columns}
+      width={600}
+      data={data}
+      rowHeight={20}
+      headerHeight={25}
+      overscanRowCount={0}
+      // pagination={true}
+      // paginationHeight={20}
+      // pageSize={30}
+      // defaultPage={2}
+      onPageChange={props => console.log('PAGINATION', props)}
+      virtualized={true}
+      sortable={true}
+      // onRowClick={row => alertMessage('Row', row)}
+      // onCellClick={cell => alertMessage('Cell', cell)}
+      // onHeaderClick={header => alertMessage('Header', header)}
+      // onColumnSort={props => console.log(props)}
+      // noDataMessage={'There is no data'}
+      // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
+      loading={loading}
+    />
   )
 }

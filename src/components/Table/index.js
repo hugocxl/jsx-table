@@ -10,9 +10,10 @@ import {
   defaultNoDataRenderer,
   defaultTablePaginationRenderer
 } from './renderers'
+import { withSortBy } from './HOCs'
 
 
-export const Table = (
+const BaseNoTable = (
   {
     className, headerClassName, rowClassName,
     id, children, columns, data, style, width, height, defaultSorted, disabled, overscanRowCount,
@@ -143,6 +144,16 @@ export const Table = (
 
     </div>
   )
+}
+
+export const Table = ({ autoSizer, sortable, ...rest }) => {
+  let component = BaseNoTable
+
+  if (sortable) {
+    component = withSortBy(component)
+  }
+
+  return component({ autoSizer, sortable, ...rest })
 }
 
 Table.defaultProps = {
