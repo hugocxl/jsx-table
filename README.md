@@ -1,24 +1,19 @@
-<div align="center">
-  <img src="media/header.png" width="100%" align="center">
-</div>
 
-<br>
+# React Notable
 
 <div align="center">
 
-  [![NPM](https://img.shields.io/npm/v/react-awesome-table.svg)](https://www.npmjs.com/package/react-awesome-table)
+  [![NPM](https://img.shields.io/npm/v/react-notable.svg)](https://www.npmjs.com/package/react-notable)
   [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-  [![Build Status](https://travis-ci.com/hcorta/react-ninja-table.svg?branch=master)](https://travis-ci.com/hcorta/react-ninja-table)
-  [![dependencies Status](https://david-dm.org/hcorta/react-ninja-table/status.svg)](https://david-dm.org/hcorta/react-ninja-table)
-  [![devDependencies Status](https://david-dm.org/hcorta/react-ninja-table/dev-status.svg)](https://david-dm.org/hcorta/react-ninja-table?type=dev)
+  [![Build Status](https://travis-ci.com/hcorta/react-notable.svg?branch=master)](https://travis-ci.com/hcorta/react-notable)
+  [![dependencies Status](https://david-dm.org/hcorta/react-notable/status.svg)](https://david-dm.org/hcorta/react-notable)
+  [![devDependencies Status](https://david-dm.org/hcorta/react-notable/dev-status.svg)](https://david-dm.org/hcorta/react-notable?type=dev)
   [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
   
 </div>
 
-<div align="center">
-  <p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
-</div>
+<p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
 
 ***
 #### ⚠️🚧🚧 Currently in development stage 🚧🚧⚠️️️️
@@ -30,6 +25,7 @@
 * Headless (100% customizable, Bring-your-own-UI)
 * Virtualization (no performance loss for long data lists)
 * Easy-to-customize styling
+* AutoSizer
 * Sorting
 * Pagination
 
@@ -37,7 +33,7 @@
 ## Install
 
 ```bash
-yarn add react-ninja-table
+yarn add react-notable
 ```
 
 ## Usage
@@ -46,7 +42,7 @@ yarn add react-ninja-table
 ### Simple use case
 
 ```jsx
-import { Table, Column } from 'react-ninja-table'
+import { Table, Column } from 'react-notable'
 
 function Example () {
 
@@ -69,7 +65,7 @@ function Example () {
 ### Advanced use case
 
 ```jsx
-import { Table, Column } from 'react-ninja-table'
+import { Table, Column } from 'react-notable'
 
 
 function CustomCell({ cellData, ...restOfCellProps }) {
@@ -162,7 +158,7 @@ function Example () {
 - [x] Memoized columns
 - [x] Pass dom event on table events
 - [ ] Footer
-- [ ] Fix height prop
+- [x] Fix height prop
 - [x] Custom CSS classnames to elements
 - [x] Optional custom id to attach to root Table element
 - [x] onScroll prop

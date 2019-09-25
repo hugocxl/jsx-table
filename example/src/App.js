@@ -10,7 +10,6 @@ function customCell({ cellData }) {
     <div style={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center' }}>
       <div style={{ height: '60%', background: 'chartreuse', width: `${cellData}%` }}/>
     </div>
-
   )
 }
 
@@ -31,9 +30,10 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(100))
+  const [data, setData] = React.useState(getData(100000))
 
   const columns = [
+    { header: 'Row Index', dataKey: 'name', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
     { header: 'Name', dataKey: 'name', sortable: true },
     { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
@@ -48,9 +48,9 @@ export function App() {
       className={'instance-class'}
       headerClassName={'header-classname-demo'}
       rowClassName={'row-classname-demo'}
-      height={500}
+      // height={500}
       columns={columns}
-      width={600}
+      // width={600}
       data={data}
       rowHeight={20}
       headerHeight={25}
