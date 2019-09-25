@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { SortDirection } from '../constants/SortDirection'
-import { utils } from '../utils'
+import { SortDirection } from '../../../constants/SortDirection'
+import { utils } from '../../../utils'
 
 
 export const withSortBy = Table => ({
