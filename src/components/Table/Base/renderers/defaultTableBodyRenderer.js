@@ -4,7 +4,7 @@ import { defaultLoadingRenderer } from './defaultLoadingRenderer'
 import cx from 'classnames'
 
 
-class BodyRender extends React.PureComponent {
+class BodyRender extends React.Component {
   constructor(props) {
     super(props)
     this.ref = React.createRef()
@@ -106,7 +106,7 @@ class BodyRender extends React.PureComponent {
           style={{ height: tableBodyHeight }}>
           <div
             style={{
-              height: data && (data.length * rowHeight)
+              height: data && (data.length * rowHeight),
             }}>
             {rows}
           </div>

@@ -36,7 +36,7 @@ export const BaseNotable = (
     paginationHeight,
     pageSize,
   })
-
+  
   const getColumns = memoize((columns, children) => {
     return columns || utils.normalizeColumns(children)
   })
@@ -143,4 +143,18 @@ export const BaseNotable = (
 
     </div>
   )
+}
+
+BaseNotable.defaultProps = {
+  virtualized: false,
+  disabled: false,
+  loading: false,
+  overscanRowCount: 10,
+  disableHeader: false,
+  columns: null,
+  data: null,
+  paginationHeight: 20,
+  rowHeight: 20,
+  headerHeight: 20,
+  footerHeight: 20
 }

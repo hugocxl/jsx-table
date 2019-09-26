@@ -30,7 +30,7 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(10000))
+  const [data, setData] = React.useState(getData(500000))
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
@@ -61,13 +61,11 @@ export function App() {
         columns={columns}
         // width={600}
         data={data}
-        // rowHeight={20}
-        // headerHeight={25}
         autoSizer={true}
         overscanRowCount={0}
-        // pagination={true}
-        // paginationHeight={20}
-        // pageSize={10}
+        pagination={true}
+        paginationHeight={20}
+        pageSize={1000}
         // defaultPage={2}
         onPageChange={props => console.log('PAGINATION', props)}
         virtualized={true}

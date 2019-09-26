@@ -13,18 +13,18 @@ import {
 
 export const Table = ({ autoSizer, sortable, pagination, ...rest }) => {
   let Component = BaseNotable
-  //
-  // if (pagination) {
-  //   Component = withPagination(Component)
-  // }
+
+  if (pagination) {
+    Component = withPagination(Component)
+  }
 
   if (autoSizer) {
     Component = withAutoSizer(Component)
   }
 
-  // if (sortable) {
-  //   Component = withSortBy(Component)
-  // }
+  if (sortable) {
+    Component = withSortBy(Component)
+  }
 
   return <Component {...rest}/>
 }
