@@ -84,9 +84,6 @@ export const BaseNotable = (
       : defaultNoDataRenderer(props)
   }
 
-  console.log('DATA in TABLE', data)
-  // debugger
-
   return (
     <div
       ref={refEl}

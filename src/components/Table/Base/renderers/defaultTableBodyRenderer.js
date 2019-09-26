@@ -50,7 +50,6 @@ class BodyRender extends React.PureComponent {
     }
     const { data, rowRenderer, rowHeight, overscanRowCount, ...rest } = this.props
     const { scrollTop, clientHeight } = this.ref.current
-    console.log(scrollTop, clientHeight)
     const rows = []
 
     const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount
@@ -92,7 +91,6 @@ class BodyRender extends React.PureComponent {
   render() {
     const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading, virtualized } = this.props
     const rows = virtualized ? this.renderVirtualizedRows() : this.renderRows()
-    debugger
 
     return (
       <React.Fragment>
