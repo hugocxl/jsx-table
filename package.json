@@ -1,6 +1,6 @@
 {
   "name": "react-notable",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A simple but powerful lightweight table for React with highly-customizable options.",
   "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
   "license": "MIT",
