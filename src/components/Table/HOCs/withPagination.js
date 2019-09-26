@@ -1,13 +1,20 @@
 import React from 'react'
 
 
-export const withPagination = Table => function({
+export const withPagination = Table => ({
   pageSize,
   data,
   onPageChange,
   defaultPage,
+  rowHeight,
+  disableHeader,
+  footer,
+  footerHeight,
+  headerHeight,
+  paginationHeight,
+  height,
   ...rest
-}) {
+}) => {
 
   const [currentPage, setCurrentPage] = React.useState(defaultPage || 0)
   const maxPages = Math.round(data.length / pageSize)
@@ -39,8 +46,35 @@ export const withPagination = Table => function({
     }
   }
 
+  function getTableHeight() {
+    let calculatedHeight = (currentPageData.length * rowHeight) + paginationHeight + 1
+
+    if (footer) {
+      calculatedHeight += footerHeight
+    }
+
+    if (!disableHeader) {
+      calculatedHeight += headerHeight
+    }
+
+    if (calculatedHeight > height) {
+      return height
+    }
+
+    return calculatedHeight
+  }
+
   return (
     <Table
+      height={getTableHeight()}
+      pageSize={pageSize}
+      disableHeader={disableHeader}
+      footer={footer}
+      footerHeight={footerHeight}
+      headerHeight={headerHeight}
+      paginationHeight={paginationHeight}
+      pagination={true}
+      rowHeight={rowHeight}
       onNextPageClick={onNextPageClick}
       onPreviousPageClick={onPreviousPageClick}
       currentPage={currentPage + 1}

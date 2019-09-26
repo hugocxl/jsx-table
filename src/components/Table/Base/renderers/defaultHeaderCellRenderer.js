@@ -25,7 +25,7 @@ export function defaultHeaderCellRenderer(
       className={'AwesomeTable__header-row-cell'}
       style={{
         width,
-        // minWidth: width || minWidth,
+        minWidth,
         maxWidth,
         justifyContent: align || 'center'
       }}

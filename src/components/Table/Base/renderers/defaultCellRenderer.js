@@ -31,7 +31,7 @@ export function defaultCellRenderer(
       })}
       {...cellProps}
       style={{
-        // minWidth: minWidth || width,
+        minWidth,
         maxWidth,
         width,
         justifyContent: align || 'center',

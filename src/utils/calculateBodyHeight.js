@@ -3,18 +3,25 @@ export function calculateBodyHeight({
   disableHeader,
   pagination,
   footer,
+  footerHeight,
   headerHeight,
-  paginationHeight
+  paginationHeight,
+  pageSize,
+  rowHeight,
 }) {
-  let calculatedHeight = `100%`
-  // let calculatedHeight = `${height}px`
+  let calculatedHeight = height
+
   if (!disableHeader) {
-    calculatedHeight += ` - ${headerHeight}px`
+    calculatedHeight -= headerHeight
   }
 
   if (pagination) {
-    calculatedHeight += ` - ${paginationHeight}px`
+    calculatedHeight -= paginationHeight
   }
 
-  return `calc(${calculatedHeight})`
+  if (footer) {
+    calculatedHeight -= footerHeight
+  }
+
+  return calculatedHeight
 }

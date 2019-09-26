@@ -22,17 +22,19 @@ export const BaseNotable = (
     noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
     loading, loadingRenderer, loadingComponent,
     onSortableClick, sortDirection, sortBy,
-    changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, onNextPageClick, onPreviousPageClick, currentPage,
+    changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, pageSize, onNextPageClick, onPreviousPageClick, currentPage,
     virtualized,
     ...rest
   }) => {
 
   const tableBodyHeight = utils.calculateBodyHeight({
     height,
+    rowHeight,
     headerHeight,
     disableHeader,
     pagination,
-    paginationHeight
+    paginationHeight,
+    pageSize,
   })
 
   const getColumns = memoize((columns, children) => {
@@ -81,6 +83,9 @@ export const BaseNotable = (
       ? noDataRenderer(props)
       : defaultNoDataRenderer(props)
   }
+
+  console.log('DATA in TABLE', data)
+  // debugger
 
   return (
     <div
@@ -141,14 +146,4 @@ export const BaseNotable = (
 
     </div>
   )
-}
-
-BaseNotable.defaultProps = {
-  overscanRowCount: 10,
-  rowHeight: 25,
-  headerHeight: 30,
-  paginationHeight: 20,
-  disableHeader: false,
-  columns: null,
-  data: null
 }

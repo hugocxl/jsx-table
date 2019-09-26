@@ -26,11 +26,11 @@ export const defaultRowRenderer = (
       {...rowProps}
       onClick={event => onRowClick && onRowClick({ event, rowData, rowIndex, rowProps })}
       style={{
+        ...rowProps && rowProps.style,
         position: 'absolute',
         left: 0,
         top: rowHeight * rowIndex,
         height: rowHeight,
-        ...rowProps && rowProps.style
       }}>
 
       {rowData && columns.map((column, cellIndex) => {

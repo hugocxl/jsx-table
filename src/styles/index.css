@@ -9,7 +9,7 @@
 .AwesomeTable_header {
   width: 100%;
   z-index: 9;
-  border-bottom: 1px solid #bababa;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   /*background-color: #f5f5f5;*/
 }
 
@@ -36,7 +36,10 @@
 
 .AwesomeTable__body {
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
+  will-change: transform;
+  direction: ltr;
+  position: relative;
 }
 
 .AwesomeTable__body.loading {
@@ -48,6 +51,8 @@
   width: 100%;
   display: flex;
   border-bottom: 1px solid #EBEBEB;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
 }
 
 
@@ -61,7 +66,8 @@
 
 
 .AwesomeTable__body-row:hover {
-  background-color: rgba(78, 121, 148, 0.1);
+  background-color: rgba(78, 121, 148, 1);
+  border-bottom: 1px solid rgba(78, 121, 148, 1);
 }
 
 .AwesomeTable__body-cell:last-child {
@@ -77,6 +83,10 @@
 }
 
 .AwesomeTable__body-cell-text {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .AwesomeTable__body-nodata {

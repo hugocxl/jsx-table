@@ -4,7 +4,7 @@ import { defaultLoadingRenderer } from './defaultLoadingRenderer'
 import cx from 'classnames'
 
 
-class BodyRender extends React.Component {
+class BodyRender extends React.PureComponent {
   constructor(props) {
     super(props)
     this.ref = React.createRef()
@@ -92,7 +92,8 @@ class BodyRender extends React.Component {
   render() {
     const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading, virtualized } = this.props
     const rows = virtualized ? this.renderVirtualizedRows() : this.renderRows()
-    console.log('ROWS', rows)
+    debugger
+
     return (
       <React.Fragment>
         {loading && (loadingRenderer ? (
@@ -104,10 +105,9 @@ class BodyRender extends React.Component {
           className={cx('AwesomeTable__body', { loading })}
           onScroll={this.onScroll}
           ref={this.ref}
-          style={{ height: tableBodyHeight, overflow: 'hidden auto' }}>
+          style={{ height: tableBodyHeight }}>
           <div
             style={{
-              position: 'relative',
               height: data && (data.length * rowHeight)
             }}>
             {rows}
