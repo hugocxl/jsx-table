@@ -10,16 +10,18 @@
   [![devDependencies Status](https://david-dm.org/hcorta/react-notable/dev-status.svg)](https://david-dm.org/hcorta/react-notable?type=dev)
   [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-  
+
 </div>
 
 <p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
-
 ***
 #### ⚠️🚧🚧 Currently in development stage 🚧🚧⚠️️️️
 ***
 
+
+
 ## Features
+
 * Lightweight (6.4kb gziped - no dependencies)
 * Auto out of the box, fully controllable API
 * Headless (100% customizable, Bring-your-own-UI)
@@ -28,6 +30,22 @@
 * AutoSizer
 * Sorting
 * Pagination
+
+
+
+## Pending development tasks
+
+* Multi column sorting
+* Export to file
+* Freezing rows/columns
+* Resizing columns
+* Footer
+* Infinite scrolling
+* scrollToIndex, scrollTop, scrollToAlignment props
+* Grouping / Pivoting
+* Movable columns
+
+
 
 
 ## Install
@@ -99,7 +117,7 @@ function Example () {
 
     return (
         <Table
-            id={'ninja-table'}
+            id={'custom-table-id'}
             className={'custom-table-class'}
             headerClassName={'custom-header-class'}
             rowClassName={'custom-row-class'}
@@ -146,40 +164,6 @@ function Example () {
 }
 
 ```
-
-
-
-## Tasks
-- [x] Virtualization
-- [x] Sorting
-- [x] loading status
-- [x] Pagination
-- [x] Custom column sorting
-- [x] Memoized columns
-- [x] Pass dom event on table events
-- [ ] Footer
-- [x] Fix height prop
-- [x] Custom CSS classnames to elements
-- [x] Optional custom id to attach to root Table element
-- [x] onScroll prop
-- [ ] scrollToIndex, scrollTop, scrollToAlignment
-- [ ] rowCount prop - Number of rows in table
-- [x] Colum - maxWidth, minWidth props
-- [ ] Pagination review
-- [ ] Sort review (sortable prop + sortMethod)
-- [x] overscanRowCount Prop
-- [ ] Filters
-- [ ] Grouping
-- [ ] Editing
-- [ ] Freeze columns
-- [ ] Row selection
-- [ ] Download data
-- [ ] Resizable columns
-- [ ] Dnd columns/rows (react-sortable-hoc)
-- [ ] Multi colum sorting
-- [ ] Infinite loading
-
-
 
 
 

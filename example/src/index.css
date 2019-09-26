@@ -1,8 +1,12 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
+
+
 body {
+  font-family: 'Rubik', sans-serif;
   margin: 0;
   padding: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 9px;
+  /*font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;*/
+  font-size: 8px;
   color: rgb(50, 50, 50);
   font-weight: 400;
 }
@@ -10,4 +14,5 @@ body {
 #root {
   width: 100vw;
   height: 100vh;
+  /*background-image: linear-gradient(135deg, #2D3A62, #55375E);*/
 }

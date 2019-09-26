@@ -23,7 +23,12 @@ export function defaultHeaderCellRenderer(
   return (
     <div
       className={'AwesomeTable__header-row-cell'}
-      style={{ width, minWidth, maxWidth, justifyContent: align || 'center' }}
+      style={{
+        width,
+        // minWidth: width || minWidth,
+        maxWidth,
+        justifyContent: align || 'center'
+      }}
       onClick={event => {
         sortable && onSortableClick({ sortBy: dataKey, event, columnSortMethod })
         onHeaderClick && onHeaderClick({
