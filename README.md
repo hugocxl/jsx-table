@@ -32,8 +32,7 @@
 * Pagination
 
 
-
-## Pending development tasks
+## Pending development tasks
 
 * Multi column sorting
 * Export to file
@@ -165,19 +164,19 @@ function Example () {
 
 ```
 
+<br>
+
 ## Contributing
 
 No one’s perfect. If you’ve found any errors, want to suggest enhancements, or expand on a topic, please feel free to open an Issue or collaborate by PR.
 
 **Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
 
-<br>
 
 ## Code of Conduct
 
 [Contributor Code of Conduct](public/docs/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
-<br>
 
 ## License
 
