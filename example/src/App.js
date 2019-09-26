@@ -53,21 +53,21 @@ export function App() {
 
 
       <Table
-        id={'ninja-id'}
-        className={'instance-class'}
-        headerClassName={'header-classname-demo'}
-        rowClassName={'row-classname-demo'}
+        id={'custom-table-id'}
+        className={'custom-table-class'}
+        headerClassName={'custom-header-class'}
+        rowClassName={'custom-row-class'}
         // height={500}
         columns={columns}
         // width={600}
         data={data}
         autoSizer={true}
-        overscanRowCount={0}
-        pagination={true}
-        paginationHeight={20}
-        pageSize={1000}
+        // overscanRowCount={0}
+        // pagination={true}
+        // paginationHeight={20}
+        // pageSize={1000}
         // defaultPage={2}
-        onPageChange={props => console.log('PAGINATION', props)}
+        // onPageChange={props => console.log('PAGINATION', props)}
         virtualized={true}
         sortable={true}
         // onRowClick={row => alertMessage('Row', row)}
