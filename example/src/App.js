@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Table, Column } from 'react-notable'
+import { Table, Column, AutoSizer } from 'react-notable'
 
 import { getData } from './getData'
 
@@ -56,35 +56,38 @@ export function App() {
       gridTemplateRows: '1fr'
     }}>
       <div>
-        <Table
-          id={'custom-table-id'}
-          className={'custom-table-class'}
-          headerClassName={'custom-header-class'}
-          rowClassName={'custom-row-class'}
-          // height={500}
-          columns={columns}
-          // width={600}
-          loadMoreRows={loadMoreRows}
-          threshold={10}
-          rowHeight={50}
-          data={data}
-          autoSizer={true}
-          overscanRowCount={0}
-          // pagination={true}
-          // paginationHeight={20}
-          // pageSize={1000}
-          // defaultPage={2}
-          // onPageChange={props => console.log('PAGINATION', props)}
-          virtualized={true}
-          sortable={true}
-          // onRowClick={row => alertMessage('Row', row)}
-          // onCellClick={cell => alertMessage('Cell', cell)}
-          // onHeaderClick={header => alertMessage('Header', header)}
-          // onColumnSort={props => console.log(props)}
-          // noDataMessage={'There is no data'}
-          // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
-          loading={loading}
-        />
+        <AutoSizer>
+          {({ width, height }) => (
+            <Table
+              id={'custom-table-id'}
+              className={'custom-table-class'}
+              headerClassName={'custom-header-class'}
+              rowClassName={'custom-row-class'}
+              height={height}
+              columns={columns}
+              width={width}
+              loadMoreRows={loadMoreRows}
+              threshold={10}
+              rowHeight={50}
+              data={data}
+              overscanRowCount={0}
+              // pagination={true}
+              // paginationHeight={20}
+              // pageSize={1000}
+              // defaultPage={2}
+              // onPageChange={props => console.log('PAGINATION', props)}
+              virtualized={true}
+              sortable={true}
+              // onRowClick={row => alertMessage('Row', row)}
+              // onCellClick={cell => alertMessage('Cell', cell)}
+              // onHeaderClick={header => alertMessage('Header', header)}
+              // onColumnSort={props => console.log(props)}
+              // noDataMessage={'There is no data'}
+              // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
+              loading={loading}
+            />
+          )}
+        </AutoSizer>
       </div>
 
       <button onClick={loadMoreRows}>load more rows</button>

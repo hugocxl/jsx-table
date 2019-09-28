@@ -149,7 +149,7 @@ function TableComponent(
   )
 }
 
-export const Table = withAutoSizer(withSortBy(TableComponent))
+export const Table = withSortBy(TableComponent)
 
 Table.defaultProps = {
   virtualized: false,
