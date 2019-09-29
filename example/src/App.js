@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Table, Column, AutoSizer } from 'react-notable'
+import { Table, Column, AutoSizer, useGroupBy, useExpanded } from 'react-notable'
 
 import { getData } from './getData'
 
@@ -30,7 +30,7 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(50))
+  const [data, setData] = React.useState(getData(5000))
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
@@ -46,6 +46,11 @@ export function App() {
     const newRows = getData(20)
     setData([...data, ...newRows])
   }
+
+  const groupedData = useGroupBy({ data, columns, groupBy: ['country'] })
+  const expandedData = useExpanded({ data: groupedData.data, columns: groupedData.columns })
+
+  debugger
 
   return (
     <div style={{
@@ -63,20 +68,20 @@ export function App() {
             headerClassName={'custom-header-class'}
             rowClassName={'custom-row-class'}
             height={height}
-            columns={columns}
+            columns={expandedData.columns}
             width={width}
             loadMoreRows={loadMoreRows}
             threshold={10}
             rowHeight={50}
-            data={data}
+            data={expandedData.data}
             overscanRowCount={0}
             // pagination={true}
             // paginationHeight={20}
             // pageSize={100}
             // defaultPage={2}
-            pivotBy={['genre']}
+            pivotBy={['country']}
             // onPageChange={props => console.log('PAGINATION', props)}
-            // virtualized={true}
+            virtualized={true}
             sortable={true}
             // onRowClick={row => alertMessage('Row', row)}
             // onCellClick={cell => alertMessage('Cell', cell)}

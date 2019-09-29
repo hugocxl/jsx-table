@@ -17,7 +17,7 @@ export const defaultRowRenderer = (
     bodyScrollTop,
     bodyHeight,
     top,
-    data,
+    parentIndex,
     ...rest
   }) => {
 
@@ -37,7 +37,7 @@ export const defaultRowRenderer = (
 
       {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
-          data,
+          parentIndex,
           cellIndex,
           cellData: rowData[column.dataKey],
           cell: column.cell,
