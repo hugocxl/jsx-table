@@ -18,6 +18,7 @@ export const defaultRowRenderer = (
     bodyHeight,
     top,
     parentIndex,
+    id,
     ...rest
   }) => {
 
@@ -37,6 +38,7 @@ export const defaultRowRenderer = (
 
       {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
+          id,
           parentIndex,
           cellIndex,
           cellData: rowData[column.dataKey],

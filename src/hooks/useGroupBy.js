@@ -95,7 +95,8 @@ function getChildren(groupedData, data, groupBy) {
         [groupBy]: ''
       }
     })
-    serie.expand = true
+    serie.expanded = false
+    serie.id = utils.generateID()
     series.push(serie)
   }
 

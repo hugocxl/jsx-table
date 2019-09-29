@@ -4,7 +4,8 @@ import memoize from 'memoize-one'
 
 
 export function useExpanded({ data, columns }) {
-  const [expandedRowsIndex, setExpandedRowsIndex] = React.useState([2])
+  // const [expandedRowsIndex, setExpandedRowsIndex] = React.useState([2])
+  const [expandedData, setExpandedData] = React.useState(data)
 
   const getColumns = memoize(columns => {
     return convertToExpandedColumns(columns)
@@ -14,45 +15,76 @@ export function useExpanded({ data, columns }) {
     return convertToExpandedData(data, expandedRowsIndex)
   })
 
-  function onExpand(rowIndex) {
-    const searchedIndex = expandedRowsIndex.filter(el => {
-      return el === rowIndex
+  // function onExpand(rowIndex) {
+  //   const searchedIndex = expandedRowsIndex.filter(el => {
+  //     return el === rowIndex
+  //   })
+  //   if (searchedIndex.length === 0) {
+  //     setExpandedRowsIndex([...expandedRowsIndex, rowIndex])
+  //   } else {
+  //     const filteredData = expandedRowsIndex.filter(el => {
+  //       return el !== rowIndex
+  //     })
+  //     setExpandedRowsIndex(filteredData)
+  //   }
+  // }
+
+  function onExpand(id) {
+    const demo = expandedData.map(el => {
+      return iterateTree(el)
     })
-    if (searchedIndex.length === 0) {
-      setExpandedRowsIndex([...expandedRowsIndex, rowIndex])
-    } else {
-      const filteredData = expandedRowsIndex.filter(el => {
-        return el !== rowIndex
-      })
-      setExpandedRowsIndex(filteredData)
+
+    function iterateTree(row) {
+      if (row.id === id) {
+        return {
+          ...row,
+          expanded: !row.expanded
+        }
+      } else if (row.children) {
+        return {
+          ...row,
+          children: row.children.map(el => iterateTree(el))
+        }
+      } else {
+        return row
+      }
     }
+
+    return setExpandedData(demo)
   }
 
   function convertToExpandedColumns(columns) {
-    return [
-      {
-        header: 'Expandable',
-        dataKey: 'expandedRowsIndex',
-        width: 30,
-        cell: ({ cellData, parentIndex }) => parentIndex && <ExpandArrow onClick={() => {
-          onExpand(parentIndex, expandedRowsIndex)
-        }}/>
-      },
-      ...columns
-    ]
+    // return [
+    //   {
+    //     header: 'Expandable',
+    //     dataKey: 'expandedRowsIndex',
+    //     width: 30,
+    //     cell: ({ cellData, id }) => <ExpandArrow onClick={() => {
+    //       onExpand(id)
+    //     }}/>
+    //   },
+    //   ...columns
+    // ]
+    let modifiedColums = columns
+    modifiedColums[0] = {
+      header: 'Name', align: 'left', dataKey: 'name', sortable: true,
+      cell: ({ id, cellData }) => <span onClick={() => onExpand(id)}>{cellData}</span>
+    }
+
+    modifiedColums[1] = {
+      header: 'Country', align: 'left', dataKey: 'country', sortable: true,
+      cell: ({ id, cellData }) => <span onClick={() => onExpand(id)}>{cellData}</span>
+    }
+
+    return modifiedColums
   }
 
   function convertToExpandedData(data) {
     let expandedData = []
-    let index = 0
 
     function iterateRow(el) {
-      expandedData.push({
-        ...el,
-        dataIndex: index
-      })
-      index++
-      if (el.children) {
+      expandedData.push(el)
+      if (el.children && el.expanded) {
         el.children.forEach(children => {
           iterateRow(children)
         })
@@ -94,6 +126,6 @@ export function useExpanded({ data, columns }) {
 
   return {
     columns: getColumns(columns),
-    data: getData(data, expandedRowsIndex)
+    data: convertToExpandedData(expandedData)
   }
 }

@@ -16,6 +16,7 @@ export function defaultCellRenderer(
     cellProps,
     cellComponentProps,
     parentIndex,
+    id,
   }) {
   return (
     <div
@@ -39,7 +40,7 @@ export function defaultCellRenderer(
         ...cellProps && cellProps.style
       }}>
       {cell && typeof cell === 'function' ? (
-        cell({ cellData, rowData, cellComponentProps, rowIndex, cellIndex, parentIndex })
+        cell({ cellData, rowData, cellComponentProps, rowIndex, cellIndex, parentIndex, id })
       ) : (
         <div className={'AwesomeTable__body-cell-text'}>{cellData}</div>
       )}

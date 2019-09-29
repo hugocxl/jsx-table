@@ -38,7 +38,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "memoize-one": "^5.0.0",
-    "prop-types": "^15.7.0"
+    "prop-types": "^15.7.0",
+    "uuid": "^3.3.2"
   },
   "peerDependencies": {
     "react": "^16.0.0",

@@ -32,6 +32,7 @@ class BodyRender extends React.Component {
 
     return data.map((el, i) => {
       const rowProps = {
+        id: el.id,
         parentIndex: el.parentIndex,
         rowData: el,
         rowHeight,
@@ -110,6 +111,7 @@ class BodyRender extends React.Component {
 
     for (let i = firstRowIndex; i < lastRowIndex; i++) {
       const rowProps = {
+        id: data[i].id,
         parentIndex: data[i].parentIndex,
         rowData: data[i],
         rowHeight,
