@@ -1,9 +1,18 @@
 import React from 'react'
 import { ExpandArrow } from '../components/ExpandArrow'
+import memoize from 'memoize-one'
 
 
 export function useExpanded({ data, columns }) {
-  const [expandedRowsIndex, setExpandedRowsIndex] = React.useState([])
+  const [expandedRowsIndex, setExpandedRowsIndex] = React.useState([2])
+
+  const getColumns = memoize(columns => {
+    return convertToExpandedColumns(columns)
+  })
+
+  const getData = memoize((data, expandedRowsIndex) => {
+    return convertToExpandedData(data, expandedRowsIndex)
+  })
 
   function onExpand(rowIndex) {
     const searchedIndex = expandedRowsIndex.filter(el => {
@@ -19,7 +28,7 @@ export function useExpanded({ data, columns }) {
     }
   }
 
-  function getExpandedColumns(columns) {
+  function convertToExpandedColumns(columns) {
     return [
       {
         header: 'Expandable',
@@ -33,34 +42,58 @@ export function useExpanded({ data, columns }) {
     ]
   }
 
-  function getExpandedData(data, expandedRowsIndex) {
-    if (expandedRowsIndex.length === 0) {
-      return data.map((el, i) => {
-        return {
-          ...el,
-          parentIndex: i + 1,
-          expandedRowsIndex
-        }
+  function convertToExpandedData(data) {
+    let expandedData = []
+    let index = 0
+
+    function iterateRow(el) {
+      expandedData.push({
+        ...el,
+        dataIndex: index
       })
-    } else {
-      let expanded = []
-      data.forEach((el, index) => {
-        expanded.push({
-          ...el,
-          parentIndex: index + 1
+      index++
+      if (el.children) {
+        el.children.forEach(children => {
+          iterateRow(children)
         })
-        for (let i = 0; i < expandedRowsIndex.length; i++) {
-          if ((index + 1) === expandedRowsIndex[i]) {
-            expanded = [...expanded, ...el.children]
-          }
-        }
-      })
-      return expanded
+      }
     }
+
+    data.forEach(row => {
+      iterateRow(row)
+    })
+
+    return expandedData
   }
 
+  // function convertToExpandedData(data, expandedRowsIndex) {
+  //   if (expandedRowsIndex.length === 0) {
+  //     return data.map((el, i) => {
+  //       return {
+  //         ...el,
+  //         parentIndex: i + 1,
+  //         expandedRowsIndex
+  //       }
+  //     })
+  //   } else {
+  //     let expanded = []
+  //     data.forEach((el, index) => {
+  //       expanded.push({
+  //         ...el,
+  //         parentIndex: index + 1
+  //       })
+  //       for (let i = 0; i < expandedRowsIndex.length; i++) {
+  //         if ((index + 1) === expandedRowsIndex[i]) {
+  //           expanded = [...expanded, ...el.children]
+  //         }
+  //       }
+  //     })
+  //     return expanded
+  //   }
+  // }
+
   return {
-    columns: getExpandedColumns(columns),
-    data: getExpandedData(data, expandedRowsIndex)
+    columns: getColumns(columns),
+    data: getData(data, expandedRowsIndex)
   }
 }

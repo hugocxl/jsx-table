@@ -24,18 +24,19 @@ function customColumnSort({ a, b, sortBy, sortDirection }) {
 }
 
 function alertMessage(el, data) {
+  let message = { ...data, event: '' }
   return window.alert(`${el} clicked!
-  ${JSON.stringify(data)}`)
+  ${JSON.stringify(message)}`)
 }
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(5000))
+  const [data, setData] = React.useState(getData(20))
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
-    { header: 'Name', dataKey: 'name', sortable: true },
-    // { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
+    { header: 'Name', align: 'left', dataKey: 'name', sortable: true },
+    { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
     { header: 'Age', dataKey: 'age', sortable: true },
     { header: 'Country', dataKey: 'country', sortable: true },
@@ -47,10 +48,8 @@ export function App() {
     setData([...data, ...newRows])
   }
 
-  const groupedData = useGroupBy({ data, columns, groupBy: ['country'] })
+  const groupedData = useGroupBy({ data, columns, groupBy: ['genre', 'country'] })
   const expandedData = useExpanded({ data: groupedData.data, columns: groupedData.columns })
-
-  debugger
 
   return (
     <div style={{
@@ -72,14 +71,13 @@ export function App() {
             width={width}
             loadMoreRows={loadMoreRows}
             threshold={10}
-            rowHeight={50}
+            rowHeight={30}
             data={expandedData.data}
             overscanRowCount={0}
             // pagination={true}
             // paginationHeight={20}
-            // pageSize={100}
+            // pageSize={20}
             // defaultPage={2}
-            pivotBy={['country']}
             // onPageChange={props => console.log('PAGINATION', props)}
             virtualized={true}
             sortable={true}

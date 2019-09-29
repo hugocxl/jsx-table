@@ -132,16 +132,16 @@ const TableComponent = React.forwardRef((
         loadMoreRows,
         threshold
       })}
-      {renderTablePagination({
-        changePageTo,
-        pagination,
-        paginationHeight,
-        onNextPageClick,
-        onPreviousPageClick,
-        currentPage,
-        paginationComponent,
-        paginationProps
-      })}
+      {/*{renderTablePagination({*/}
+      {/*  changePageTo,*/}
+      {/*  pagination,*/}
+      {/*  paginationHeight,*/}
+      {/*  onNextPageClick,*/}
+      {/*  onPreviousPageClick,*/}
+      {/*  currentPage,*/}
+      {/*  paginationComponent,*/}
+      {/*  paginationProps*/}
+      {/*})}*/}
 
     </div>
   )
