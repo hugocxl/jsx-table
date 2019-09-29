@@ -148,7 +148,7 @@ const TableComponent = React.forwardRef((
   )
 })
 
-export const Table = withPivotBy(withSortBy(withPagination(TableComponent)))
+export const Table = withPivotBy(withSortBy(TableComponent))
 
 Table.defaultProps = {
   virtualized: false,

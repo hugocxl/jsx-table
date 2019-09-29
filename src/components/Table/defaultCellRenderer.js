@@ -32,7 +32,7 @@ export function defaultCellRenderer(
       {...cellProps}
       style={{
         minWidth,
-        maxWidth,
+        maxWidth: maxWidth || width,
         width,
         justifyContent: align || 'center',
         ...cellProps && cellProps.style
