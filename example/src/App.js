@@ -71,10 +71,11 @@ export function App() {
               rowHeight={50}
               data={data}
               overscanRowCount={0}
-              // pagination={true}
-              // paginationHeight={20}
-              // pageSize={1000}
+              pagination={true}
+              paginationHeight={20}
+              pageSize={100}
               // defaultPage={2}
+              pivotBy={['age', 'city']}
               // onPageChange={props => console.log('PAGINATION', props)}
               virtualized={true}
               sortable={true}

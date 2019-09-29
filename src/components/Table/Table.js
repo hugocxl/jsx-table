@@ -10,6 +10,7 @@ import { defaultNoDataRenderer } from './defaultNoDataRenderer'
 import { defaultTablePaginationRenderer } from './defaultTablePaginationRenderer'
 import { withPagination } from './withPagination'
 import { withSortBy } from './withSortBy'
+import { withPivotBy } from './withPivotBy'
 
 
 const TableComponent = React.forwardRef((
@@ -147,7 +148,7 @@ const TableComponent = React.forwardRef((
   )
 })
 
-export const Table = withSortBy(TableComponent)
+export const Table = withPivotBy(withSortBy(withPagination(TableComponent)))
 
 Table.defaultProps = {
   virtualized: false,
