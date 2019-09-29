@@ -26,7 +26,7 @@ export function defaultHeaderCellRenderer(
       style={{
         width,
         minWidth,
-        maxWidth,
+        maxWidth: maxWidth || width,
         justifyContent: align || 'center'
       }}
       onClick={event => {

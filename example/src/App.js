@@ -30,12 +30,12 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(1000))
+  const [data, setData] = React.useState(getData(50))
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
     { header: 'Name', dataKey: 'name', sortable: true },
-    { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
+    // { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
     { header: 'Age', dataKey: 'age', sortable: true },
     { header: 'Country', dataKey: 'country', sortable: true },
@@ -74,9 +74,9 @@ export function App() {
             // paginationHeight={20}
             // pageSize={100}
             // defaultPage={2}
-            pivotBy={['name']}
+            pivotBy={['genre']}
             // onPageChange={props => console.log('PAGINATION', props)}
-            virtualized={true}
+            // virtualized={true}
             sortable={true}
             // onRowClick={row => alertMessage('Row', row)}
             // onCellClick={cell => alertMessage('Cell', cell)}

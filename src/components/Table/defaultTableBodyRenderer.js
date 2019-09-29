@@ -20,28 +20,76 @@ class BodyRender extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.height !== prevProps.height) {
+    if (this.props.virtualized && (this.props.height !== prevProps.height)) {
       this.setState({
         scrollTop: this.ref.current.scrollTop
       })
     }
   }
 
+  // renderRows = () => {
+  //   const { data, rowRenderer, rowHeight, ...rest } = this.props
+  //
+  //   return data.map((el, i) => {
+  //     const rowProps = {
+  //       rowData: el,
+  //       rowHeight,
+  //       selected: false,
+  //       rowIndex: i,
+  //           top: rowHeight * i,
+  //       ...rest
+  //     }
+  //     return rowRenderer
+  //       ? rowRenderer(rowProps)
+  //       : defaultRowRenderer(rowProps)
+  //   })
+  // }
+
   renderRows = () => {
     const { data, rowRenderer, rowHeight, ...rest } = this.props
+    const rows = []
+    let acumulatedHeight = 0
+    let rowIndex = 1
 
-    return data.map((el, i) => {
+    data.forEach((el, parentIndex) => {
       const rowProps = {
+        data,
         rowData: el,
         rowHeight,
         selected: false,
-        rowIndex: i,
+        rowIndex: rowIndex,
+        top: (parentIndex * rowHeight) + acumulatedHeight,
         ...rest
       }
-      return rowRenderer
+
+      rows.push(rowRenderer
         ? rowRenderer(rowProps)
-        : defaultRowRenderer(rowProps)
+        : defaultRowRenderer(rowProps))
+
+      rowIndex += 1
+
+      if (el.children && el.expand) {
+        el.children.forEach((el, i) => {
+          const rowProps = {
+            data,
+            rowData: el,
+            rowHeight,
+            selected: false,
+            rowIndex,
+            top: (parentIndex * rowHeight + rowHeight) + (i * rowHeight) + acumulatedHeight,
+            ...rest
+          }
+          rows.push(rowRenderer
+            ? rowRenderer(rowProps)
+            : defaultRowRenderer(rowProps))
+
+          rowIndex += 1
+        })
+        acumulatedHeight += (rowHeight * el.children.length)
+      }
     })
+
+    return rows
   }
 
   renderVirtualizedRows = () => {
@@ -64,6 +112,7 @@ class BodyRender extends React.Component {
         rowHeight,
         selected: false,
         rowIndex: i,
+        top: rowHeight * i,
         ...rest
       }
       rows.push(
@@ -91,7 +140,7 @@ class BodyRender extends React.Component {
   render() {
     const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading, virtualized } = this.props
     const rows = virtualized ? this.renderVirtualizedRows() : this.renderRows()
-
+    
     return (
       <React.Fragment>
         {loading && (loadingRenderer ? (

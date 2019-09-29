@@ -16,12 +16,14 @@ export const defaultRowRenderer = (
     rowProps,
     bodyScrollTop,
     bodyHeight,
+    top,
+    data,
     ...rest
   }) => {
 
   return (
     <div
-      key={rowIndex}
+      key={`${rowIndex} ${top}`}
       className={cx('AwesomeTable__body-row', rowClassName, { selected: rowData && rowData.selected })}
       {...rowProps}
       onClick={event => onRowClick && onRowClick({ event, rowData, rowIndex, rowProps })}
@@ -29,12 +31,13 @@ export const defaultRowRenderer = (
         ...rowProps && rowProps.style,
         position: 'absolute',
         left: 0,
-        top: rowHeight * rowIndex,
+        top,
         height: rowHeight,
       }}>
 
       {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
+          data,
           cellIndex,
           cellData: rowData[column.dataKey],
           cell: column.cell,
