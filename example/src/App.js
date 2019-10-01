@@ -31,7 +31,7 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(50000))
+  const [data, setData] = React.useState(getData(100000))
 
   const columns = [
     // { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
