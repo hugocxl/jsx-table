@@ -98,46 +98,44 @@ const TableComponent = React.forwardRef((
         ...style
       }}>
       {renderTableHeader({
-        headerClassName,
-        columns: columnsData,
-        rowWidth,
-        headerRowProps,
-        headerCellProps,
-        disableHeader,
-        headerHeight,
-        headerComponentProps,
         headerRowRenderer,
         headerCellRenderer,
+        columns: columnsData,
+        computedRowGrid,
+        rowWidth,
+        headerClassName,
+        headerRowProps,
+        headerCellProps,
+        headerComponentProps,
+        disableHeader,
+        headerHeight,
         onHeaderClick,
         onSortableClick,
         sortDirection,
-        sortBy,
-        computedRowGrid
+        sortBy
       })}
       {renderTableBody({
-        rowClassName,
+        rowRenderer,
+        cellRenderer,
+        loadingRenderer,
         data: rowsData,
-        rowHeight,
+        columns: columnsData,
+        computedRowGrid,
         height,
         width,
+        rowHeight,
+        rowClassName,
         rowWidth,
-        columns: columnsData,
         rowProps,
         cellProps,
         cellComponentProps,
         loading,
         loadingComponent,
-        loadingRenderer,
-        rowRenderer,
-        cellRenderer,
         onRowClick,
         onCellClick,
         tableBodyHeight,
         virtualized,
-        overscanRowCount,
-        loadMoreRows,
-        threshold,
-        computedRowGrid
+        overscanRowCount
       })}
       {/*{renderTablePagination({*/}
       {/*  changePageTo,*/}

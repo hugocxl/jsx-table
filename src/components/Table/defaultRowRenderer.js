@@ -16,7 +16,6 @@ export const defaultRowRenderer = (
     rowProps,
     top,
     computedRowGrid,
-    width,
     ...rest
   }) => {
 

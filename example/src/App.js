@@ -35,7 +35,7 @@ export function App() {
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 100 },
-    { header: 'Name', align: 'left', dataKey: 'name', sortable: true },
+    { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
     { header: 'Completed', dataKey: 'completed', width: 200, cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true, },
     { header: 'Age', dataKey: 'age', sortable: true, },

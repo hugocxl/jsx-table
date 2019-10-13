@@ -16,7 +16,7 @@ export function defaultCellRenderer(
     id,
   }) {
 
-  // TODO: cellClassname && cellStyle
+  // TODO: cellClassname && cellStyle + WRONG ALIGN (FLEX)
 
   return (
     <div
