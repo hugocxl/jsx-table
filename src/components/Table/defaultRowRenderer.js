@@ -14,32 +14,40 @@ export const defaultRowRenderer = (
     rowHeight,
     columns,
     rowProps,
-    bodyScrollTop,
-    bodyHeight,
     top,
-    parentIndex,
-    id,
     ...rest
   }) => {
 
+  // TODO: styles can be a function
+
   return (
     <div
-      key={`${rowIndex} ${top}`}
-      className={cx('AwesomeTable__body-row', rowClassName, { selected: rowData && rowData.selected })}
       {...rowProps}
-      onClick={event => onRowClick && onRowClick({ event, rowData, rowIndex, rowProps })}
+      key={rowIndex}
+      className={cx(
+        'AwesomeTable__body-row',
+        rowIndex % 2 === 0 ? 'even' : 'odd',
+        rowClassName,
+      )}
       style={{
         ...rowProps && rowProps.style,
+        height: rowHeight,
         position: 'absolute',
         left: 0,
         top,
-        height: rowHeight,
-      }}>
+      }}
+      onClick={event => {
+        onRowClick && onRowClick({
+          event,
+          rowData,
+          rowIndex,
+          rowProps
+        })
+      }}
+    >
 
       {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
-          id,
-          parentIndex,
           cellIndex,
           cellData: rowData[column.dataKey],
           cell: column.cell,

@@ -31,12 +31,12 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(100000))
+  const [data, setData] = React.useState(getData(500000))
 
   const columns = [
-    // { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
+    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
     { header: 'Name', align: 'left', dataKey: 'name', sortable: true },
-    // { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
+    { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
     { header: 'Age', dataKey: 'age', sortable: true },
     { header: 'Country', dataKey: 'country', sortable: true },
@@ -48,8 +48,8 @@ export function App() {
     setData([...data, ...newRows])
   }
 
-  const groupedData = useGroupBy({ data, columns, groupBy: ['name', 'country'] })
-  const expandedData = useExpanded({ data: groupedData.data, columns: groupedData.columns })
+  // const groupedData = useGroupBy({ data, columns, groupBy: ['name', 'country'] })
+  // const expandedData = useExpanded({ data: groupedData.data, columns: groupedData.columns })
 
   return (
     <div style={{
@@ -67,12 +67,12 @@ export function App() {
             headerClassName={'custom-header-class'}
             rowClassName={'custom-row-class'}
             height={height}
-            columns={expandedData.columns}
+            columns={columns}
             width={width}
             loadMoreRows={loadMoreRows}
             threshold={10}
-            rowHeight={30}
-            data={expandedData.data}
+            rowHeight={35}
+            data={data}
             overscanRowCount={0}
             // pagination={true}
             // paginationHeight={20}

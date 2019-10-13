@@ -32,13 +32,11 @@ class BodyRender extends React.Component {
 
     return data.map((el, i) => {
       const rowProps = {
-        id: el.id,
-        parentIndex: el.parentIndex,
         rowData: el,
         rowHeight,
-        selected: false,
         rowIndex: i,
         top: rowHeight * i,
+        position: i % 2 === 0 ? 'even' : 'odd',
         ...rest
       }
 
@@ -48,76 +46,27 @@ class BodyRender extends React.Component {
     })
   }
 
-  // renderRows = () => {
-  //   const { data, rowRenderer, rowHeight, ...rest } = this.props
-  //   const rows = []
-  //   let acumulatedHeight = 0
-  //   let rowIndex = 1
-  //
-  //   data.forEach((el, parentIndex) => {
-  //     const rowProps = {
-  //       data,
-  //       rowData: el,
-  //       rowHeight,
-  //       selected: false,
-  //       rowIndex: parentIndex,
-  //       top: (parentIndex * rowHeight) + acumulatedHeight,
-  //       ...rest
-  //     }
-  //
-  //     rows.push(rowRenderer
-  //       ? rowRenderer(rowProps)
-  //       : defaultRowRenderer(rowProps))
-  //
-  //     rowIndex += 1
-  //
-  //     if (el.children && el.expand) {
-  //       el.children.forEach((el, i) => {
-  //         const rowProps = {
-  //           data,
-  //           rowData: el,
-  //           rowHeight,
-  //           selected: false,
-  //           rowIndex,
-  //           top: (parentIndex * rowHeight + rowHeight) + (i * rowHeight) + acumulatedHeight,
-  //           ...rest
-  //         }
-  //         rows.push(rowRenderer
-  //           ? rowRenderer(rowProps)
-  //           : defaultRowRenderer(rowProps))
-  //
-  //         rowIndex += 1
-  //       })
-  //       acumulatedHeight += (rowHeight * el.children.length)
-  //     }
-  //   })
-  //
-  //   return rows
-  // }
-
   renderVirtualizedRows = () => {
     if (!this.ref.current) {
-      return null
+      return []
     }
     const { data, rowRenderer, rowHeight, overscanRowCount, ...rest } = this.props
     const { scrollTop, clientHeight } = this.ref.current
     const rows = []
 
-    const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount
-    const lastRowIndexCalc = Math.round((scrollTop + clientHeight) / rowHeight) + overscanRowCount
+    const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount - 1
+    const lastRowIndexCalc = Math.round((scrollTop + clientHeight) / rowHeight) + overscanRowCount + 1
 
     const firstRowIndex = firstRowIndexCalc > 0 ? firstRowIndexCalc : 0
     const lastRowIndex = lastRowIndexCalc < data.length ? lastRowIndexCalc : data.length
 
     for (let i = firstRowIndex; i < lastRowIndex; i++) {
       const rowProps = {
-        id: data[i].id,
-        parentIndex: data[i].parentIndex,
         rowData: data[i],
         rowHeight,
-        selected: false,
         rowIndex: i,
         top: rowHeight * i,
+        position: i % 2 === 0 ? 'even' : 'odd',
         ...rest
       }
       rows.push(
@@ -149,7 +98,8 @@ class BodyRender extends React.Component {
     return (
       <React.Fragment>
         {loading && (loadingRenderer ? (
-          loadingRenderer({ loadingComponent, height: tableBodyHeight })) : (
+          loadingRenderer({ loadingComponent, height: tableBodyHeight })
+        ) : (
           defaultLoadingRenderer({ loadingComponent, height: tableBodyHeight })
         ))}
 
@@ -157,13 +107,13 @@ class BodyRender extends React.Component {
           className={cx('AwesomeTable__body', { loading })}
           onScroll={this.onScroll}
           ref={this.ref}
-          style={{ height: tableBodyHeight }}>
-          <div
-            style={{
-              height: data && (data.length * rowHeight),
-            }}>
+          style={{ height: tableBodyHeight }}
+        >
+
+          <div style={{ height: data && (data.length * rowHeight) }}>
             {rows}
           </div>
+
         </div>
       </React.Fragment>
     )

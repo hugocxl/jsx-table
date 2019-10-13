@@ -27,6 +27,8 @@ const TableComponent = React.forwardRef((
     ...rest
   }, ref) => {
 
+  const columnsData = columns || utils.normalizeColumns(children)
+  const rowsData = getRowsData()
   const tableBodyHeight = utils.calculateBodyHeight({
     height,
     rowHeight,
@@ -37,10 +39,9 @@ const TableComponent = React.forwardRef((
     pageSize,
   })
 
-  const getColumns = memoize((columns, children) => {
-    return columns || utils.normalizeColumns(children)
-  })
-  const tableColumns = getColumns(columns, children)
+  function getRowsData() {
+    return data
+  }
 
   function renderTableHeader(props) {
     if (disableHeader) {
@@ -97,7 +98,7 @@ const TableComponent = React.forwardRef((
       }}>
       {renderTableHeader({
         headerClassName,
-        columns: tableColumns,
+        columns: columnsData,
         headerRowProps,
         headerCellProps,
         disableHeader,
@@ -112,10 +113,10 @@ const TableComponent = React.forwardRef((
       })}
       {renderTableBody({
         rowClassName,
-        data,
+        data: rowsData,
         rowHeight,
         height,
-        columns: tableColumns,
+        columns: columnsData,
         rowProps,
         cellProps,
         cellComponentProps,

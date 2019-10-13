@@ -46,13 +46,21 @@
   opacity: 0.1;
 }
 
-
 .AwesomeTable__body-row {
   width: 100%;
   display: flex;
-  border-bottom: 1px solid rgba(150,150,150,0.2);
+  border-bottom: 1px solid rgba(150, 150, 150, 0.2);
   transition: all 0.1s ease-in-out;
   cursor: pointer;
+}
+
+.AwesomeTable__body-row.odd {
+  background-color: rgba(112, 128, 144, 0.1);
+}
+
+
+.AwesomeTable__body-row:nth-child(even) {
+
 }
 
 
@@ -66,7 +74,7 @@
 
 
 .AwesomeTable__body-row:hover {
-  background-color: rgba(150,150,150,0.1);
+  background-color: rgba(150, 150, 150, 0.1);
   border-bottom: 1px solid transparent;
 }
 
@@ -79,7 +87,7 @@
   display: flex;
   align-items: center;
   padding: 0px 10px;
-  border-right: 1px solid rgba(150,150,150,0.2);
+  border-right: 1px solid rgba(150, 150, 150, 0.2);
 }
 
 .AwesomeTable__body-cell-text {
