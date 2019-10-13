@@ -1,6 +1,6 @@
 .AwesomeTable {
-  overflow: hidden;
-  /*position: relative;*/
+  overflow: auto;
+  position: relative;
 }
 
 .AwesomeTable_header {
