@@ -34,11 +34,11 @@ export function App() {
   const [data, setData] = React.useState(getData(500000))
 
   const columns = [
-    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 60 },
+    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 100 },
     { header: 'Name', align: 'left', dataKey: 'name', sortable: true },
-    { header: 'Completed', dataKey: 'completed', width: 100, cell: customCell, sortable: true },
-    { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
-    { header: 'Age', dataKey: 'age', sortable: true },
+    { header: 'Completed', dataKey: 'completed', width: 200, cell: customCell, sortable: true },
+    { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true, },
+    { header: 'Age', dataKey: 'age', sortable: true, },
     { header: 'Country', dataKey: 'country', sortable: true },
     { header: 'City', dataKey: 'city', sortable: true }
   ]
@@ -62,10 +62,10 @@ export function App() {
       <AutoSizer>
         {({ width, height }) => (
           <Table
-            id={'custom-table-id'}
-            className={'custom-table-class'}
-            headerClassName={'custom-header-class'}
-            rowClassName={'custom-row-class'}
+            // id={'custom-table-id'}
+            // className={'custom-table-class'}
+            // headerClassName={'custom-header-class'}
+            // rowClassName={'custom-row-class'}
             height={height}
             columns={columns}
             width={width}

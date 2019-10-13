@@ -29,6 +29,7 @@ const TableComponent = React.forwardRef((
 
   const columnsData = columns || utils.normalizeColumns(children)
   const rowsData = getRowsData()
+  const { computedRowGrid, rowWidth } = utils.computeRowGrid({ width, columns: columnsData })
   const tableBodyHeight = utils.calculateBodyHeight({
     height,
     rowHeight,
@@ -99,6 +100,7 @@ const TableComponent = React.forwardRef((
       {renderTableHeader({
         headerClassName,
         columns: columnsData,
+        rowWidth,
         headerRowProps,
         headerCellProps,
         disableHeader,
@@ -109,13 +111,16 @@ const TableComponent = React.forwardRef((
         onHeaderClick,
         onSortableClick,
         sortDirection,
-        sortBy
+        sortBy,
+        computedRowGrid
       })}
       {renderTableBody({
         rowClassName,
         data: rowsData,
         rowHeight,
         height,
+        width,
+        rowWidth,
         columns: columnsData,
         rowProps,
         cellProps,
@@ -131,7 +136,8 @@ const TableComponent = React.forwardRef((
         virtualized,
         overscanRowCount,
         loadMoreRows,
-        threshold
+        threshold,
+        computedRowGrid
       })}
       {/*{renderTablePagination({*/}
       {/*  changePageTo,*/}

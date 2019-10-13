@@ -8,9 +8,6 @@ export function defaultCellRenderer(
     cellData,
     rowData,
     cell,
-    width,
-    minWidth,
-    maxWidth,
     align,
     rowIndex,
     cellProps,
@@ -18,31 +15,44 @@ export function defaultCellRenderer(
     parentIndex,
     id,
   }) {
+
+  // TODO: cellClassname && cellStyle
+
   return (
     <div
+      {...cellProps}
       key={cellIndex}
       className={'AwesomeTable__body-cell'}
-      onClick={event => onCellClick && onCellClick({
-        event,
-        cellData,
-        cellIndex,
-        rowData,
-        rowIndex,
-        cellProps,
-        cellComponentProps
-      })}
-      {...cellProps}
       style={{
-        minWidth,
-        maxWidth: maxWidth || width,
-        width,
         justifyContent: align || 'center',
         ...cellProps && cellProps.style
-      }}>
+      }}
+      onClick={event => {
+        onCellClick && onCellClick({
+          event,
+          cellData,
+          cellIndex,
+          rowData,
+          rowIndex,
+          cellProps,
+          cellComponentProps
+        })
+      }}
+    >
       {cell && typeof cell === 'function' ? (
-        cell({ cellData, rowData, cellComponentProps, rowIndex, cellIndex, parentIndex, id })
+        cell({
+          cellData,
+          rowData,
+          cellComponentProps,
+          rowIndex,
+          cellIndex,
+          parentIndex,
+          id
+        })
       ) : (
-        <div className={'AwesomeTable__body-cell-text'}>{cellData}</div>
+        <div className={'AwesomeTable__body-cell-text'}>
+          {cellData}
+        </div>
       )}
     </div>
   )

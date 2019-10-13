@@ -1,6 +1,5 @@
 import React from 'react'
 import { defaultCellRenderer } from './defaultCellRenderer'
-import { utils } from '../../utils'
 import cx from 'classnames'
 
 
@@ -12,13 +11,16 @@ export const defaultRowRenderer = (
     rowData,
     rowIndex,
     rowHeight,
+    rowWidth,
     columns,
     rowProps,
     top,
+    computedRowGrid,
+    width,
     ...rest
   }) => {
 
-  // TODO: styles can be a function
+  // TODO: styles can be a function (rowStyle)
 
   return (
     <div
@@ -31,6 +33,9 @@ export const defaultRowRenderer = (
       )}
       style={{
         ...rowProps && rowProps.style,
+        display: 'grid',
+        width: rowWidth,
+        gridTemplateColumns: computedRowGrid,
         height: rowHeight,
         position: 'absolute',
         left: 0,
@@ -54,12 +59,6 @@ export const defaultRowRenderer = (
           rowData,
           align: column.align,
           rowIndex,
-          minWidth: column.minWidth,
-          maxWidth: column.maxWidth,
-          width: utils.calculateColumnWidth({
-            width: column.width,
-            columns
-          }),
           ...rest
         }
 
