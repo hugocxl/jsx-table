@@ -4,16 +4,13 @@ import React, { useState, useRef, useEffect } from 'react'
 import cx from 'classnames'
 import { defaultLoadingRenderer } from './defaultLoadingRenderer'
 import { utils } from '../../utils'
-import { defaultTableRenderer } from './defaultTableRenderer'
-import { defaultTableHeaderRenderer } from './defaultTableHeaderRenderer'
 import { defaultNoDataRenderer } from './defaultNoDataRenderer'
-import { defaultTablePaginationRenderer } from './defaultTablePaginationRenderer'
-import { withPagination } from './withPagination'
 import { withSortBy } from './withSortBy'
 import { defaultRowRenderer } from './defaultRowRenderer'
+import { defaultHeaderRowRenderer } from './defaultHeaderRowRenderer'
 
 
-const TableComponent = React.forwardRef((
+const TableComponent = (
   {
     className, headerClassName, rowClassName,
     id, children, columns, data, style, width, height, defaultSorted, disabled, overscanRowCount,
@@ -25,13 +22,14 @@ const TableComponent = React.forwardRef((
     changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, pageSize, onNextPageClick, onPreviousPageClick, currentPage,
     virtualized,
     loadMoreRows, threshold,
+    onScroll,
     ...rest
-  }, ref) => {
+  }) => {
 
-  const _ref = ref || useRef()
+  const ref = useRef()
   const [scrollTop, setScrollTop] = useState(null)
   const columnsData = columns || utils.normalizeColumns(children)
-  const rowsData = getRowsData()
+  const rowsData = rowsGetter()
   const { computedRowGrid, rowWidth } = utils.computeRowGrid({ width, columns: columnsData })
   const tableBodyHeight = utils.calculateBodyHeight({
     height,
@@ -49,21 +47,48 @@ const TableComponent = React.forwardRef((
     }
   }, [height])
 
-  function getRowsData() {
+  function rowsGetter() {
     return data
   }
 
-  function renderTableHeader(props) {
+  function tableRenderer() {
+    return (
+      <React.Fragment>
+        {headerRenderer()}
+        {bodyRenderer()}
+      </React.Fragment>
+    )
+  }
+
+  function headerRenderer() {
+    const props = {
+      headerRowRenderer,
+      headerCellRenderer,
+      columns: columnsData,
+      computedRowGrid,
+      rowWidth,
+      headerClassName,
+      headerRowProps,
+      headerCellProps,
+      headerComponentProps,
+      disableHeader,
+      headerHeight,
+      onHeaderClick,
+      onSortableClick,
+      sortDirection,
+      sortBy
+    }
+
     if (disableHeader) {
       return null
     } else {
-      return tableHeaderRenderer
-        ? tableHeaderRenderer(props)
-        : defaultTableHeaderRenderer(props)
+      return headerRowRenderer
+        ? headerRowRenderer(props)
+        : defaultHeaderRowRenderer(props)
     }
   }
 
-  function renderTableBody() {
+  function bodyRenderer() {
     if (!data || (data.length === 0 && !loading)) {
       return renderNoData({
         noDataComponent,
@@ -72,37 +97,23 @@ const TableComponent = React.forwardRef((
         noDataComponentProps,
         tableBodyHeight
       })
-    } else {
-      return (
-        <div style={{ height: data && (data.length * rowHeight) }}>
-          {virtualized ? (
-            renderVirtualizedRows()
-          ) : (
-            renderRows()
-          )}
-        </div>
-      )
     }
+
+    return (
+      <div
+        style={{
+          height: data && (data.length * rowHeight),
+          position: 'relative',
+        }}>
+        {virtualized
+          ? virtualizedRowsRenderer()
+          : rowsRenderer()})
+      </div>
+    )
   }
 
-  function renderTableFooter() {
-
-  }
-
-  function renderTablePagination(props) {
-    return tablePaginationRenderer
-      ? tablePaginationRenderer(props)
-      : defaultTablePaginationRenderer(props)
-  }
-
-  function renderNoData(props) {
-    return noDataRenderer
-      ? noDataRenderer(props)
-      : defaultNoDataRenderer(props)
-  }
-
-  function renderRows() {
-    return data.map((el, i) => {
+  function rowsRenderer() {
+    return rowsData.map((el, i) => {
       const rowProps = {
         rowData: el,
         rowHeight,
@@ -117,16 +128,16 @@ const TableComponent = React.forwardRef((
     })
   }
 
-  function renderVirtualizedRows() {
-    if (!_ref.current) {
+  function virtualizedRowsRenderer() {
+    if (!ref.current) {
       return null
     }
 
-    const { scrollTop, clientHeight } = _ref.current
+    const { scrollTop, clientHeight } = ref.current
     const rows = []
 
     const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount - 1
-    const lastRowIndexCalc = Math.round((scrollTop + clientHeight) / rowHeight) + overscanRowCount + 1
+    const lastRowIndexCalc = Math.round((scrollTop + clientHeight) / rowHeight) + overscanRowCount
 
     const firstRowIndex = firstRowIndexCalc > 0 ? firstRowIndexCalc : 0
     const lastRowIndex = lastRowIndexCalc < data.length ? lastRowIndexCalc : data.length
@@ -134,7 +145,7 @@ const TableComponent = React.forwardRef((
     for (let i = firstRowIndex; i < lastRowIndex; i++) {
       const elProps = {
         columns: columnsData,
-        rowData: data[i],
+        rowData: rowsData[i],
         rowHeight,
         rowIndex: i,
         top: rowHeight * i,
@@ -142,6 +153,7 @@ const TableComponent = React.forwardRef((
         rowWidth,
         ...rest
       }
+
       rows.push(
         rowRenderer
           ? rowRenderer(elProps)
@@ -152,64 +164,41 @@ const TableComponent = React.forwardRef((
     return rows
   }
 
-  function onTableScroll() {
-    const { scrollTop, clientHeight, scrollHeight } = _ref.current
+  function renderNoData(props) {
+    return noDataRenderer
+      ? noDataRenderer(props)
+      : defaultNoDataRenderer(props)
+  }
 
-    // onScroll && onScroll({
-    //   scrollTop,
-    //   clientHeight,
-    //   scrollHeight
-    // })
+  function onTableScroll(event) {
+    const { scrollTop, clientHeight, scrollHeight } = ref.current
+
+    onScroll && onScroll({
+      event,
+      scrollTop,
+      clientHeight,
+      scrollHeight
+    })
 
     setScrollTop(scrollTop)
   }
 
   return (
     <div
-      ref={_ref}
+      ref={ref}
       id={id}
       role={'table'}
-      onScroll={onTableScroll}
+      onScroll={ev => onTableScroll(ev)}
       className={cx('AwesomeTable', className)}
       style={{
         height,
         width,
         ...style
       }}>
-      {/*{renderTableHeader({*/}
-      {/*  headerRowRenderer,*/}
-      {/*  headerCellRenderer,*/}
-      {/*  columns: columnsData,*/}
-      {/*  computedRowGrid,*/}
-      {/*  rowWidth,*/}
-      {/*  headerClassName,*/}
-      {/*  headerRowProps,*/}
-      {/*  headerCellProps,*/}
-      {/*  headerComponentProps,*/}
-      {/*  disableHeader,*/}
-      {/*  headerHeight,*/}
-      {/*  onHeaderClick,*/}
-      {/*  onSortableClick,*/}
-      {/*  sortDirection,*/}
-      {/*  sortBy*/}
-      {/*})}*/}
- h
-      {renderTableBody()}
-
-      {/*{renderTablePagination({*/}
-      {/*  changePageTo,*/}
-      {/*  pagination,*/}
-      {/*  paginationHeight,*/}
-      {/*  onNextPageClick,*/}
-      {/*  onPreviousPageClick,*/}
-      {/*  currentPage,*/}
-      {/*  paginationComponent,*/}
-      {/*  paginationProps*/}
-      {/*})}*/}
-
+      {tableRenderer()}
     </div>
   )
-})
+}
 
 export const Table = withSortBy(TableComponent)
 

@@ -5,9 +5,6 @@ import { SortIndicator } from '../SortIndicator'
 export function defaultHeaderCellRenderer(
   {
     header,
-    width,
-    minWidth,
-    maxWidth,
     align,
     headerCellProps,
     headerComponentProps,
@@ -22,15 +19,17 @@ export function defaultHeaderCellRenderer(
 
   return (
     <div
+      {...headerCellProps}
       className={'AwesomeTable__header-row-cell'}
       style={{
-        width,
-        minWidth,
-        maxWidth: maxWidth || width,
         justifyContent: align || 'center'
       }}
       onClick={event => {
-        sortable && onSortableClick({ sortBy: dataKey, event, columnSortMethod })
+        sortable && onSortableClick({
+          sortBy: dataKey,
+          event,
+          columnSortMethod
+        })
         onHeaderClick && onHeaderClick({
           event,
           header,
@@ -39,7 +38,7 @@ export function defaultHeaderCellRenderer(
           headerComponentProps,
         })
       }}
-      {...headerCellProps}>
+    >
       {typeof header === 'function' ? (
         header(headerComponentProps)
       ) : (

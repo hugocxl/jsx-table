@@ -1,5 +1,4 @@
 import React from 'react'
-import { utils } from '../../utils'
 import { defaultHeaderCellRenderer } from './defaultHeaderCellRenderer'
 import cx from 'classnames'
 
@@ -11,20 +10,32 @@ export function defaultHeaderRowRenderer(
     headerCellRenderer,
     headerHeight,
     headerRowProps,
+    computedRowGrid,
+    rowWidth,
     ...rest
   }) {
+
   return (
     <div
-      role={'table'}
-      className={cx('AwesomeTable__header-row', headerClassName)}
-      {...headerRowProps}>
+      {...headerRowProps}
+      style={{
+        position: 'sticky',
+        top: 0,
+        height: headerHeight,
+        gridTemplateColumns: computedRowGrid,
+        display: 'grid',
+        width: rowWidth,
+        zIndex: 2
+      }}
+      className={cx(
+        'AwesomeTable__header-row',
+        headerClassName
+      )}
+    >
       {columns.map((column, headerIndex) => {
-        const rowProps = {
+        const cellProps = {
           column,
           header: column.header,
-          width: utils.calculateColumnWidth({ width: column.width, columns }),
-          minWidth: column.minWidth,
-          maxWidth: column.maxWidth,
           headerIndex,
           align: column.align,
           dataKey: column.dataKey,
@@ -32,10 +43,9 @@ export function defaultHeaderRowRenderer(
           columnSortMethod: column.columnSortMethod,
           ...rest
         }
-
         return headerCellRenderer
-          ? headerCellRenderer(rowProps)
-          : defaultHeaderCellRenderer(rowProps)
+          ? headerCellRenderer(cellProps)
+          : defaultHeaderCellRenderer(cellProps)
       })}
     </div>
   )
