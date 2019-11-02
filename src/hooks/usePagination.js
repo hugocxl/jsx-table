@@ -1,13 +1,12 @@
 import React, { useState, useMemo } from 'react'
 
 
-export function usePagination(
-  {
-    data,
-    defaultPage,
-    pageSize,
-    onPageChange
-  }) {
+export function usePagination({
+  data,
+  defaultPage,
+  pageSize,
+  onPageChange
+}) {
 
   const [activePage, setActivePage] = useState(defaultPage || 0)
 
