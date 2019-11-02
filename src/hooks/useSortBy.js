@@ -60,7 +60,7 @@ export function useSortBy({
         ? customTableSort({ sortBy })
         : defaultSortData({ sortBy })
 
-    const nextSortDirection = sortDirection === SortDirection.ASC
+    const nextSortDirection = state.sortDirection === SortDirection.ASC
       ? SortDirection.DESC
       : SortDirection.ASC
 
