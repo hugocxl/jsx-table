@@ -23,7 +23,10 @@ export function defaultHeaderCellRenderer({
         event,
         columnSortMethod
       })
-      onHeaderClick && onHeaderClick({
+    }
+
+    if (onHeaderClick) {
+      onHeaderClick({
         event,
         header,
         dataKey,
@@ -38,16 +41,19 @@ export function defaultHeaderCellRenderer({
       {...headerCellProps}
       className={'AwesomeTable__header-row-cell'}
       onClick={onClickHeader}>
+
       {typeof header === 'function' ? (
         header(headerComponentProps)
       ) : (
         <div>{header}</div>
       )}
+
       {dataKey === sortBy && (
         <SortIndicator
           sortDirection={sortDirection}
         />
       )}
+
     </div>
   )
 }
