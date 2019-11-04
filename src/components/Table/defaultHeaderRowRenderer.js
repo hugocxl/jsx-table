@@ -19,13 +19,10 @@ export function defaultHeaderRowRenderer(
     <div
       {...headerRowProps}
       style={{
-        position: 'sticky',
-        top: 0,
-        height: headerHeight,
+        height: '100%',
         gridTemplateColumns: computedRowGrid,
         display: 'grid',
         width: rowWidth,
-        zIndex: 2
       }}
       className={cx(
         'AwesomeTable__header-row',
