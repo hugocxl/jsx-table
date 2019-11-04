@@ -3,17 +3,16 @@ import { defaultHeaderCellRenderer } from './defaultHeaderCellRenderer'
 import cx from 'classnames'
 
 
-export function defaultHeaderRowRenderer(
-  {
-    headerClassName,
-    columns,
-    headerCellRenderer,
-    headerHeight,
-    headerRowProps,
-    computedRowGrid,
-    rowWidth,
-    ...rest
-  }) {
+export function defaultHeaderRowRenderer({
+  headerClassName,
+  columns,
+  headerCellRenderer,
+  headerHeight,
+  headerRowProps,
+  computedRowGrid,
+  rowWidth,
+  ...rest
+}) {
 
   return (
     <div
