@@ -8,6 +8,9 @@ class BodyRender extends React.Component {
   constructor(props) {
     super(props)
     this.ref = React.createRef()
+    this.renderRows = this.renderRows.bind(this)
+    this.renderVirtualizedRows = this.renderVirtualizedRows.bind(this)
+    this.onScroll = this.onScroll.bind(this)
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -21,7 +24,7 @@ class BodyRender extends React.Component {
     }
   }
 
-  renderRows = () => {
+  renderRows() {
     const { data, rowRenderer, rowHeight, ...rest } = this.props
 
     return data.map((el, i) => {
@@ -40,7 +43,7 @@ class BodyRender extends React.Component {
     })
   }
 
-  renderVirtualizedRows = () => {
+  renderVirtualizedRows() {
     if (!this.ref.current) {
       return []
     }
@@ -72,7 +75,7 @@ class BodyRender extends React.Component {
     return rows
   }
 
-  onScroll = event => {
+  onScroll(event) {
     const { scrollTop, scrollLeft, clientHeight, scrollHeight } = this.ref.current
     this.props.setScroll({
       scrollTop,
