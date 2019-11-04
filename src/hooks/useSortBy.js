@@ -25,7 +25,7 @@ export function useSortBy({
   function defaultSortData({ sortBy }) {
     const sortedData = utils.defaultSortByKey(data, sortBy)
 
-    return defaultSorted.direction === SORT_DIRECTION.ASC
+    return state.sortDirection === SORT_DIRECTION.ASC
       ? sortedData
       : sortedData.reverse()
   }
