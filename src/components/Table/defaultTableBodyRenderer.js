@@ -122,4 +122,6 @@ class BodyRender extends React.Component {
   }
 }
 
-export const defaultTableBodyRenderer = (props) => <BodyRender {...props}/>
+export function defaultTableBodyRenderer(props) {
+  return <BodyRender {...props}/>
+}
