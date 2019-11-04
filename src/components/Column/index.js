@@ -1,5 +1,3 @@
-export function Column({ ...rest }) {
-  return {
-    ...rest
-  }
+export function Column(props) {
+  return props
 }

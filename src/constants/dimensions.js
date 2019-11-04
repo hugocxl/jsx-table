@@ -1,0 +1,4 @@
+export const DEFAULT_FOOTER_HEIGHT = 20
+export const DEFAULT_HEADER_HEIGHT = 20
+export const DEFAULT_ROW_HEIGHT = 20
+export const DEFAULT_PAGINATION_HEIGHT = 20

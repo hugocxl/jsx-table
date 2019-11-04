@@ -1,6 +1,5 @@
 import React from 'react'
 import { defaultCellRenderer } from './defaultCellRenderer'
-import { utils } from '../../../../utils'
 import cx from 'classnames'
 
 
@@ -12,26 +11,44 @@ export const defaultRowRenderer = (
     rowData,
     rowIndex,
     rowHeight,
+    rowWidth,
     columns,
     rowProps,
-    bodyScrollTop,
-    bodyHeight,
+    top,
+    computedRowGrid,
     ...rest
   }) => {
 
+  // TODO: styles can be a function (rowStyle)
+
   return (
     <div
-      key={rowIndex}
-      className={cx('AwesomeTable__body-row', rowClassName, { selected: rowData && rowData.selected })}
       {...rowProps}
-      onClick={event => onRowClick && onRowClick({ event, rowData, rowIndex, rowProps })}
+      key={rowIndex}
+      className={cx(
+        'AwesomeTable__body-row',
+        rowIndex % 2 === 0 ? 'even' : 'odd',
+        rowClassName,
+      )}
       style={{
+        ...rowProps && rowProps.style,
+        display: 'grid',
+        width: rowWidth,
+        gridTemplateColumns: computedRowGrid,
+        height: rowHeight,
         position: 'absolute',
         left: 0,
-        top: rowHeight * rowIndex,
-        height: rowHeight,
-        ...rowProps && rowProps.style
-      }}>
+        top,
+      }}
+      onClick={event => {
+        onRowClick && onRowClick({
+          event,
+          rowData,
+          rowIndex,
+          rowProps
+        })
+      }}
+    >
 
       {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
@@ -41,12 +58,6 @@ export const defaultRowRenderer = (
           rowData,
           align: column.align,
           rowIndex,
-          minWidth: column.minWidth,
-          maxWidth: column.maxWidth,
-          width: utils.calculateColumnWidth({
-            width: column.width,
-            columns
-          }),
           ...rest
         }
 

@@ -1,8 +1,11 @@
 {
   "name": "react-notable",
-  "version": "0.2.2",
+  "version": "0.5.1",
   "description": "A simple but powerful lightweight table for React with highly-customizable options.",
   "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -38,7 +41,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "memoize-one": "^5.0.0",
-    "prop-types": "^15.7.0"
+    "prop-types": "^15.7.0",
+    "uuid": "^3.3.2"
   },
   "peerDependencies": {
     "react": "^16.0.0",

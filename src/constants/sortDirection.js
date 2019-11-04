@@ -1,4 +1,4 @@
-export const SortDirection = {
+export const SORT_DIRECTION = {
   /**
    * Sort items in ascending order.
    * This means arranging from the lowest value to the highest (e.g. a-z, 0-9).

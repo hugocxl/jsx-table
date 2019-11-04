@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { SortDirection } from '../../../constants/SortDirection'
-import { utils } from '../../../utils'
+import { SORT_DIRECTION } from '../../constants/sortDirection'
+import { utils } from '../../utils'
 
 
 export const withSortBy = Table => ({
@@ -12,17 +12,17 @@ export const withSortBy = Table => ({
 }) => {
 
   const [sortBy, setSortBy] = React.useState(defaultSorted ? defaultSorted.id : null)
-  const [sortDirection, setSortDirection] = React.useState(defaultSorted ? defaultSorted.desc ? SortDirection.DESC : SortDirection.ASC : SortDirection.DESC)
+  const [sortDirection, setSortDirection] = React.useState(defaultSorted ? defaultSorted.desc ? SORT_DIRECTION.DESC : SORT_DIRECTION.ASC : SORT_DIRECTION.DESC)
   const [sortedData, setSortedData] = useState(defaultSorted ? defaultSortData({ sortBy: defaultSorted.id }) : data)
 
-  // React.useEffect(() => {
-  //   setSortedData(utils.defaultSortByKey(data, sortBy))
-  // }, [data])
+  React.useEffect(() => {
+    setSortedData(utils.defaultSortByKey(data, sortBy))
+  }, [data.length])
 
   function defaultSortData({ sortBy }) {
     const orderedTable = utils.defaultSortByKey(sortedData, sortBy)
 
-    if (sortDirection === SortDirection.ASC) {
+    if (sortDirection === SORT_DIRECTION.ASC) {
       return orderedTable
     } else {
       return orderedTable.reverse()
@@ -45,7 +45,7 @@ export const withSortBy = Table => ({
         ? customTableSort({ sortBy })
         : defaultSortData({ sortBy })
 
-    const nextSortDirection = sortDirection === SortDirection.ASC ? SortDirection.DESC : SortDirection.ASC
+    const nextSortDirection = sortDirection === SORT_DIRECTION.ASC ? SORT_DIRECTION.DESC : SORT_DIRECTION.ASC
 
     setSortDirection(nextSortDirection)
     setSortedData(nextSortedData)

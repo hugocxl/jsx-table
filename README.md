@@ -14,10 +14,10 @@
 </div>
 
 <p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
-***
-#### ⚠️🚧🚧 Currently in development stage 🚧🚧⚠️️️️
-***
 
+***
+### ⚠️🚧🚧 Currently in development stage 🚧🚧⚠️️️️
+***
 
 
 ## Features
@@ -32,8 +32,7 @@
 * Pagination
 
 
-
-## Pending development tasks
+## Pending development tasks
 
 * Multi column sorting
 * Export to file
@@ -165,8 +164,20 @@ function Example () {
 
 ```
 
+<br>
+
+## Contributing
+
+No one’s perfect. If you’ve found any errors, want to suggest enhancements, or expand on a topic, please feel free to open an Issue or collaborate by PR.
+
+**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+
+
+## Code of Conduct
+
+[Contributor Code of Conduct](public/docs/CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 
 ## License
 
-MIT © [hcorta](https://github.com/hcorta)
+`react-notable` is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
