@@ -7,6 +7,7 @@ export function getData(rows) {
 
   for (let i = 0; i < rows; i++) {
     output.push({
+      id: i,
       name: getName(getRandomInt(10)),
       completed: getCompleted(getRandomInt(100)),
       age: getAge(getRandomInt(10)),

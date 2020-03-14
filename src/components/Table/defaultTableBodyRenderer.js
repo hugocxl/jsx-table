@@ -1,32 +1,38 @@
-import React from 'react'
+import React, { useRef, useEffect, useState, Fragment } from 'react'
 import { defaultRowRenderer } from './defaultRowRenderer'
 import { defaultLoadingRenderer } from './defaultLoadingRenderer'
 import cx from 'classnames'
 
 
-class BodyRender extends React.Component {
-  constructor(props) {
-    super(props)
-    this.ref = React.createRef()
-    this.renderRows = this.renderRows.bind(this)
-    this.renderVirtualizedRows = this.renderVirtualizedRows.bind(this)
-    this.onScroll = this.onScroll.bind(this)
-  }
+export function defaultTableBodyRenderer({
+  setScroll,
+  data,
+  rowRenderer,
+  rowHeight,
+  height,
+  overscanRowCount,
+  onScroll,
+  tableBodyHeight,
+  loadingRenderer,
+  loadingComponent,
+  loading,
+  virtualized,
+  ...rest
+}) {
+  const tableBodyRef = useRef(null)
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.virtualized && (this.props.height !== prevProps.height)) {
-      const { scrollTop, scrollLeft } = this.ref.current
+  useEffect(() => {
+    if (virtualized && tableBodyRef && tableBodyRef.current) {
+      const { scrollTop, scrollLeft } = tableBodyRef.current
 
-      this.props.setScroll({
+      setScroll({
         scrollTop,
         scrollLeft
       })
     }
-  }
+  }, [height])
 
-  renderRows() {
-    const { data, rowRenderer, rowHeight, ...rest } = this.props
-
+  function renderRows() {
     return data.map((el, i) => {
       const rowProps = {
         rowData: el,
@@ -43,12 +49,12 @@ class BodyRender extends React.Component {
     })
   }
 
-  renderVirtualizedRows() {
-    if (!this.ref.current) {
+  function renderVirtualizedRows() {
+    if (!tableBodyRef.current) {
       return []
     }
-    const { data, rowRenderer, rowHeight, overscanRowCount, ...rest } = this.props
-    const { scrollTop, clientHeight } = this.ref.current
+
+    const { scrollTop, clientHeight } = tableBodyRef.current
     const rows = []
 
     const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount - 1
@@ -72,17 +78,18 @@ class BodyRender extends React.Component {
           : defaultRowRenderer(rowProps)
       )
     }
+
     return rows
   }
 
-  onScroll(event) {
-    const { scrollTop, scrollLeft, clientHeight, scrollHeight } = this.ref.current
-    this.props.setScroll({
+  function onBodyScroll(event) {
+    const { scrollTop, scrollLeft, clientHeight, scrollHeight } = tableBodyRef.current
+    setScroll({
       scrollTop,
       scrollLeft
     })
 
-    this.props.onScroll && this.props.onScroll({
+    onScroll && onScroll({
       event,
       scrollLeft,
       scrollTop,
@@ -91,37 +98,40 @@ class BodyRender extends React.Component {
     })
   }
 
-  render() {
-    const { tableBodyHeight, data, rowHeight, loadingRenderer, loadingComponent, loading, virtualized } = this.props
-    const rows = virtualized
-      ? this.renderVirtualizedRows()
-      : this.renderRows()
+  const rows = virtualized
+    ? renderVirtualizedRows()
+    : renderRows()
 
-    return (
-      <React.Fragment>
-        {loading && (loadingRenderer ? (
-          loadingRenderer({ loadingComponent, height: tableBodyHeight })
-        ) : (
-          defaultLoadingRenderer({ loadingComponent, height: tableBodyHeight })
-        ))}
-
-        <div
-          className={cx('AwesomeTable__body', { loading })}
-          onScroll={this.onScroll}
-          ref={this.ref}
-          style={{ height: tableBodyHeight }}
-        >
-
-          <div style={{ height: data && (data.length * rowHeight) }}>
-            {rows}
-          </div>
-
-        </div>
-      </React.Fragment>
-    )
+  function renderLoading() {
+    if (loadingRenderer) {
+      return loadingRenderer({
+        loadingComponent,
+        height: tableBodyHeight
+      })
+    } else {
+      return defaultLoadingRenderer({
+        loadingComponent,
+        height: tableBodyHeight
+      })
+    }
   }
-}
 
-export function defaultTableBodyRenderer(props) {
-  return <BodyRender {...props}/>
+  return (
+    <Fragment>
+      {loading && (
+        renderLoading()
+      )}
+
+      <div
+        className={cx('AwesomeTable__body', { loading })}
+        onScroll={onBodyScroll}
+        ref={tableBodyRef}
+        style={{ height: tableBodyHeight }}
+      >
+        <div style={{ height: data && (data.length * rowHeight) }}>
+          {rows}
+        </div>
+      </div>
+    </Fragment>
+  )
 }
