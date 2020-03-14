@@ -31,10 +31,11 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(500))
+  const [data, setData] = React.useState(getData(50000))
 
   const columns = [
-    { header: 'Row Index', dataKey: 'id', sortable: true, cell: ({ cellData }) => `row ${cellData}` },
+    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
+    { header: 'ID', dataKey: 'id', sortable: true, cell: ({ cellData }) => `${cellData}` },
     { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
     { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true, },
@@ -44,8 +45,13 @@ export function App() {
   ]
 
   function loadMoreRows() {
-    const newRows = getData(20)
-    setData([...data, ...newRows])
+    setLoading(true)
+
+    setTimeout(() => {
+      const newRows = getData(50)
+      setLoading(false)
+      setData([...data, ...newRows])
+    }, 1000)
   }
 
   // const groupedData = useGroupBy({ data, columns, groupBy: ['name', 'country'] })
@@ -67,17 +73,18 @@ export function App() {
               // rowClassName={'custom-row-class'}
               height={height}
               columns={columns}
+              headerHeight={40}
               width={width}
-              loadMoreRows={loadMoreRows}
-              threshold={10}
+              // loadMoreRows={loadMoreRows}
+              // threshold={50}
               rowHeight={20}
               minColumnWidth={75}
               data={data}
               overscanRowCount={0}
-              // pagination={true}
-              // paginationHeight={20}
-              // pageSize={20}
-              // defaultPage={2}
+              pagination={true}
+              paginationHeight={20}
+              pageSize={20}
+              defaultPage={2}
               // onPageChange={props => console.log('PAGINATION', props)}
               virtualized={true}
               sortable={true}

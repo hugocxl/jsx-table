@@ -7,7 +7,7 @@ export function getData(rows) {
 
   for (let i = 0; i < rows; i++) {
     output.push({
-      id: i,
+      id: generateID(),
       name: getName(getRandomInt(10)),
       completed: getCompleted(getRandomInt(100)),
       age: getAge(getRandomInt(10)),
@@ -37,6 +37,24 @@ function getName(index) {
     case index >= 8 && index < 10:
       return `Ana`
   }
+}
+
+function generateID() {
+  let id = ''
+
+  for (let i = 1; i < 24; i++) {
+    if (i % 6 === 0) {
+      id += '-'
+    } else {
+      const ramdom = Math.random()
+      if (ramdom > 0.5) {
+        id += Math.random().toString(36).substring(3, 4)
+      } else {
+        id += (Math.random() * 10).toString().substring(3, 4)
+      }
+    }
+  }
+  return id
 }
 
 function getAge(index) {

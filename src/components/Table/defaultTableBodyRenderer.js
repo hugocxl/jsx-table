@@ -17,9 +17,15 @@ export function defaultTableBodyRenderer({
   loadingComponent,
   loading,
   virtualized,
+  threshold,
+  loadMoreRows,
   ...rest
 }) {
   const tableBodyRef = useRef(null)
+  const [lastThreshold, setLastThreshold] = useState(0)
+  const rows = virtualized
+    ? renderVirtualizedRows()
+    : renderRows()
 
   useEffect(() => {
     if (virtualized && tableBodyRef && tableBodyRef.current) {
@@ -96,11 +102,16 @@ export function defaultTableBodyRenderer({
       clientHeight,
       scrollHeight
     })
-  }
 
-  const rows = virtualized
-    ? renderVirtualizedRows()
-    : renderRows()
+    if (threshold) {
+      const newThreshold = Math.round(scrollTop / rowHeight / threshold)
+
+      if (newThreshold !== lastThreshold && newThreshold > lastThreshold) {
+        setLastThreshold(newThreshold)
+        loadMoreRows && loadMoreRows()
+      }
+    }
+  }
 
   function renderLoading() {
     if (loadingRenderer) {

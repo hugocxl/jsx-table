@@ -28,7 +28,7 @@ export function Table({
     sortMethod,
     defaultSorted,
     onColumnSort
-  })
+  }, [data.length])
 
   const [scroll, setScroll] = useState({
     scrollTop: 0,

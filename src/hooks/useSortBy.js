@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { SORT_DIRECTION } from '../constants/sortDirection'
 import { utils } from '../utils'
 
@@ -8,7 +8,7 @@ export function useSortBy({
   sortMethod,
   defaultSorted,
   onColumnSort,
-}) {
+}, deps) {
 
   const [state, setState] = useState(() => ({
     sortBy: defaultSorted
@@ -21,6 +21,20 @@ export function useSortBy({
       ? defaultSortData({ sortBy: defaultSorted.id })
       : data
   }))
+
+  useEffect(() => {
+    setState({
+      sortBy: defaultSorted
+        ? defaultSorted.id
+        : null,
+      sortDirection: defaultSorted
+        ? defaultSorted.direction
+        : SORT_DIRECTION.DESC,
+      sortedData: defaultSorted
+        ? defaultSortData({ sortBy: defaultSorted.id })
+        : data
+    })
+  }, [deps])
 
   function defaultSortData({ sortBy }) {
     const sortedData = utils.defaultSortByKey(data, sortBy)
