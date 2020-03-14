@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { defaultHeaderRowRenderer } from './defaultHeaderRowRenderer'
 
 
@@ -8,14 +8,22 @@ export function defaultTableHeaderRenderer({
   scroll,
   ...rest
 }) {
+  const tableHeaderRef = useRef(null)
+
+  useEffect(() => {
+    if (tableHeaderRef && tableHeaderRef.current) {
+      tableHeaderRef.current.scroll({
+        top: 0,
+        left: scroll.scrollLeft,
+        behavior: 'auto'
+      })
+    }
+
+  }, [scroll && scroll.scrollLeft])
 
   return (
     <div
-      ref={el => {
-        if (el) {
-          el.scrollLeft = scroll.scrollLeft
-        }
-      }}
+      ref={tableHeaderRef}
       className={'AwesomeTable_header'}
       style={{ height: headerHeight, overflow: 'hidden auto' }}>
       {headerRowRenderer

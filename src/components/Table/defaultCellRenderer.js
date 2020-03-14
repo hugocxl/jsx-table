@@ -1,20 +1,19 @@
 import React from 'react'
 
 
-export function defaultCellRenderer(
-  {
-    onCellClick,
-    cellIndex,
-    cellData,
-    rowData,
-    cell,
-    align,
-    rowIndex,
-    cellProps,
-    cellComponentProps,
-    parentIndex,
-    id,
-  }) {
+export function defaultCellRenderer({
+  onCellClick,
+  cellIndex,
+  cellData,
+  rowData,
+  cell,
+  align,
+  rowIndex,
+  cellProps,
+  cellComponentProps,
+  parentIndex,
+  id,
+}) {
 
   // TODO: cellClassname && cellStyle + WRONG ALIGN (FLEX)
 
@@ -50,9 +49,9 @@ export function defaultCellRenderer(
           id
         })
       ) : (
-        <div className={'AwesomeTable__body-cell-text'}>
+        <span className={'AwesomeTable__body-cell-text'}>
           {cellData}
-        </div>
+        </span>
       )}
     </div>
   )

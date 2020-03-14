@@ -8,20 +8,20 @@ import { defaultTableHeaderRenderer } from './defaultTableHeaderRenderer'
 import { useSortBy } from '../../hooks'
 
 
-export function Table(
-  {
-    className, headerClassName, rowClassName,
-    id, children, columns, data, style, width, height, defaultSorted, disabled, overscanRowCount,
-    tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps, onHeaderClick,
-    tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
-    noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
-    loading, loadingRenderer, loadingComponent,
-    changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, pageSize, onNextPageClick, onPreviousPageClick, currentPage,
-    virtualized, loadMoreRows, threshold,
-    onScroll,
-    sortMethod, onColumnSort,
-    ...rest
-  }) {
+export function Table({
+  className, headerClassName, rowClassName,
+  id, children, columns, data, style, width, height, defaultSorted, disabled, overscanRowCount,
+  tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps, onHeaderClick,
+  tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
+  noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
+  loading, loadingRenderer, loadingComponent,
+  changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, pageSize, onNextPageClick, onPreviousPageClick, currentPage,
+  virtualized, loadMoreRows, threshold,
+  onScroll,
+  sortMethod, onColumnSort,
+  minColumnWidth,
+  ...rest
+}) {
 
   const { data: rowData, sortDirection, sortBy, onSortableClick } = useSortBy({
     data,
@@ -39,7 +39,8 @@ export function Table(
 
   const { computedRowGrid, rowWidth } = utils.computeRowGrid({
     width,
-    columns: columnsData
+    columns: columnsData,
+    minColumnWidth
   })
 
   const tableBodyHeight = utils.calculateBodyHeight({
@@ -75,24 +76,27 @@ export function Table(
         ...style
       }}>
 
-      {!disableHeader && renderTableHeader({
-        headerClassName,
-        columns: columnsData,
-        headerRowProps,
-        headerCellProps,
-        disableHeader,
-        headerHeight,
-        headerComponentProps,
-        headerRowRenderer,
-        headerCellRenderer,
-        onHeaderClick,
-        onSortableClick,
-        sortDirection,
-        sortBy,
-        computedRowGrid,
-        rowWidth,
-        scroll
-      })}
+      {!disableHeader && (
+        renderTableHeader({
+          headerClassName,
+          columns: columnsData,
+          headerRowProps,
+          headerCellProps,
+          disableHeader,
+          headerHeight,
+          headerComponentProps,
+          headerRowRenderer,
+          headerCellRenderer,
+          onHeaderClick,
+          onSortableClick,
+          sortDirection,
+          sortBy,
+          computedRowGrid,
+          rowWidth,
+          scroll,
+          minColumnWidth
+        }))
+      }
 
       {renderTableBody({
         rowClassName,
@@ -118,6 +122,7 @@ export function Table(
         computedRowGrid,
         rowWidth,
         setScroll,
+        minColumnWidth
       })}
 
     </div>
@@ -137,5 +142,6 @@ Table.defaultProps = {
   headerHeight: 20,
   footerHeight: 20,
   loadMoreRows: null,
-  threshold: 10
+  threshold: 10,
+  minColumnWidth: 50
 }

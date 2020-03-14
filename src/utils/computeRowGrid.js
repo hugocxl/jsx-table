@@ -1,6 +1,6 @@
 const MIN_ROW_WIDTH = 50
 
-export function computeRowGrid({ columns, width }) {
+export function computeRowGrid({ columns, width, minColumnWidth }) {
   const isTableOverWidth = isOverWindowWidth({ columns, width })
   let output = ''
 
@@ -10,6 +10,7 @@ export function computeRowGrid({ columns, width }) {
         output += output.length > 0 ? ' minmax(50px, 1fr)' : 'minmax(50px, 1fr)'
       } else {
         output += output.length > 0 ? ' 100px' : '100px'
+        output += output.length > 0 ? ` ${minColumnWidth}` : `${minColumnWidth}`
       }
     } else {
       if (typeof column.width === 'number') {

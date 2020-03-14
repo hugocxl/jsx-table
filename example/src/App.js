@@ -31,12 +31,12 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(5000))
+  const [data, setData] = React.useState(getData(500))
 
   const columns = [
-    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}`, width: 700 },
+    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
     { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
-    { header: 'Completed', dataKey: 'completed', width: 1200, cell: customCell, sortable: true },
+    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true, },
     { header: 'Age', dataKey: 'age', sortable: true, },
     { header: 'Country', dataKey: 'country', sortable: true },
@@ -52,47 +52,85 @@ export function App() {
   // const expandedData = useExpanded({ data: groupedData.data, columns: groupedData.columns })
 
   return (
-    <div style={{
-      width: '100%',
-      height: '100%',
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr',
-      gridTemplateRows: '1fr'
-    }}>
-      <AutoSizer>
-        {({ width, height }) => (
-          <Table
-            // id={'custom-table-id'}
-            // className={'custom-table-class'}
-            // headerClassName={'custom-header-class'}
-            // rowClassName={'custom-row-class'}
-            height={height}
-            columns={columns}
-            width={width}
-            loadMoreRows={loadMoreRows}
-            threshold={10}
-            rowHeight={35}
-            data={data}
-            overscanRowCount={0}
-            // pagination={true}
-            // paginationHeight={20}
-            // pageSize={20}
-            // defaultPage={2}
-            // onPageChange={props => console.log('PAGINATION', props)}
-            virtualized={true}
-            sortable={true}
-            // onRowClick={row => alertMessage('Row', row)}
-            // onCellClick={cell => alertMessage('Cell', cell)}
-            // onHeaderClick={header => alertMessage('Header', header)}
-            // onColumnSort={props => console.log(props)}
-            // noDataMessage={'There is no data'}
-            // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
-            loading={loading}
-          />
-        )}
-      </AutoSizer>
+    <div style={{ height: '100%', width: '100%' }}>
+      <div
+        style={{
+          width: '100%',
+          height: '50%',
+        }}>
+        <AutoSizer>
+          {({ width, height }) => (
+            <Table
+              // id={'custom-table-id'}
+              // className={'custom-table-class'}
+              // headerClassName={'custom-header-class'}
+              // rowClassName={'custom-row-class'}
+              height={height}
+              columns={columns}
+              width={width}
+              loadMoreRows={loadMoreRows}
+              threshold={10}
+              rowHeight={20}
+              minColumnWidth={200}
+              data={data}
+              overscanRowCount={0}
+              // pagination={true}
+              // paginationHeight={20}
+              // pageSize={20}
+              // defaultPage={2}
+              // onPageChange={props => console.log('PAGINATION', props)}
+              virtualized={true}
+              sortable={true}
+              // onRowClick={row => alertMessage('Row', row)}
+              // onCellClick={cell => alertMessage('Cell', cell)}
+              // onHeaderClick={header => alertMessage('Header', header)}
+              // onColumnSort={props => console.log(props)}
+              // noDataMessage={'There is no data'}
+              // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
+              loading={loading}
+            />
+          )}
+        </AutoSizer>
+      </div>
 
+      <div
+        style={{
+          width: '100%',
+          height: '50%',
+        }}>
+        <AutoSizer>
+          {({ width, height }) => (
+            <Table
+              // id={'custom-table-id'}
+              // className={'custom-table-class'}
+              // headerClassName={'custom-header-class'}
+              // rowClassName={'custom-row-class'}
+              height={height}
+              columns={columns}
+              width={width}
+              loadMoreRows={loadMoreRows}
+              threshold={10}
+              rowHeight={20}
+              data={data}
+              overscanRowCount={0}
+              // pagination={true}
+              // paginationHeight={20}
+              // pageSize={20}
+              // defaultPage={2}
+              // onPageChange={props => console.log('PAGINATION', props)}
+              virtualized={true}
+              sortable={true}
+              // onRowClick={row => alertMessage('Row', row)}
+              // onCellClick={cell => alertMessage('Cell', cell)}
+              // onHeaderClick={header => alertMessage('Header', header)}
+              // onColumnSort={props => console.log(props)}
+              // noDataMessage={'There is no data'}
+              // noDataComponent={({ noDataMessage }) => <span>{noDataMessage}</span>}
+              loading={loading}
+            />
+          )}
+        </AutoSizer>
+      </div>
     </div>
-
   )
 }

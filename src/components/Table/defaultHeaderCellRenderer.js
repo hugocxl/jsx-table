@@ -40,12 +40,13 @@ export function defaultHeaderCellRenderer({
     <div
       {...headerCellProps}
       className={'AwesomeTable__header-row-cell'}
-      onClick={onClickHeader}>
+      onClick={onClickHeader}
+    >
 
       {typeof header === 'function' ? (
         header(headerComponentProps)
       ) : (
-        <div>{header}</div>
+        <span>{header}</span>
       )}
 
       {dataKey === sortBy && (
