@@ -3,21 +3,21 @@ import { defaultCellRenderer } from './defaultCellRenderer'
 import cx from 'classnames'
 
 
-export const defaultRowRenderer = (
-  {
-    rowClassName,
-    onRowClick,
-    cellRenderer,
-    rowData,
-    rowIndex,
-    rowHeight,
-    rowWidth,
-    columns,
-    rowProps,
-    top,
-    computedRowGrid,
-    ...rest
-  }) => {
+export const defaultRowRenderer = ({
+  rowClassName,
+  onRowClick,
+  cellRenderer,
+  rowData,
+  rowIndex,
+  rowHeight,
+  rowWidth,
+  columns,
+  rowProps,
+  top,
+  computedRowGrid,
+  freezeColumns,
+  ...rest
+}) => {
 
   // TODO: styles can be a function (rowStyle)
 
@@ -52,6 +52,7 @@ export const defaultRowRenderer = (
 
       {rowData && columns.map((column, cellIndex) => {
         const cellProps = {
+          freezed: freezeColumns && cellIndex < freezeColumns,
           cellIndex,
           cellData: rowData[column.dataKey],
           cell: column.cell,

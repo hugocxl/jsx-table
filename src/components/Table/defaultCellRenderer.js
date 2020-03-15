@@ -1,5 +1,7 @@
 import React from 'react'
 
+import cx from 'classnames'
+
 
 export function defaultCellRenderer({
   onCellClick,
@@ -13,6 +15,8 @@ export function defaultCellRenderer({
   cellComponentProps,
   parentIndex,
   id,
+  freezed,
+  minColumnWidth
 }) {
 
   // TODO: cellClassname && cellStyle + WRONG ALIGN (FLEX)
@@ -21,8 +25,13 @@ export function defaultCellRenderer({
     <div
       {...cellProps}
       key={cellIndex}
-      className={'AwesomeTable__body-cell'}
+      className={cx('AwesomeTable__body-cell', { freezed })}
       style={{
+        ...freezed && {
+          position: 'sticky',
+          left: cellIndex * minColumnWidth,
+          width: minColumnWidth
+        },
         justifyContent: align || 'center',
         ...cellProps && cellProps.style
       }}

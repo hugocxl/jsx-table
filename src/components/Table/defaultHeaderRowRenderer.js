@@ -11,6 +11,7 @@ export function defaultHeaderRowRenderer({
   headerRowProps,
   computedRowGrid,
   rowWidth,
+  freezeColumns,
   ...rest
 }) {
 
@@ -30,6 +31,7 @@ export function defaultHeaderRowRenderer({
     >
       {columns.map((column, headerIndex) => {
         const cellProps = {
+          freezed: freezeColumns && headerIndex < freezeColumns,
           column,
           header: column.header,
           headerIndex,

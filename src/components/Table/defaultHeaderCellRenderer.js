@@ -13,7 +13,10 @@ export function defaultHeaderCellRenderer({
   dataKey,
   columnSortMethod,
   sortBy,
-  sortDirection
+  sortDirection,
+  freezed,
+  minColumnWidth,
+  headerIndex
 }) {
 
   function onClickHeader(event) {
@@ -41,6 +44,15 @@ export function defaultHeaderCellRenderer({
       {...headerCellProps}
       className={'AwesomeTable__header-row-cell'}
       onClick={onClickHeader}
+      style={{
+        ...freezed && {
+          position: 'sticky',
+          left: headerIndex * minColumnWidth,
+          width: minColumnWidth
+        },
+        justifyContent: align || 'center',
+        ...headerCellProps && headerCellProps.style
+      }}
     >
 
       {typeof header === 'function' ? (

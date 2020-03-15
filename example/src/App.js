@@ -13,6 +13,10 @@ function customCell({ cellData }) {
   )
 }
 
+function inputCell({ cellData }) {
+  return <input value={cellData}/>
+}
+
 function customColumnSort({ a, b, sortBy, sortDirection }) {
   if (sortDirection === 'ASC') {
     if (a[sortBy] < b[sortBy]) return -1
@@ -31,16 +35,16 @@ function alertMessage(el, data) {
 
 export function App() {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(50000))
+  const [data, setData] = React.useState(getData(100))
 
   const columns = [
-    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
+    { header: 'Row Index', dataKey: '', width: 600, sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
     { header: 'ID', dataKey: 'id', sortable: true, cell: ({ cellData }) => `${cellData}` },
     { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
-    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true },
+    { header: 'Completed', dataKey: 'completed', width: 400, cell: customCell, sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true, },
-    { header: 'Age', dataKey: 'age', sortable: true, },
-    { header: 'Country', dataKey: 'country', sortable: true },
+    { header: 'Age', dataKey: 'age', width: 400, sortable: true, },
+    { header: 'Country', dataKey: 'country', width: 600, sortable: true },
     { header: 'City', dataKey: 'city', sortable: true }
   ]
 
@@ -74,11 +78,12 @@ export function App() {
               height={height}
               columns={columns}
               headerHeight={40}
+              freezeColumns={1}
               width={width}
               // loadMoreRows={loadMoreRows}
               // threshold={50}
               rowHeight={20}
-              minColumnWidth={75}
+              minColumnWidth={200}
               data={data}
               overscanRowCount={0}
               pagination={true}

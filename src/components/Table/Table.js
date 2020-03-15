@@ -6,6 +6,7 @@ import { utils } from '../../utils'
 import { defaultTableBodyRenderer } from './defaultTableBodyRenderer'
 import { defaultTableHeaderRenderer } from './defaultTableHeaderRenderer'
 import { useSortBy } from '../../hooks'
+import { defaultTablePaginationRenderer } from './defaultTablePaginationRenderer'
 
 
 export function Table({
@@ -20,6 +21,7 @@ export function Table({
   onScroll,
   sortMethod, onColumnSort,
   minColumnWidth,
+  freezeColumns,
   ...rest
 }) {
 
@@ -40,7 +42,8 @@ export function Table({
   const { computedRowGrid, rowWidth } = utils.computeRowGrid({
     width,
     columns: columnsData,
-    minColumnWidth
+    minColumnWidth,
+    freezeColumns
   })
 
   const tableBodyHeight = utils.calculateBodyHeight({
@@ -63,6 +66,12 @@ export function Table({
     return tableBodyRenderer
       ? tableBodyRenderer(props)
       : defaultTableBodyRenderer(props)
+  }
+
+  function renderTablePagination(props) {
+    return tablePaginationRenderer
+      ? tablePaginationRenderer(props)
+      : defaultTablePaginationRenderer(props)
   }
 
   return (
@@ -94,7 +103,8 @@ export function Table({
           computedRowGrid,
           rowWidth,
           scroll,
-          minColumnWidth
+          minColumnWidth,
+          freezeColumns
         }))
       }
 
@@ -122,14 +132,30 @@ export function Table({
         computedRowGrid,
         rowWidth,
         setScroll,
-        minColumnWidth
+        minColumnWidth,
+        freezeColumns
       })}
 
+      {pagination && (
+        renderTablePagination({
+          pagination,
+          pageSize,
+          paginationComponent,
+          paginationHeight,
+          paginationProps,
+          changePageTo,
+          tablePaginationRenderer,
+          onNextPageClick,
+          onPreviousPageClick,
+          currentPage
+        })
+      )}
     </div>
   )
 }
 
 Table.defaultProps = {
+  freezeColumns: 0,
   virtualized: false,
   disabled: false,
   loading: false,

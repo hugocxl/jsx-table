@@ -1,19 +1,29 @@
-export function computeRowGrid({ columns, width, minColumnWidth }) {
+export function computeRowGrid({ columns, width, minColumnWidth, freezeColumns }) {
   const isTableOverWidth = isOverWindowWidth({ columns, width, minColumnWidth })
   let output = ''
 
-  columns.forEach(column => {
+  columns.forEach((column, columIndex) => {
     if (!column.width) {
       if (!isTableOverWidth) {
-        output += output.length > 0 ? ` minmax(${minColumnWidth}px, 1fr)` : `minmax(${minColumnWidth}px, 1fr)`
+        const max = columIndex + 1 < freezeColumns ? `${minColumnWidth}px` : '1fr'
+
+        output += output.length > 0
+          ? ` minmax(${minColumnWidth}px, ${max})`
+          : `minmax(${minColumnWidth}px, ${max})`
       } else {
-        output += output.length > 0 ? ` ${minColumnWidth}px` : `${minColumnWidth}px`
+        output += output.length > 0
+          ? ` ${minColumnWidth}px`
+          : `${minColumnWidth}px`
       }
     } else {
       if (typeof column.width === 'number') {
-        output += output.length > 0 ? ` ${column.width}px` : `${column.width}px`
+        output += output.length > 0
+          ? ` ${column.width}px`
+          : `${column.width}px`
       } else {
-        output += output.length > 0 ? ` ${column.width}` : `${column.width}`
+        output += output.length > 0
+          ? ` ${column.width}`
+          : `${column.width}`
       }
     }
   })

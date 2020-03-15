@@ -13,7 +13,6 @@
   height: 100%;
   display: flex;
   align-items: center;
-  padding: 0 10px;
   cursor: pointer;
   font-weight: bold;
   border-right: 1px solid rgb(160, 160, 160);
@@ -54,11 +53,23 @@
   border-right: none;
 }
 
+/*.AwesomeTable__body-cell:first-child {*/
+/*  position: sticky;*/
+/*  left: 0;*/
+/*  width: 200px;*/
+/*}*/
+
 /*TODO: change to body-row-cell*/
 .AwesomeTable__body-cell {
   display: flex;
   align-items: center;
   border-right: 1px solid rgb(160, 160, 160);
+}
+
+.AwesomeTable__body-cell.freezed {
+  background: rgb(140, 140, 140);
+  border-bottom: 1px solid rgb(160, 160, 160);
+  /*box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.5);*/
 }
 
 
