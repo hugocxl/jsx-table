@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { defaultHeaderRowRenderer } from './defaultHeaderRowRenderer'
 
-
-export function defaultTableHeaderRenderer({
+export function defaultTableHeaderRenderer ({
   headerRowRenderer,
   headerHeight,
   scroll,
@@ -11,25 +10,24 @@ export function defaultTableHeaderRenderer({
   const tableHeaderRef = useRef(null)
 
   useEffect(() => {
-    if (tableHeaderRef && tableHeaderRef.current) {
+    if (tableHeaderRef && tableHeaderRef.current && tableHeaderRef.current.scroll) {
       tableHeaderRef.current.scroll({
         top: 0,
         left: scroll.scrollLeft,
         behavior: 'auto'
       })
     }
-
   }, [scroll && scroll.scrollLeft])
 
   return (
     <div
       ref={tableHeaderRef}
       className={'AwesomeTable_header'}
-      style={{ height: headerHeight, overflow: 'hidden auto' }}>
+      style={{ height: headerHeight, overflow: 'hidden auto' }}
+    >
       {headerRowRenderer
         ? headerRowRenderer(rest)
         : defaultHeaderRowRenderer(rest)}
     </div>
   )
 }
-

@@ -1,43 +1,47 @@
 .AwesomeTable {
-  overflow: auto;
-  position: relative;
+    overflow: auto;
+    position: relative;
 }
 
 .AwesomeTable_header {
-  z-index: 2;
-  background: white;
-  border-bottom: 1px solid rgb(100, 100, 100);
+    z-index: 2;
+    background: white;
+    border-bottom: 1px solid rgb(100, 100, 100);
 }
 
 .AwesomeTable__header-row-cell {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-weight: bold;
-  border-right: 1px solid rgb(160, 160, 160);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: bold;
+    border-right: 1px solid rgb(160, 160, 160);
+}
+
+.AwesomeTable__header-row-cell.frozen {
+    background: rgb(180, 180, 180);
 }
 
 .AwesomeTable__header-row-cell:last-child {
-  border-right: none;
+    border-right: none;
 }
 
 
 .AwesomeTable__body {
-  overflow: auto;
-  will-change: transform;
-  direction: ltr;
-  position: relative;
+    overflow: auto;
+    will-change: transform;
+    direction: ltr;
+    position: relative;
 }
 
 .AwesomeTable__body.loading {
-  opacity: 0.1;
+    opacity: 0.1;
 }
 
 .AwesomeTable__body-row {
-  width: fit-content;
-  border-bottom: 1px solid rgb(160, 160, 160);
-  cursor: pointer;
+    width: fit-content;
+    border-bottom: 1px solid rgb(160, 160, 160);
+    cursor: pointer;
 }
 
 .AwesomeTable__body-row.odd {
@@ -46,11 +50,11 @@
 
 
 .AwesomeTable__body-row:hover {
-  background-color: rgba(112, 128, 144, 0.1);
+    background-color: rgba(112, 128, 144, 0.1);
 }
 
-.AwesomeTable__body-cell:last-child {
-  border-right: none;
+.AwesomeTable__body-row-cell:last-child {
+    border-right: none;
 }
 
 /*.AwesomeTable__body-cell:first-child {*/
@@ -60,31 +64,31 @@
 /*}*/
 
 /*TODO: change to body-row-cell*/
-.AwesomeTable__body-cell {
-  display: flex;
-  align-items: center;
-  border-right: 1px solid rgb(160, 160, 160);
+.AwesomeTable__body-row-cell {
+    display: flex;
+    align-items: center;
+    border-right: 1px solid rgb(160, 160, 160);
 }
 
-.AwesomeTable__body-cell.freezed {
-  background: rgb(140, 140, 140);
-  border-bottom: 1px solid rgb(160, 160, 160);
-  /*box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.5);*/
+.AwesomeTable__body-row-cell.frozen {
+    background: rgb(180, 180, 180);
+    border-bottom: 1px solid rgb(160, 160, 160);
+    /*box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.5);*/
 }
 
 
-.AwesomeTable__body-cell-text {
-  display: block;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.AwesomeTable__body-row-cell-text, .AwesomeTable__header-row-cell-text {
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .AwesomeTable__body-nodata {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .AwesomeTable__body-nodata-text {
@@ -92,8 +96,8 @@
 }
 
 .AwesomeTable__pagination {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-evenly;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
 }

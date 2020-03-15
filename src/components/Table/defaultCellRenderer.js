@@ -2,8 +2,7 @@ import React from 'react'
 
 import cx from 'classnames'
 
-
-export function defaultCellRenderer({
+export function defaultCellRenderer ({
   onCellClick,
   cellIndex,
   cellData,
@@ -15,8 +14,12 @@ export function defaultCellRenderer({
   cellComponentProps,
   parentIndex,
   id,
-  freezed,
-  minColumnWidth
+  frozen,
+  minColumnWidth,
+  rowHeight,
+  width,
+  previousColumnWidth,
+  ...rest
 }) {
 
   // TODO: cellClassname && cellStyle + WRONG ALIGN (FLEX)
@@ -25,12 +28,12 @@ export function defaultCellRenderer({
     <div
       {...cellProps}
       key={cellIndex}
-      className={cx('AwesomeTable__body-cell', { freezed })}
+      className={cx('AwesomeTable__body-row-cell', { frozen })}
       style={{
-        ...freezed && {
+        ...frozen && {
           position: 'sticky',
-          left: cellIndex * minColumnWidth,
-          width: minColumnWidth
+          left: cellIndex * (previousColumnWidth || minColumnWidth),
+          width: width || minColumnWidth,
         },
         justifyContent: align || 'center',
         ...cellProps && cellProps.style
@@ -58,7 +61,7 @@ export function defaultCellRenderer({
           id
         })
       ) : (
-        <span className={'AwesomeTable__body-cell-text'}>
+        <span className={'AwesomeTable__body-row-cell-text'}>
           {cellData}
         </span>
       )}

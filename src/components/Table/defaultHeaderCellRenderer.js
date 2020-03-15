@@ -1,8 +1,8 @@
 import React from 'react'
 import { SortIndicator } from '../SortIndicator'
+import cx from 'classnames'
 
-
-export function defaultHeaderCellRenderer({
+export function defaultHeaderCellRenderer ({
   header,
   align,
   headerCellProps,
@@ -14,12 +14,15 @@ export function defaultHeaderCellRenderer({
   columnSortMethod,
   sortBy,
   sortDirection,
-  freezed,
+  frozen,
   minColumnWidth,
-  headerIndex
+  headerIndex,
+  width,
+  previousColumnWidth,
+  ...rest
 }) {
 
-  function onClickHeader(event) {
+  function onClickHeader (event) {
     if (sortable && onSortableClick) {
       onSortableClick({
         sortBy: dataKey,
@@ -35,6 +38,7 @@ export function defaultHeaderCellRenderer({
         dataKey,
         headerCellProps,
         headerComponentProps,
+        ...rest
       })
     }
   }
@@ -42,13 +46,13 @@ export function defaultHeaderCellRenderer({
   return (
     <div
       {...headerCellProps}
-      className={'AwesomeTable__header-row-cell'}
+      className={cx('AwesomeTable__header-row-cell', { frozen })}
       onClick={onClickHeader}
       style={{
-        ...freezed && {
+        ...frozen && {
           position: 'sticky',
-          left: headerIndex * minColumnWidth,
-          width: minColumnWidth
+          left: headerIndex * (previousColumnWidth || minColumnWidth),
+          width: width || minColumnWidth
         },
         justifyContent: align || 'center',
         ...headerCellProps && headerCellProps.style
@@ -56,9 +60,26 @@ export function defaultHeaderCellRenderer({
     >
 
       {typeof header === 'function' ? (
-        header(headerComponentProps)
+        header({
+          ...headerComponentProps,
+          header,
+          align,
+          headerCellProps,
+          headerComponentProps,
+          onHeaderClick,
+          onSortableClick,
+          sortable,
+          dataKey,
+          columnSortMethod,
+          sortBy,
+          sortDirection,
+          frozen,
+          minColumnWidth,
+          headerIndex,
+          width
+        })
       ) : (
-        <span>{header}</span>
+        <span className={'AwesomeTable__header-row-cell-text'}>{header}</span>
       )}
 
       {dataKey === sortBy && (

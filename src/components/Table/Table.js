@@ -1,74 +1,146 @@
 'use strict'
 
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import cx from 'classnames'
 import { utils } from '../../utils'
 import { defaultTableBodyRenderer } from './defaultTableBodyRenderer'
 import { defaultTableHeaderRenderer } from './defaultTableHeaderRenderer'
-import { useSortBy } from '../../hooks'
+import { useColumns } from '../../hooks'
 import { defaultTablePaginationRenderer } from './defaultTablePaginationRenderer'
 
+export function Table ({
+  // GENERAL table props
+  id,
+  className,
+  columns: columnsData,
+  data,
+  style,
+  width,
+  height,
+  disabled,
+  children,
 
-export function Table({
-  className, headerClassName, rowClassName,
-  id, children, columns, data, style, width, height, defaultSorted, disabled, overscanRowCount,
-  tableHeaderRenderer, headerCellRenderer, headerHeight, headerRowRenderer, disableHeader, headerRowProps, headerCellProps, headerComponentProps, onHeaderClick,
-  tableBodyRenderer, rowRenderer, cellRenderer, rowHeight, rowProps, cellProps, cellComponentProps, onRowClick, onCellClick,
-  noDataRenderer, noDataComponent, noDataMessage, noDataProps, noDataComponentProps,
-  loading, loadingRenderer, loadingComponent,
-  changePageTo, tablePaginationRenderer, paginationComponent, pagination, paginationProps, paginationHeight, pageSize, onNextPageClick, onPreviousPageClick, currentPage,
-  virtualized, loadMoreRows, threshold,
-  onScroll,
-  sortMethod, onColumnSort,
+  // EXTRA table props
   minColumnWidth,
   freezeColumns,
+
+  // HEADER props
+  headerClassName,
+  tableHeaderRenderer,
+  headerCellRenderer,
+  headerHeight,
+  headerRowRenderer,
+  disableHeader,
+  headerRowProps,
+  headerCellProps,
+  headerComponentProps,
+  onHeaderClick,
+
+  // BODY props
+  rowClassName,
+  tableBodyRenderer,
+  rowRenderer,
+  cellRenderer,
+  rowHeight,
+  rowProps,
+  cellProps,
+  cellComponentProps,
+  onRowClick,
+  onCellClick,
+
+  // NODATA props
+  noDataRenderer,
+  noDataComponent,
+  noDataMessage,
+  noDataProps,
+  noDataComponentProps,
+
+  // LOADING props
+  loading,
+  loadingRenderer,
+  loadingComponent,
+
+  // PAGINATION props
+  changePageTo,
+  tablePaginationRenderer,
+  paginationComponent,
+  pagination,
+  paginationProps,
+  paginationHeight,
+  pageSize,
+  onNextPageClick,
+  onPreviousPageClick,
+  currentPage,
+
+  // VIRTUALIZED props
+  virtualized,
+  overscanRowCount,
+
+  // INFINITE LOADING props
+  loadMoreRows,
+  threshold,
+
+  // SORTING props
+  onScroll,
+  sortMethod,
+  onColumnSort,
+  defaultSorted,
+
   ...rest
 }) {
-
-  const { data: rowData, sortDirection, sortBy, onSortableClick } = useSortBy({
-    data,
-    sortMethod,
-    defaultSorted,
-    onColumnSort
-  }, [data.length])
-
   const [scroll, setScroll] = useState({
     scrollTop: 0,
     scrollLeft: 0
   })
 
-  const columnsData = columns || utils.normalizeColumns(children)
+  // MEMOIZED values
+  const columns = useMemo(() => {
+    return columnsData || utils.normalizeColumns(children)
+  }, [])
 
-  const { computedRowGrid, rowWidth } = utils.computeRowGrid({
-    width,
-    columns: columnsData,
+  const { computedRowGrid, rowWidth } = useMemo(() => {
+    return utils.computeRowGrid({
+      width,
+      columns,
+      minColumnWidth,
+      freezeColumns
+    })
+  }, [width])
+
+  const tableBodyHeight = useMemo(() => {
+    return utils.calculateBodyHeight({
+      height,
+      rowHeight,
+      headerHeight,
+      disableHeader,
+      pagination,
+      paginationHeight,
+      pageSize
+    })
+  }, [height])
+
+  // COMMON
+  const commonRenderersProps = {
+    columns,
+    freezeColumns,
     minColumnWidth,
-    freezeColumns
-  })
+    rowWidth,
+    computedRowGrid
+  }
 
-  const tableBodyHeight = utils.calculateBodyHeight({
-    height,
-    rowHeight,
-    headerHeight,
-    disableHeader,
-    pagination,
-    paginationHeight,
-    pageSize,
-  })
-
-  function renderTableHeader(props) {
+  function renderTableHeader (props) {
     return tableHeaderRenderer
       ? tableHeaderRenderer(props)
       : defaultTableHeaderRenderer(props)
   }
 
-  function renderTableBody(props) {
+  function renderTableBody (props) {
     return tableBodyRenderer
       ? tableBodyRenderer(props)
       : defaultTableBodyRenderer(props)
   }
 
-  function renderTablePagination(props) {
+  function renderTablePagination (props) {
     return tablePaginationRenderer
       ? tablePaginationRenderer(props)
       : defaultTablePaginationRenderer(props)
@@ -87,8 +159,8 @@ export function Table({
 
       {!disableHeader && (
         renderTableHeader({
+          ...commonRenderersProps,
           headerClassName,
-          columns: columnsData,
           headerRowProps,
           headerCellProps,
           disableHeader,
@@ -97,23 +169,19 @@ export function Table({
           headerRowRenderer,
           headerCellRenderer,
           onHeaderClick,
-          onSortableClick,
-          sortDirection,
-          sortBy,
-          computedRowGrid,
-          rowWidth,
-          scroll,
-          minColumnWidth,
-          freezeColumns
+          scroll
+          // onSortableClick,
+          // sortDirection,
+          // sortBy,
         }))
       }
 
       {renderTableBody({
+        ...commonRenderersProps,
         rowClassName,
-        data: rowData,
+        data,
         rowHeight,
         height,
-        columns: columnsData,
         rowProps,
         cellProps,
         cellComponentProps,
@@ -129,11 +197,7 @@ export function Table({
         overscanRowCount,
         loadMoreRows,
         threshold,
-        computedRowGrid,
-        rowWidth,
-        setScroll,
-        minColumnWidth,
-        freezeColumns
+        setScroll
       })}
 
       {pagination && (

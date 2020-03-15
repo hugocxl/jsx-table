@@ -1,9 +1,10 @@
+'use strict'
+
 import React from 'react'
 import { defaultHeaderCellRenderer } from './defaultHeaderCellRenderer'
 import cx from 'classnames'
 
-
-export function defaultHeaderRowRenderer({
+export function defaultHeaderRowRenderer ({
   headerClassName,
   columns,
   headerCellRenderer,
@@ -31,14 +32,12 @@ export function defaultHeaderRowRenderer({
     >
       {columns.map((column, headerIndex) => {
         const cellProps = {
-          freezed: freezeColumns && headerIndex < freezeColumns,
-          column,
-          header: column.header,
+          columns,
+          freezeColumns,
+          previousColumnWidth: columns[(headerIndex || 1) - 1].width,
+          frozen: freezeColumns && headerIndex < freezeColumns,
           headerIndex,
-          align: column.align,
-          dataKey: column.dataKey,
-          sortable: column.sortable,
-          columnSortMethod: column.columnSortMethod,
+          ...column,
           ...rest
         }
         return headerCellRenderer

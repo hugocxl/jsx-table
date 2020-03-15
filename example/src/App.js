@@ -4,8 +4,7 @@ import { Table, Column, AutoSizer, useGroupBy, useExpanded } from 'react-notable
 
 import { getData } from './getData'
 
-
-function customCell({ cellData }) {
+function customCell ({ cellData }) {
   return (
     <div style={{ height: '100%', width: '100%', display: 'flex', alignItems: 'center' }}>
       <div style={{ height: '60%', background: 'chartreuse', width: `${cellData}%` }}/>
@@ -13,11 +12,11 @@ function customCell({ cellData }) {
   )
 }
 
-function inputCell({ cellData }) {
+function inputCell ({ cellData }) {
   return <input value={cellData}/>
 }
 
-function customColumnSort({ a, b, sortBy, sortDirection }) {
+function customColumnSort ({ a, b, sortBy, sortDirection }) {
   if (sortDirection === 'ASC') {
     if (a[sortBy] < b[sortBy]) return -1
     if (a[sortBy] > b[sortBy]) return 1
@@ -27,28 +26,28 @@ function customColumnSort({ a, b, sortBy, sortDirection }) {
   }
 }
 
-function alertMessage(el, data) {
+function alertMessage (el, data) {
   let message = { ...data, event: '' }
   return window.alert(`${el} clicked!
   ${JSON.stringify(message)}`)
 }
 
-export function App() {
+export function App () {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(100))
+  const [data, setData] = React.useState(getData(50000))
 
   const columns = [
-    { header: 'Row Index', dataKey: '', width: 600, sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
-    { header: 'ID', dataKey: 'id', sortable: true, cell: ({ cellData }) => `${cellData}` },
+    { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
+    { header: 'ID', dataKey: 'id', sortable: true },
     { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
-    { header: 'Completed', dataKey: 'completed', width: 400, cell: customCell, sortable: true },
-    { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true, },
-    { header: 'Age', dataKey: 'age', width: 400, sortable: true, },
-    { header: 'Country', dataKey: 'country', width: 600, sortable: true },
+    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true },
+    { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
+    { header: 'Age', dataKey: 'age', sortable: true },
+    { header: 'Country', dataKey: 'country', sortable: true },
     { header: 'City', dataKey: 'city', sortable: true }
   ]
 
-  function loadMoreRows() {
+  function loadMoreRows () {
     setLoading(true)
 
     setTimeout(() => {
@@ -66,7 +65,7 @@ export function App() {
       <div
         style={{
           width: '100%',
-          height: '100%',
+          height: '100%'
         }}>
         <AutoSizer>
           {({ width, height }) => (
@@ -78,21 +77,21 @@ export function App() {
               height={height}
               columns={columns}
               headerHeight={40}
-              freezeColumns={1}
+              // freezeColumns={1}
               width={width}
               // loadMoreRows={loadMoreRows}
               // threshold={50}
-              rowHeight={20}
-              minColumnWidth={200}
+              rowHeight={25}
+              minColumnWidth={100}
               data={data}
-              overscanRowCount={0}
-              pagination={true}
-              paginationHeight={20}
-              pageSize={20}
-              defaultPage={2}
+              overscanRowCount={15}
+              // pagination={true}
+              // paginationHeight={20}
+              // pageSize={20}
+              // defaultPage={2}
               // onPageChange={props => console.log('PAGINATION', props)}
               virtualized={true}
-              sortable={true}
+              // sortable={true}
               // onRowClick={row => alertMessage('Row', row)}
               // onCellClick={cell => alertMessage('Cell', cell)}
               // onHeaderClick={header => alertMessage('Header', header)}

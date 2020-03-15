@@ -8,7 +8,6 @@ import { calculateBodyHeight } from './calculateBodyHeight'
 import { generateID } from './generateID'
 import { computeRowGrid } from './computeRowGrid'
 
-
 export const utils = {
   computeRowGrid,
   calculateColumnWidth,
@@ -16,6 +15,5 @@ export const utils = {
   normalizeColumns,
   calculateBodyHeight,
   groupBy,
-  generateID,
+  generateID
 }
-

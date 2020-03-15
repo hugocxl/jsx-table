@@ -2,7 +2,6 @@ import React from 'react'
 import { defaultCellRenderer } from './defaultCellRenderer'
 import cx from 'classnames'
 
-
 export const defaultRowRenderer = ({
   rowClassName,
   onRowClick,
@@ -28,13 +27,14 @@ export const defaultRowRenderer = ({
       className={cx(
         'AwesomeTable__body-row',
         rowIndex % 2 === 0 ? 'even' : 'odd',
-        rowClassName,
+        rowClassName
       )}
       style={{
         ...rowProps && rowProps.style,
         display: 'grid',
         width: rowWidth,
         gridTemplateColumns: computedRowGrid,
+        gridTemplateRows: `${rowHeight}px`,
         height: rowHeight,
         position: 'absolute',
         left: 0,
@@ -45,20 +45,22 @@ export const defaultRowRenderer = ({
           event,
           rowData,
           rowIndex,
-          rowProps
+          rowProps,
+          columns
         })
       }}
     >
 
-      {rowData && columns.map((column, cellIndex) => {
+      {rowData && columns.map(({ dataKey, ...restOfColumn }, cellIndex) => {
         const cellProps = {
-          freezed: freezeColumns && cellIndex < freezeColumns,
+          rowHeight,
+          frozen: freezeColumns && cellIndex < freezeColumns,
           cellIndex,
-          cellData: rowData[column.dataKey],
-          cell: column.cell,
+          cellData: rowData[dataKey],
           rowData,
-          align: column.align,
           rowIndex,
+          previousColumnWidth: columns[(cellIndex || 1) - 1].width,
+          ...restOfColumn,
           ...rest
         }
 

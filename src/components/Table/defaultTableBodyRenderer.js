@@ -3,8 +3,7 @@ import { defaultRowRenderer } from './defaultRowRenderer'
 import { defaultLoadingRenderer } from './defaultLoadingRenderer'
 import cx from 'classnames'
 
-
-export function defaultTableBodyRenderer({
+export function defaultTableBodyRenderer ({
   setScroll,
   data,
   rowRenderer,
@@ -38,7 +37,7 @@ export function defaultTableBodyRenderer({
     }
   }, [height])
 
-  function renderRows() {
+  function renderRows () {
     return data.map((el, i) => {
       const rowProps = {
         rowData: el,
@@ -55,7 +54,7 @@ export function defaultTableBodyRenderer({
     })
   }
 
-  function renderVirtualizedRows() {
+  function renderVirtualizedRows () {
     if (!tableBodyRef.current) {
       return []
     }
@@ -88,7 +87,7 @@ export function defaultTableBodyRenderer({
     return rows
   }
 
-  function onBodyScroll(event) {
+  function onBodyScroll (event) {
     const { scrollTop, scrollLeft, clientHeight, scrollHeight } = tableBodyRef.current
     setScroll({
       scrollTop,
@@ -113,7 +112,7 @@ export function defaultTableBodyRenderer({
     }
   }
 
-  function renderLoading() {
+  function renderLoading () {
     if (loadingRenderer) {
       return loadingRenderer({
         loadingComponent,
