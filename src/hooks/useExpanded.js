@@ -1,19 +1,17 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { ExpandArrow } from '../components/ExpandArrow'
-import memoize from 'memoize-one'
 
-
-export function useExpanded({ data, columns }) {
+export function useExpanded ({ data, columns }) {
   // const [expandedRowsIndex, setExpandedRowsIndex] = React.useState([2])
   const [expandedData, setExpandedData] = React.useState(data)
 
-  const getColumns = memoize(columns => {
+  const getColumns = useMemo(columns => {
     return convertToExpandedColumns(columns)
-  })
+  }, [])
 
-  const getData = memoize((data, expandedRowsIndex) => {
+  const getData = useMemo((data, expandedRowsIndex) => {
     return convertToExpandedData(data, expandedRowsIndex)
-  })
+  }, [])
 
   // function onExpand(rowIndex) {
   //   const searchedIndex = expandedRowsIndex.filter(el => {
@@ -29,12 +27,12 @@ export function useExpanded({ data, columns }) {
   //   }
   // }
 
-  function onExpand(id) {
+  function onExpand (id) {
     const demo = expandedData.map(el => {
       return iterateTree(el)
     })
 
-    function iterateTree(row) {
+    function iterateTree (row) {
       if (row.id === id) {
         return {
           ...row,
@@ -53,7 +51,7 @@ export function useExpanded({ data, columns }) {
     return setExpandedData(demo)
   }
 
-  function convertToExpandedColumns(columns) {
+  function convertToExpandedColumns (columns) {
     // return [
     //   {
     //     header: 'Expandable',
@@ -79,10 +77,10 @@ export function useExpanded({ data, columns }) {
     return modifiedColums
   }
 
-  function convertToExpandedData(data) {
+  function convertToExpandedData (data) {
     let expandedData = []
 
-    function iterateRow(el) {
+    function iterateRow (el) {
       expandedData.push(el)
       if (el.children && el.expanded) {
         el.children.forEach(children => {

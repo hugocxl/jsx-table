@@ -1,18 +1,16 @@
 import { utils } from '../utils'
-import React from 'react'
-import memoize from 'memoize-one'
+import React, { useMemo } from 'react'
 
-
-export function useGroupBy({ data, columns, groupBy }) {
-  const getColumns = memoize(columns => {
+export function useGroupBy ({ data, columns, groupBy }) {
+  const getColumns = useMemo(columns => {
     return transformToColumnsGrouped(columns)
-  })
+  }, [])
 
-  const getData = memoize((data, groupBy) => {
+  const getData = useMemo((data, groupBy) => {
     return transformToDataGrouped(data, groupBy)
-  })
+  }, [])
 
-  function transformToColumnsGrouped(columns) {
+  function transformToColumnsGrouped (columns) {
     const pivotedColumns = []
 
     for (let i = 0; i < groupBy.length; i++) {
@@ -31,7 +29,7 @@ export function useGroupBy({ data, columns, groupBy }) {
     return ([...pivotedColumns, ...restColumns])
   }
 
-  function transformToDataGrouped(data, groupByArray) {
+  function transformToDataGrouped (data, groupByArray) {
     let transformedData = []
 
     for (let i = 0; i < groupByArray.length; i++) {
@@ -52,7 +50,7 @@ export function useGroupBy({ data, columns, groupBy }) {
     return transformedData
   }
 
-  function createDataWithGroupedChildren(data, groupBy) {
+  function createDataWithGroupedChildren (data, groupBy) {
     const groupObject = utils.groupBy(data, groupBy)
     const a = getChildren(groupObject, data, groupBy)
     return a
@@ -64,7 +62,7 @@ export function useGroupBy({ data, columns, groupBy }) {
   }
 }
 
-function getChildren(groupedData, data, groupBy) {
+function getChildren (groupedData, data, groupBy) {
   const dataKeys = Object.keys(data[0])
   const series = []
 
