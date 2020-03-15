@@ -1,11 +1,11 @@
 var headers = {
   model: 'Phone Model'.replace(/,/g, ''), // remove commas to avoid errors
-  chargers: "Chargers",
-  cases: "Cases",
-  earphones: "Earphones"
-};
+  chargers: 'Chargers',
+  cases: 'Cases',
+  earphones: 'Earphones'
+}
 
-export function exportCSVFile(headers, items, fileTitle) {
+export function exportCSVFile (headers, items, fileTitle) {
   if (headers) {
     items.unshift(headers)
   }

@@ -1,17 +1,16 @@
 import React from 'react'
 
-
-export function Pagination({
-  currentPage,
-  onNextPageClick,
-  onPreviousPageClick
+export function Pagination ({
+  activePage,
+  onPageUp,
+  onPageDown
 }) {
-
   return (
-    <React.Fragment>
-      <button onClick={onPreviousPageClick}>Previous</button>
-      {currentPage}
-      <button onClick={onNextPageClick}>Next</button>
-    </React.Fragment>
+    <div
+      style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-evenly' }}>
+      <button onClick={onPageDown}>Previous</button>
+      {activePage}
+      <button onClick={onPageUp}>Next</button>
+    </div>
   )
 }

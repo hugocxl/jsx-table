@@ -1,7 +1,6 @@
-export function downloadCSV() {
+export function downloadCSV () {
 
 }
-
 
 var itemsNotFormatted = [
   {
@@ -25,9 +24,9 @@ var itemsNotFormatted = [
     earphones: '90',
     scratched: '6'
   }
-];
+]
 
-var itemsFormatted = [];
+var itemsFormatted = []
 
 // format the data
 itemsNotFormatted.forEach((item) => {
@@ -36,11 +35,10 @@ itemsNotFormatted.forEach((item) => {
     chargers: item.chargers,
     cases: item.cases,
     earphones: item.earphones
-  });
-});
+  })
+})
 
-
-export function convertToCSV(objArray) {
+export function convertToCSV (objArray) {
   let array = typeof objArray !== 'object' ? JSON.parse(objArray) : objArray
   let str = ''
 
@@ -58,15 +56,14 @@ export function convertToCSV(objArray) {
   return str
 }
 
-
 var headers = {
   model: 'Phone Model'.replace(/,/g, ''), // remove commas to avoid errors
-  chargers: "Chargers",
-  cases: "Cases",
-  earphones: "Earphones"
-};
+  chargers: 'Chargers',
+  cases: 'Cases',
+  earphones: 'Earphones'
+}
 
-export function exportCSVFile(headers, items, fileTitle) {
+export function exportCSVFile (headers, items, fileTitle) {
   if (headers) {
     items.unshift(headers)
   }

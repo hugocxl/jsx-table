@@ -1,8 +1,9 @@
+'use strict'
+
 import React from 'react'
 import { Pagination } from '../Pagination'
 
-
-export function defaultTablePaginationRenderer({
+export function defaultTablePaginationRenderer ({
   paginationHeight,
   paginationComponent,
   paginationProps,
@@ -18,7 +19,7 @@ export function defaultTablePaginationRenderer({
       {paginationComponent ? (
         paginationComponent({ paginationHeight, ...rest })
       ) : (
-        <Pagination {...rest}/>
+        <Pagination {...rest} />
       )}
     </div>
   )

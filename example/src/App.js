@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Table, Column, AutoSizer, useGroupBy, useExpanded } from 'react-notable'
+import { Table as BaseTable, Column, AutoSizer, useGroupBy, useExpanded, withPagination } from 'react-notable'
 
 import { getData } from './getData'
 
@@ -59,13 +59,16 @@ export function App () {
 
   // const groupedData = useGroupBy({ data, columns, groupBy: ['name', 'country'] })
   // const expandedData = useExpanded({ data: groupedData.data, columns: groupedData.columns })
+  let Table = withPagination(BaseTable)
 
   return (
-    <div style={{ height: '100%', width: '100%' }}>
+    <div style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}>
+
+      <div style={{ background: 'red', height: '50%' }}/>
       <div
         style={{
           width: '100%',
-          height: '100%'
+          height: '50%'
         }}>
         <AutoSizer>
           {({ width, height }) => (
@@ -77,7 +80,7 @@ export function App () {
               height={height}
               columns={columns}
               headerHeight={40}
-              // freezeColumns={1}
+              freezeColumns={1}
               width={width}
               // loadMoreRows={loadMoreRows}
               // threshold={50}
@@ -85,12 +88,12 @@ export function App () {
               minColumnWidth={100}
               data={data}
               overscanRowCount={15}
-              // pagination={true}
-              // paginationHeight={20}
-              // pageSize={20}
-              // defaultPage={2}
-              // onPageChange={props => console.log('PAGINATION', props)}
-              virtualized={true}
+              pagination={true}
+              paginationHeight={30}
+              pageSize={50}
+              defaultPage={2}
+              onPageChange={props => console.log('PAGINATION', props)}
+              virtualized={false}
               // sortable={true}
               // onRowClick={row => alertMessage('Row', row)}
               // onCellClick={cell => alertMessage('Cell', cell)}

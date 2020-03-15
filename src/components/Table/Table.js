@@ -1,11 +1,15 @@
 'use strict'
 
+// Dependencies
 import React, { useState, useMemo } from 'react'
 import cx from 'classnames'
+
+// Utils
 import { utils } from '../../utils'
+
+// Renderers
 import { defaultTableBodyRenderer } from './defaultTableBodyRenderer'
 import { defaultTableHeaderRenderer } from './defaultTableHeaderRenderer'
-import { useColumns } from '../../hooks'
 import { defaultTablePaginationRenderer } from './defaultTablePaginationRenderer'
 
 export function Table ({
@@ -61,16 +65,15 @@ export function Table ({
   loadingComponent,
 
   // PAGINATION props
-  changePageTo,
+  activePage,
+  onPageUp,
+  onPageDown,
   tablePaginationRenderer,
   paginationComponent,
   pagination,
   paginationProps,
   paginationHeight,
   pageSize,
-  onNextPageClick,
-  onPreviousPageClick,
-  currentPage,
 
   // VIRTUALIZED props
   virtualized,
@@ -202,16 +205,11 @@ export function Table ({
 
       {pagination && (
         renderTablePagination({
-          pagination,
-          pageSize,
-          paginationComponent,
+          activePage,
+          onPageUp,
+          onPageDown,
           paginationHeight,
           paginationProps,
-          changePageTo,
-          tablePaginationRenderer,
-          onNextPageClick,
-          onPreviousPageClick,
-          currentPage
         })
       )}
     </div>

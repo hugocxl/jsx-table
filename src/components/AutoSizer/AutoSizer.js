@@ -1,8 +1,7 @@
 import React from 'react'
 
-
 export class AutoSizer extends React.PureComponent {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.autoSizer = React.createRef()
@@ -14,7 +13,7 @@ export class AutoSizer extends React.PureComponent {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     if (this.autoSizer && this.autoSizer.current && this.autoSizer.current.parentNode) {
       this.parentNode = this.autoSizer.current.parentNode
       this.onResize()
@@ -23,7 +22,7 @@ export class AutoSizer extends React.PureComponent {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     window.removeEventListener('resize', this.onResize)
   }
 
@@ -54,7 +53,7 @@ export class AutoSizer extends React.PureComponent {
     }
   }
 
-  render() {
+  render () {
     const { height, width } = this.state
     const { disableHeight, disableWidth, className, children, style, ...rest } = this.props
 

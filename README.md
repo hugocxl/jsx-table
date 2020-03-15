@@ -30,20 +30,19 @@
 * AutoSizer
 * Sorting
 * Pagination
+* Infinite scrolling
+* Freezing columns
 
 
 ## Pending development tasks
 
 * Multi column sorting
 * Export to file
-* Freezing rows/columns
 * Resizing columns
 * Footer
-* Infinite scrolling
 * scrollToIndex, scrollTop, scrollToAlignment props
 * Grouping / Pivoting
 * Movable columns
-
 
 
 

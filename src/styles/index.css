@@ -96,8 +96,6 @@
 }
 
 .AwesomeTable__pagination {
-    display: flex;
-    align-items: center;
     width: 100%;
-    justify-content: space-evenly;
+    border-top: 1px solid rgb(160, 160, 160);
 }

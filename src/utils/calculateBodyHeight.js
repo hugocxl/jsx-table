@@ -1,4 +1,4 @@
-export function calculateBodyHeight({
+export function calculateBodyHeight ({
   height,
   disableHeader,
   pagination,
@@ -20,6 +20,6 @@ export function calculateBodyHeight({
   if (footer) {
     calculatedHeight += ` - ${footerHeight}px`
   }
-
+  
   return `calc(${calculatedHeight})`
 }
