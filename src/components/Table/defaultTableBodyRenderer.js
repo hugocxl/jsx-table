@@ -23,7 +23,6 @@ export function defaultTableBodyRenderer ({
 }) {
   const tableBodyRef = useRef(null)
   const [lastThreshold, setLastThreshold] = useState(0)
-  const [stickyRowsArray, setStickyRows] = useState([])
   const rows = virtualized
     ? renderVirtualizedRows()
     : renderRows()

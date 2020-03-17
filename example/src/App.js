@@ -38,13 +38,13 @@ export function App () {
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
-    { header: 'ID', dataKey: 'id', sortable: true },
+    { header: 'ID', dataKey: 'id', width: 250, sortable: true },
     { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
     { header: 'Age', dataKey: 'age', sortable: true },
     { header: 'Country', dataKey: 'country', sortable: true },
     { header: 'City', dataKey: 'city', sortable: true },
-    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true }
+    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true, width: 600 }
   ]
 
   function loadMoreRows () {
@@ -74,13 +74,13 @@ export function App () {
             height={height}
             columns={columns}
             headerHeight={22}
-            stickyColumns={0}
+            stickyColumns={1}
             stickyRows={({ rowData: { name, genre } }) => (name === 'Hugo' && genre === 'Male')}
             width={width}
             // loadMoreRows={loadMoreRows}
             // threshold={50}
             rowHeight={22}
-            minColumnWidth={100}
+            minColumnWidth={150}
             data={data}
             overscanRowCount={0}
             // pagination={true}
