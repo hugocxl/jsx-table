@@ -30,23 +30,14 @@ export const defaultRowRenderer = ({
       className={cx(
         'AwesomeTable__body-row',
         rowIndex % 2 === 0 ? 'even' : 'odd',
-        rowClassName,
-        { sticky }
+        { sticky, rowClassName }
       )}
       style={{
         ...rowProps && rowProps.style,
-        display: 'grid',
         width: rowWidth,
         gridTemplateColumns: computedRowGrid,
-        gridTemplateRows: `${rowHeight}px`,
         height: rowHeight,
-        position: 'absolute',
-        left: 0,
-        top,
-        ...sticky && !visibleRow && {
-          position: 'sticky',
-          zIndex: 2,
-        }
+        top
       }}
       onClick={event => {
         onRowClick && onRowClick({

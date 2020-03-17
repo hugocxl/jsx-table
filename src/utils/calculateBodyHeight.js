@@ -5,7 +5,9 @@ export function calculateBodyHeight ({
   footer,
   headerHeight,
   footerHeight,
-  paginationHeight
+  paginationHeight,
+  rowHeight,
+  rows
 }) {
   // let calculatedHeight = `${height}`
   let calculatedHeight = `${height}px`
@@ -20,6 +22,6 @@ export function calculateBodyHeight ({
   if (footer) {
     calculatedHeight += ` - ${footerHeight}px`
   }
-  
+
   return `calc(${calculatedHeight})`
 }

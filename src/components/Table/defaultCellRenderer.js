@@ -20,6 +20,7 @@ export function defaultCellRenderer ({
   width,
   previousColumnWidth,
   stickyColumns,
+  cellClassName,
   ...rest
 }) {
 
@@ -27,14 +28,20 @@ export function defaultCellRenderer ({
     <div
       {...cellProps}
       key={rowIndex + cellIndex}
-      className={cx('AwesomeTable__body-row-cell', { sticky, last: stickyColumns === cellIndex + 1 })}
+      className={cx(
+        'AwesomeTable__body-row-cell', {
+          sticky,
+          last: stickyColumns === cellIndex + 1,
+          cellClassName
+        })}
       style={{
+        ...cellProps && cellProps.style,
         ...sticky && {
-          position: 'sticky',
-          left: cellIndex * (previousColumnWidth || minColumnWidth),
+          left: cellIndex * (previousColumnWidth || minColumnWidth)
         },
-        justifyContent: align || 'center',
-        ...cellProps && cellProps.style
+        ...align && {
+          justifyContent: align
+        }
       }}
       onClick={event => {
         onCellClick && onCellClick({

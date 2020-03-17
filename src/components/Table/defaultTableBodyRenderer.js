@@ -21,16 +21,15 @@ export function defaultTableBodyRenderer ({
   stickyRows,
   ...rest
 }) {
-  const tableBodyRef = useRef(null)
   const [lastThreshold, setLastThreshold] = useState(0)
+  const tableBodyRef = useRef(null)
+  const { scrollTop = 0, scrollLeft = 0, clientHeight = 600, scrollHeight } = tableBodyRef.current || {}
   const rows = virtualized
     ? renderVirtualizedRows()
     : renderRows()
 
   useEffect(() => {
-    if (virtualized && tableBodyRef && tableBodyRef.current) {
-      const { scrollTop, scrollLeft } = tableBodyRef.current
-
+    if (virtualized) {
       setScroll({
         scrollTop,
         scrollLeft
@@ -59,23 +58,24 @@ export function defaultTableBodyRenderer ({
       return []
     }
 
-    const { scrollTop, clientHeight } = tableBodyRef.current
-    const rows = []
+    let rows = []
     const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount - 1
     const lastRowIndexCalc = Math.round((scrollTop + clientHeight) / rowHeight) + overscanRowCount + 1
-    const firstRowIndex = firstRowIndexCalc > 0 ? firstRowIndexCalc : 0
-    const lastRowIndex = lastRowIndexCalc < data.length ? lastRowIndexCalc : data.length
+
+    const firstRowIndex = firstRowIndexCalc > 0
+      ? firstRowIndexCalc
+      : 0
+
+    const lastRowIndex = lastRowIndexCalc < data.length
+      ? lastRowIndexCalc
+      : data.length
 
     for (let i = firstRowIndex; i < lastRowIndex; i++) {
-      const visibleRow = rowHeight * i > scrollTop
-      const sticky = stickyRows && stickyRows({ rowData: data[i] })
       const rowProps = {
         rowData: data[i],
         rowHeight,
         rowIndex: i,
         top: rowHeight * i,
-        visibleRow,
-        sticky,
         ...rest
       }
 
@@ -87,28 +87,35 @@ export function defaultTableBodyRenderer ({
     }
 
     if (stickyRows) {
-      let stickyRowIndex = 0
-      const limitRow = Math.round(scrollTop / rowHeight)
+      rows = [...rows, ...renderStickyRows()]
+    }
 
-      for (let m = 0; m < limitRow; m++) {
-        const visibleRow = rowHeight * m > scrollTop
-        const sticky = stickyRows && stickyRows({ rowData: data[m] })
+    return rows
+  }
 
-        if (sticky && !visibleRow) {
-          rows.push(
-            defaultRowRenderer({
-              rowData: data[m],
-              rowHeight,
-              rowIndex: m,
-              top: rowHeight * stickyRowIndex,
-              visibleRow,
-              stickyRowIndex,
-              sticky,
-              ...rest
-            })
-          )
-          stickyRowIndex++
-        }
+  function renderStickyRows () {
+    const rows = []
+    let stickyRowIndex = 0
+    const limitRow = Math.round(scrollTop / rowHeight)
+
+    for (let m = 0; m < limitRow; m++) {
+      const visibleRow = rowHeight * m > scrollTop
+      const sticky = stickyRows && stickyRows({ rowData: data[m] })
+
+      if (sticky && !visibleRow) {
+        rows.push(
+          defaultRowRenderer({
+            rowData: data[m],
+            rowHeight,
+            rowIndex: m,
+            top: rowHeight * stickyRowIndex,
+            visibleRow,
+            stickyRowIndex,
+            sticky: sticky && !visibleRow,
+            ...rest
+          })
+        )
+        stickyRowIndex++
       }
     }
 
@@ -116,7 +123,6 @@ export function defaultTableBodyRenderer ({
   }
 
   function onBodyScroll (event) {
-    const { scrollTop, scrollLeft, clientHeight, scrollHeight } = tableBodyRef.current
     setScroll({
       scrollTop,
       scrollLeft
@@ -159,14 +165,13 @@ export function defaultTableBodyRenderer ({
       {loading && (
         renderLoading()
       )}
-
       <div
         className={cx('AwesomeTable__body', { loading })}
         onScroll={onBodyScroll}
         ref={tableBodyRef}
         style={{ height: tableBodyHeight }}
       >
-        <div style={{ height: data && (data.length * rowHeight) }}>
+        <div style={{ height: data.length * rowHeight }}>
           {rows}
         </div>
       </div>

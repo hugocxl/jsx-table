@@ -17,7 +17,7 @@ export function Table ({
   id,
   className,
   columns: columnsData,
-  data,
+  data = [],
   style,
   width,
   height,
@@ -119,7 +119,8 @@ export function Table ({
       disableHeader,
       pagination,
       paginationHeight,
-      pageSize
+      pageSize,
+      rows: data.length
     })
   }, [height])
 

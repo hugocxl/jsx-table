@@ -4,7 +4,7 @@ import { defaultHeaderRowRenderer } from './defaultHeaderRowRenderer'
 export function defaultTableHeaderRenderer ({
   headerRowRenderer,
   headerHeight,
-  scroll,
+  scroll: { scrollLeft = 0 } = {},
   ...rest
 }) {
   const tableHeaderRef = useRef(null)
@@ -13,17 +13,20 @@ export function defaultTableHeaderRenderer ({
     if (tableHeaderRef.current) {
       tableHeaderRef.current.scroll({
         top: 0,
-        left: scroll.scrollLeft,
+        left: scrollLeft,
         behavior: 'auto'
       })
     }
-  }, [scroll && scroll.scrollLeft])
+  }, [scrollLeft])
 
   return (
     <div
       ref={tableHeaderRef}
       className={'AwesomeTable_header'}
-      style={{ height: headerHeight, overflow: 'hidden auto' }}
+      style={{
+        height: headerHeight,
+        overflow: 'hidden auto'
+      }}
     >
       {headerRowRenderer
         ? headerRowRenderer(rest)

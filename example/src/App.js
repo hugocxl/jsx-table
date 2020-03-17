@@ -34,17 +34,17 @@ function alertMessage (el, data) {
 
 export function App () {
   const [loading, setLoading] = React.useState(false)
-  const [data, setData] = React.useState(getData(50000))
+  const [data, setData] = React.useState(getData(1000))
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
-    { header: 'ID', dataKey: 'id', width: 250, sortable: true },
+    { header: 'ID', dataKey: 'id', width: 300, sortable: true },
     { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
-    { header: 'Age', dataKey: 'age', sortable: true },
+    { header: 'Age', dataKey: 'age', sortable: true, width: 400 },
     { header: 'Country', dataKey: 'country', sortable: true },
     { header: 'City', dataKey: 'city', sortable: true },
-    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true, width: 600 }
+    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true, width: 700 }
   ]
 
   function loadMoreRows () {
@@ -73,16 +73,16 @@ export function App () {
             // rowClassName={'custom-row-class'}
             height={height}
             columns={columns}
-            headerHeight={22}
-            stickyColumns={1}
-            stickyRows={({ rowData: { name, genre } }) => (name === 'Hugo' && genre === 'Male')}
+            headerHeight={18}
+            stickyColumns={2}
+            stickyRows={({ rowData: { name, genre, age } }) => (name === 'Hugo' && genre === 'Male' && age > 30)}
             width={width}
-            // loadMoreRows={loadMoreRows}
-            // threshold={50}
-            rowHeight={22}
-            minColumnWidth={150}
+            loadMoreRows={loadMoreRows}
+            threshold={50}
+            rowHeight={18}
+            minColumnWidth={100}
             data={data}
-            overscanRowCount={0}
+            overscanRowCount={20}
             // pagination={true}
             // paginationHeight={30}
             // pageSize={50}
