@@ -26,7 +26,8 @@ export function Table ({
 
   // EXTRA table props
   minColumnWidth,
-  freezeColumns,
+  stickyColumns,
+  stickyRows,
 
   // HEADER props
   headerClassName,
@@ -106,7 +107,7 @@ export function Table ({
       width,
       columns,
       minColumnWidth,
-      freezeColumns
+      stickyColumns
     })
   }, [width])
 
@@ -125,7 +126,7 @@ export function Table ({
   // COMMON
   const commonRenderersProps = {
     columns,
-    freezeColumns,
+    stickyColumns,
     minColumnWidth,
     rowWidth,
     computedRowGrid
@@ -200,7 +201,8 @@ export function Table ({
         overscanRowCount,
         loadMoreRows,
         threshold,
-        setScroll
+        setScroll,
+        stickyRows
       })}
 
       {pagination && (
@@ -217,7 +219,7 @@ export function Table ({
 }
 
 Table.defaultProps = {
-  freezeColumns: 0,
+  stickyColumns: 0,
   virtualized: false,
   disabled: false,
   loading: false,

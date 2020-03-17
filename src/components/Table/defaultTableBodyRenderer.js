@@ -18,10 +18,12 @@ export function defaultTableBodyRenderer ({
   virtualized,
   threshold,
   loadMoreRows,
+  stickyRows,
   ...rest
 }) {
   const tableBodyRef = useRef(null)
   const [lastThreshold, setLastThreshold] = useState(0)
+  const [stickyRowsArray, setStickyRows] = useState([])
   const rows = virtualized
     ? renderVirtualizedRows()
     : renderRows()
@@ -44,7 +46,6 @@ export function defaultTableBodyRenderer ({
         rowHeight,
         rowIndex: i,
         top: rowHeight * i,
-        position: i % 2 === 0 ? 'even' : 'odd',
         ...rest
       }
 
@@ -61,27 +62,55 @@ export function defaultTableBodyRenderer ({
 
     const { scrollTop, clientHeight } = tableBodyRef.current
     const rows = []
-
     const firstRowIndexCalc = Math.round(scrollTop / rowHeight) - overscanRowCount - 1
     const lastRowIndexCalc = Math.round((scrollTop + clientHeight) / rowHeight) + overscanRowCount + 1
-
     const firstRowIndex = firstRowIndexCalc > 0 ? firstRowIndexCalc : 0
     const lastRowIndex = lastRowIndexCalc < data.length ? lastRowIndexCalc : data.length
 
     for (let i = firstRowIndex; i < lastRowIndex; i++) {
+      const visibleRow = rowHeight * i > scrollTop
+      const sticky = stickyRows && stickyRows({ rowData: data[i] })
       const rowProps = {
         rowData: data[i],
         rowHeight,
         rowIndex: i,
         top: rowHeight * i,
-        position: i % 2 === 0 ? 'even' : 'odd',
+        visibleRow,
+        sticky,
         ...rest
       }
+
       rows.push(
         rowRenderer
           ? rowRenderer(rowProps)
           : defaultRowRenderer(rowProps)
       )
+    }
+
+    if (stickyRows) {
+      let stickyRowIndex = 0
+      const limitRow = Math.round(scrollTop / rowHeight)
+
+      for (let m = 0; m < limitRow; m++) {
+        const visibleRow = rowHeight * m > scrollTop
+        const sticky = stickyRows && stickyRows({ rowData: data[m] })
+
+        if (sticky && !visibleRow) {
+          rows.push(
+            defaultRowRenderer({
+              rowData: data[m],
+              rowHeight,
+              rowIndex: m,
+              top: rowHeight * stickyRowIndex,
+              visibleRow,
+              stickyRowIndex,
+              sticky,
+              ...rest
+            })
+          )
+          stickyRowIndex++
+        }
+      }
     }
 
     return rows

@@ -10,7 +10,7 @@ export function defaultTableHeaderRenderer ({
   const tableHeaderRef = useRef(null)
 
   useEffect(() => {
-    if (tableHeaderRef && tableHeaderRef.current && tableHeaderRef.current.scroll) {
+    if (tableHeaderRef.current) {
       tableHeaderRef.current.scroll({
         top: 0,
         left: scroll.scrollLeft,

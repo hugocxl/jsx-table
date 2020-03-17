@@ -14,7 +14,10 @@ export const defaultRowRenderer = ({
   rowProps,
   top,
   computedRowGrid,
-  freezeColumns,
+  stickyColumns,
+  visibleRow,
+  sticky,
+  stickyRowIndex,
   ...rest
 }) => {
 
@@ -23,11 +26,12 @@ export const defaultRowRenderer = ({
   return (
     <div
       {...rowProps}
-      key={rowIndex}
+      key={`${top}${rowIndex}${JSON.stringify(rowData)}${sticky}${stickyRowIndex}`}
       className={cx(
         'AwesomeTable__body-row',
         rowIndex % 2 === 0 ? 'even' : 'odd',
-        rowClassName
+        rowClassName,
+        { sticky }
       )}
       style={{
         ...rowProps && rowProps.style,
@@ -39,6 +43,10 @@ export const defaultRowRenderer = ({
         position: 'absolute',
         left: 0,
         top,
+        ...sticky && !visibleRow && {
+          position: 'sticky',
+          zIndex: 2,
+        }
       }}
       onClick={event => {
         onRowClick && onRowClick({
@@ -54,7 +62,8 @@ export const defaultRowRenderer = ({
       {rowData && columns.map(({ dataKey, ...restOfColumn }, cellIndex) => {
         const cellProps = {
           rowHeight,
-          frozen: freezeColumns && cellIndex < freezeColumns,
+          sticky: stickyColumns && cellIndex < stickyColumns,
+          stickyColumns,
           cellIndex,
           cellData: rowData[dataKey],
           rowData,

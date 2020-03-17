@@ -14,26 +14,24 @@ export function defaultCellRenderer ({
   cellComponentProps,
   parentIndex,
   id,
-  frozen,
+  sticky,
   minColumnWidth,
   rowHeight,
   width,
   previousColumnWidth,
+  stickyColumns,
   ...rest
 }) {
-
-  // TODO: cellClassname && cellStyle + WRONG ALIGN (FLEX)
 
   return (
     <div
       {...cellProps}
-      key={cellIndex}
-      className={cx('AwesomeTable__body-row-cell', { frozen })}
+      key={rowIndex + cellIndex}
+      className={cx('AwesomeTable__body-row-cell', { sticky, last: stickyColumns === cellIndex + 1 })}
       style={{
-        ...frozen && {
+        ...sticky && {
           position: 'sticky',
           left: cellIndex * (previousColumnWidth || minColumnWidth),
-          width: width || minColumnWidth,
         },
         justifyContent: align || 'center',
         ...cellProps && cellProps.style

@@ -4,22 +4,24 @@
 }
 
 .AwesomeTable_header {
+    color: #999;
     z-index: 2;
-    background: white;
-    border-bottom: 1px solid rgb(100, 100, 100);
+    border-bottom: 1px solid rgb(236, 236, 236);
+    background-color: #f5f5f5;
 }
 
 .AwesomeTable__header-row-cell {
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
     font-weight: bold;
-    border-right: 1px solid rgb(160, 160, 160);
+    border-right: 1px solid rgb(236, 236, 236);
 }
 
-.AwesomeTable__header-row-cell.frozen {
-    background: rgb(180, 180, 180);
+.AwesomeTable__header-row-cell.sticky {
+    background-color: rgb(180, 180, 180);
 }
 
 .AwesomeTable__header-row-cell:last-child {
@@ -40,17 +42,19 @@
 
 .AwesomeTable__body-row {
     width: fit-content;
-    border-bottom: 1px solid rgb(160, 160, 160);
-    cursor: pointer;
 }
 
 .AwesomeTable__body-row.odd {
 
 }
 
+.AwesomeTable__body-row.sticky > .AwesomeTable__body-row-cell {
+    background-color: #f5f5f5;
+}
+
 
 .AwesomeTable__body-row:hover {
-    background-color: rgba(112, 128, 144, 0.1);
+    background-color: #f5f5f5;
 }
 
 .AwesomeTable__body-row-cell:last-child {
@@ -63,17 +67,25 @@
 /*  width: 200px;*/
 /*}*/
 
-/*TODO: change to body-row-cell*/
 .AwesomeTable__body-row-cell {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
-    border-right: 1px solid rgb(160, 160, 160);
+    border-right: 1px solid rgb(236, 236, 236);
+    border-bottom: 1px solid rgb(236, 236, 236);
+    background-color: white;
+    cursor: crosshair;
+    width: 100%;
+    height: 100%;
 }
 
-.AwesomeTable__body-row-cell.frozen {
-    background: rgb(180, 180, 180);
-    border-bottom: 1px solid rgb(160, 160, 160);
-    /*box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.5);*/
+.AwesomeTable__body-row-cell.sticky {
+    background-color: #f5f5f5;
+    border-bottom: 1px solid rgb(236, 236, 236);
+    overflow-y: hidden;
+}
+
+.AwesomeTable__body-row-cell.sticky.last {
 }
 
 
@@ -97,5 +109,5 @@
 
 .AwesomeTable__pagination {
     width: 100%;
-    border-top: 1px solid rgb(160, 160, 160);
+    border-top: 1px solid rgb(236, 236, 236);
 }

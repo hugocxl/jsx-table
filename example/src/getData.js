@@ -1,8 +1,8 @@
-function getRandomInt(max) {
+function getRandomInt (max) {
   return Math.floor(Math.random() * Math.floor(max))
 }
 
-export function getData(rows) {
+export function getData (rows) {
   const output = []
 
   for (let i = 0; i < rows; i++) {
@@ -20,11 +20,11 @@ export function getData(rows) {
   return output
 }
 
-function getCompleted(index) {
+function getCompleted (index) {
   return index
 }
 
-function getName(index) {
+function getName (index) {
   switch (true) {
     case index < 2:
       return `Hugo`
@@ -39,10 +39,10 @@ function getName(index) {
   }
 }
 
-function generateID() {
+function generateID () {
   let id = ''
 
-  for (let i = 1; i < 24; i++) {
+  for (let i = 1; i < 30; i++) {
     if (i % 6 === 0) {
       id += '-'
     } else {
@@ -57,7 +57,7 @@ function generateID() {
   return id
 }
 
-function getAge(index) {
+function getAge (index) {
   switch (true) {
     case index < 2:
       return 30
@@ -72,7 +72,7 @@ function getAge(index) {
   }
 }
 
-function getCountry(index) {
+function getCountry (index) {
   switch (true) {
     case index < 2:
       return `Spain`
@@ -87,7 +87,7 @@ function getCountry(index) {
   }
 }
 
-function getGenre(index) {
+function getGenre (index) {
   switch (true) {
     case index <= 5:
       return 'Male'
@@ -96,7 +96,7 @@ function getGenre(index) {
   }
 }
 
-function getCity(index) {
+function getCity (index) {
   switch (true) {
     case index < 2:
       return `London`

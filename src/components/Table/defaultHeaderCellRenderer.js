@@ -14,7 +14,7 @@ export function defaultHeaderCellRenderer ({
   columnSortMethod,
   sortBy,
   sortDirection,
-  frozen,
+  sticky,
   minColumnWidth,
   headerIndex,
   width,
@@ -46,13 +46,12 @@ export function defaultHeaderCellRenderer ({
   return (
     <div
       {...headerCellProps}
-      className={cx('AwesomeTable__header-row-cell', { frozen })}
+      className={cx('AwesomeTable__header-row-cell', { sticky })}
       onClick={onClickHeader}
       style={{
-        ...frozen && {
+        ...sticky && {
           position: 'sticky',
           left: headerIndex * (previousColumnWidth || minColumnWidth),
-          width: width || minColumnWidth
         },
         justifyContent: align || 'center',
         ...headerCellProps && headerCellProps.style
@@ -73,7 +72,7 @@ export function defaultHeaderCellRenderer ({
           columnSortMethod,
           sortBy,
           sortDirection,
-          frozen,
+          sticky,
           minColumnWidth,
           headerIndex,
           width

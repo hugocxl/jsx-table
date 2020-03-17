@@ -12,7 +12,7 @@ export function defaultHeaderRowRenderer ({
   headerRowProps,
   computedRowGrid,
   rowWidth,
-  freezeColumns,
+  stickyColumns,
   ...rest
 }) {
 
@@ -33,9 +33,9 @@ export function defaultHeaderRowRenderer ({
       {columns.map((column, headerIndex) => {
         const cellProps = {
           columns,
-          freezeColumns,
+          stickyColumns,
           previousColumnWidth: columns[(headerIndex || 1) - 1].width,
-          frozen: freezeColumns && headerIndex < freezeColumns,
+          sticky: stickyColumns && headerIndex < stickyColumns,
           headerIndex,
           ...column,
           ...rest
