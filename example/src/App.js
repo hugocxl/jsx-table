@@ -38,13 +38,16 @@ export function App () {
 
   const columns = [
     { header: 'Row Index', dataKey: '', sortable: true, cell: ({ rowIndex }) => `row ${rowIndex}` },
-    { header: 'ID', dataKey: 'id', width: 300, sortable: true },
+    { header: 'ID', dataKey: 'id', sortable: true, width: 250 },
+    { header: 'Birth date', dataKey: 'birthDate' },
+    { header: 'Email', dataKey: 'email' },
     { header: 'Name', align: 'center', dataKey: 'name', sortable: true },
+    { header: 'Last name', dataKey: 'lastName' },
+    { header: 'Age', dataKey: 'age', sortable: true },
     { header: 'Genre', dataKey: 'genre', columnSortMethod: customColumnSort, sortable: true },
-    { header: 'Age', dataKey: 'age', sortable: true, width: 400 },
     { header: 'Country', dataKey: 'country', sortable: true },
     { header: 'City', dataKey: 'city', sortable: true },
-    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true, width: 700 }
+    { header: 'Completed', dataKey: 'completed', cell: customCell, sortable: true, }
   ]
 
   function loadMoreRows () {
@@ -74,11 +77,11 @@ export function App () {
             height={height}
             columns={columns}
             headerHeight={18}
-            stickyColumns={2}
+            // stickyColumns={2}
             stickyRows={({ rowData: { name, genre, age } }) => (name === 'Hugo' && genre === 'Male' && age > 30)}
             width={width}
-            loadMoreRows={loadMoreRows}
-            threshold={50}
+            // loadMoreRows={loadMoreRows}
+            // threshold={50}
             rowHeight={18}
             minColumnWidth={100}
             data={data}

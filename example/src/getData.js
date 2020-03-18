@@ -8,16 +8,23 @@ export function getData (rows) {
   for (let i = 0; i < rows; i++) {
     output.push({
       id: generateID(),
+      birthDate: getDate(),
+      email: getEmail(getRandomInt(10)),
       name: getName(getRandomInt(10)),
-      completed: getCompleted(getRandomInt(100)),
+      lastName: getLastName(getRandomInt(10)),
       age: getAge(getRandomInt(10)),
-      country: getCountry(getRandomInt(10)),
       genre: getGenre(getRandomInt(10)),
-      city: getCity(getRandomInt(10))
+      country: getCountry(getRandomInt(10)),
+      city: getCity(getRandomInt(10)),
+      completed: getCompleted(getRandomInt(100))
     })
   }
 
   return output
+}
+
+function getDate () {
+  return JSON.stringify(new Date(+(new Date()) - Math.floor(Math.random() * 10000000000)))
 }
 
 function getCompleted (index) {
@@ -36,6 +43,38 @@ function getName (index) {
       return `Sonia`
     case index >= 8 && index < 10:
       return `Ana`
+  }
+}
+
+function getLastName (index) {
+  switch (true) {
+    case index < 2:
+      return `Abrams`
+    case index >= 2 && index < 4:
+      return `Einstein`
+    case index >= 4 && index < 6:
+      return `Tesla`
+    case index >= 6 && index < 8:
+      return `Darwin`
+    case index >= 8 && index < 10:
+      return `Galilei`
+  }
+}
+
+function getEmail (index) {
+  const emailAdress = `${getName(index).toLowerCase()}.${getLastName(index).toLowerCase()}`
+
+  switch (true) {
+    case index < 2:
+      return `${emailAdress}@gmail.com`
+    case index >= 2 && index < 4:
+      return `${emailAdress}@hotmail.com`
+    case index >= 4 && index < 6:
+      return `${emailAdress}@apple.com`
+    case index >= 6 && index < 8:
+      return `${emailAdress}@yahoo.com`
+    case index >= 8 && index < 10:
+      return `${emailAdress}@outlook.com`
   }
 }
 
