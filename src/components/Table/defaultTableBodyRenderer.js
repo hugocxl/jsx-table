@@ -23,7 +23,7 @@ export function defaultTableBodyRenderer ({
 }) {
   const [lastThreshold, setLastThreshold] = useState(0)
   const tableBodyRef = useRef(null)
-  const { scrollTop = 0, scrollLeft = 0, clientHeight = 600, scrollHeight } = tableBodyRef.current || {}
+  const { scrollTop = 0, scrollLeft = 0, clientHeight, scrollHeight } = tableBodyRef.current || {}
   const rows = virtualized
     ? renderVirtualizedRows()
     : renderRows()
@@ -100,7 +100,11 @@ export function defaultTableBodyRenderer ({
 
     for (let m = 0; m < limitRow; m++) {
       const visibleRow = rowHeight * m > scrollTop
-      const sticky = stickyRows && stickyRows({ rowData: data[m] })
+      const sticky = stickyRows && stickyRows({
+        rowData: data[m],
+        rowIndex: m,
+        rowHeight
+      })
 
       if (sticky && !visibleRow) {
         rows.push(

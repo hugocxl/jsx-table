@@ -9,7 +9,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "hhttps://github.com/hcorta/react-notable"
+    "url": "https://github.com/hcorta/react-notable"
   },
   "homepage": "https://hcorta.github.io/react-notable",
   "main": "dist/index.js",
@@ -27,16 +27,16 @@
     "data",
     "data-tables",
     "grid",
-    "react-component"
+    "react-component",
+    "data"
   ],
   "scripts": {
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
+    "test": "yarn build",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "predeploy": "cd docz && yarn install && yarn build",
+    "deploy": "gh-pages -d docz/build"
   },
   "dependencies": {
     "classnames": "^2.2.5",
