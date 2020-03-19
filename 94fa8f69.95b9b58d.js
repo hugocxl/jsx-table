@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[15],{148:function(o){o.exports=JSON.parse('{"allTagsPath":"https://hcorta.github.io/blog/tags","slug":"hello","name":"hello","count":2,"permalink":"https://hcorta.github.io/blog/tags/hello"}')}}]);
