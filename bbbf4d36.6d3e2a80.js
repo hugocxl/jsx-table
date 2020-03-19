@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[18],{150:function(o){o.exports=JSON.parse('{"allTagsPath":"https://hcorta.github.io/react-notable/blog/tags","slug":"facebook","name":"facebook","count":1,"permalink":"https://hcorta.github.io/react-notable/blog/tags/facebook"}')}}]);

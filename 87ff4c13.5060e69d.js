@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[13],{146:function(a){a.exports=JSON.parse('{"allTagsPath":"/react-notable/blog/tags","slug":"hello","name":"hello","count":2,"permalink":"/react-notable/blog/tags/hello"}')}}]);
