@@ -1,37 +1,30 @@
 
-# React Notable
+# hctable
 
-<div align="center">
-
-  [![NPM](https://img.shields.io/npm/v/react-notable.svg)](https://www.npmjs.com/package/react-notable)
+  [![NPM](https://img.shields.io/npm/v/react-table.svg)](https://www.npmjs.com/package/react-table)
   [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-  [![Build Status](https://travis-ci.com/hcorta/react-notable.svg?branch=master)](https://travis-ci.com/hcorta/react-notable)
-  [![dependencies Status](https://david-dm.org/hcorta/react-notable/status.svg)](https://david-dm.org/hcorta/react-notable)
-  [![devDependencies Status](https://david-dm.org/hcorta/react-notable/dev-status.svg)](https://david-dm.org/hcorta/react-notable?type=dev)
+  [![Build Status](https://travis-ci.com/hcorta/react-table.svg?branch=master)](https://travis-ci.com/hcorta/react-table)
+  [![dependencies Status](https://david-dm.org/hcorta/react-table/status.svg)](https://david-dm.org/hcorta/react-table)
+  [![devDependencies Status](https://david-dm.org/hcorta/react-table/dev-status.svg)](https://david-dm.org/hcorta/react-table?type=dev)
   [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-</div>
 
 <p>A <strong>simple</strong> but <strong>powerful</strong> lightweight (6.4kB) table for React with <strong>highly-customizable</strong> options</p>
 
-***
-### ⚠️🚧🚧 Currently in development stage 🚧🚧⚠️️️️
-***
 
 
 ## Features
 
-* Lightweight (6.4kb gziped - no dependencies)
-* Auto out of the box, fully controllable API
-* Headless (100% customizable, Bring-your-own-UI)
-* Virtualization (no performance loss for long data lists)
-* Easy-to-customize styling
+* **Lightweight** (6.4kb gziped - no dependencies)
+* Auto out of the box, fully **controllable API**
+* **Headless** (100% customizable, Bring-your-own-UI)
+* **Virtualization** (no performance loss for long data lists)
+* **Infinite scrolling** (continuously loaded content)
+* Sticky rows/columns
 * AutoSizer
 * Sorting
 * Pagination
-* Infinite scrolling
-* Freezing columns
 
 
 ## Pending development tasks
@@ -46,10 +39,11 @@
 
 
 
+
 ## Install
 
 ```bash
-yarn add react-notable
+yarn add hctable
 ```
 
 ## Usage
@@ -58,7 +52,7 @@ yarn add react-notable
 ### Simple use case
 
 ```jsx
-import { Table, Column } from 'react-notable'
+import { Table, Column } from 'hctable'
 
 function Example () {
 
@@ -81,7 +75,7 @@ function Example () {
 ### Advanced use case
 
 ```jsx
-import { Table, Column } from 'react-notable'
+import { Table, Column } from 'hctable'
 
 
 function CustomCell({ cellData, ...restOfCellProps }) {
@@ -179,4 +173,4 @@ No one’s perfect. If you’ve found any errors, want to suggest enhancements, 
 
 ## License
 
-`react-notable` is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
+`hctable` is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
