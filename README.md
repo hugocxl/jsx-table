@@ -1,5 +1,5 @@
 
-# @hctable
+# hctable
 
   [![NPM](https://img.shields.io/npm/v/react-table.svg)](https://www.npmjs.com/package/react-table)
   [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
@@ -43,7 +43,7 @@
 ## Install
 
 ```bash
-yarn add @hctable
+yarn add hctable
 ```
 
 ## Usage
@@ -52,7 +52,7 @@ yarn add @hctable
 ### Simple use case
 
 ```jsx
-import { Table, Column } from '@hctable'
+import { Table, Column } from 'hctable'
 
 function Example () {
 
@@ -75,7 +75,7 @@ function Example () {
 ### Advanced use case
 
 ```jsx
-import { Table, Column } from '@hctable'
+import { Table, Column } from 'hctable'
 
 
 function CustomCell({ cellData, ...restOfCellProps }) {
@@ -173,4 +173,4 @@ No one’s perfect. If you’ve found any errors, want to suggest enhancements, 
 
 ## License
 
-`@hctable` is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
+`hctable` is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
