@@ -11,13 +11,14 @@ module.exports = {
   themeConfig: {
     navbar: {
       title: package.name,
+      style: 'dark',
       logo: {
         alt: package.name,
         src: 'img/logo.svg',
       },
       links: [
         {
-          to: 'docs/doc1',
+          to: 'docs/Table',
           activeBasePath: 'docs',
           label: 'Docs',
           position: 'left',
@@ -41,7 +42,7 @@ module.exports = {
     },
     footer: {
       style: 'light',
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `MIT © ${new Date().getFullYear()} ${package.name}, ${package.author} Built with Docusaurus.`,
     },
   },
   presets: [

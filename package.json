@@ -36,7 +36,7 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd docz && yarn install && yarn build",
-    "deploy": "gh-pages -d docz/build"
+    "deploy": "gh-pages -d docs/build"
   },
   "dependencies": {
     "classnames": "^2.2.5",

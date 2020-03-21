@@ -24,6 +24,6 @@
     padding: 0 var(--ifm-pre-padding);
 }
 
-* {
-    font-size: 12px;
+.AwesomeTable span {
+    font-size: 10px;
 }
