@@ -27,6 +27,7 @@
 * Pagination
 
 
+
 ## Pending development tasks
 
 * Multi column sorting
