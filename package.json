@@ -1,6 +1,6 @@
 {
-  "name": "jsx-table",
-  "version": "2.0.0",
+  "name": "@hcorta/jsx-table",
+  "version": "1.0.0",
   "description": "A simple but powerful lightweight table for React with highly-customizable options.",
   "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
   "publishConfig": {
