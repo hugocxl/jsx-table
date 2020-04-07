@@ -170,7 +170,7 @@ export function defaultTableBodyRenderer ({
         renderLoading()
       )}
       <div
-        className={cx('AwesomeTable__body', { loading })}
+        className={cx('jsx-table__body', { loading })}
         onScroll={onBodyScroll}
         ref={tableBodyRef}
         style={{ height: tableBodyHeight }}

@@ -155,7 +155,7 @@ export function Table ({
     <div
       id={id}
       role={'table'}
-      className={cx('AwesomeTable', className)}
+      className={cx('jsx-table', className)}
       style={{
         height,
         width,

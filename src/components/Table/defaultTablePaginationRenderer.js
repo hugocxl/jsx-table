@@ -11,7 +11,7 @@ export function defaultTablePaginationRenderer ({
 }) {
   return (
     <div
-      className={'AwesomeTable__pagination'}
+      className={'jsx-table__pagination'}
       style={{
         height: paginationHeight,
         ...paginationProps && paginationProps.style

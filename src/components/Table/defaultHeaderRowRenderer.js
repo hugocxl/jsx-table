@@ -26,7 +26,7 @@ export function defaultHeaderRowRenderer ({
         width: rowWidth,
       }}
       className={cx(
-        'AwesomeTable__header-row',
+        'jsx-table__header-row',
         headerClassName
       )}
     >

@@ -10,7 +10,7 @@ export function defaultNoDataRenderer({
 }) {
   return (
     <div
-      className={'AwesomeTable__body-nodata'}
+      className={'jsx-table__body-nodata'}
       style={{ height: tableBodyHeight, ...noDataProps && noDataProps.style }}>
       {noDataComponent ? (
         noDataComponent(rest)

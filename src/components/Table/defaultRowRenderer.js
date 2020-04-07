@@ -28,7 +28,7 @@ export const defaultRowRenderer = ({
       {...rowProps}
       key={`${top}${rowIndex}${JSON.stringify(rowData)}${sticky}${stickyRowIndex}`}
       className={cx(
-        'AwesomeTable__body-row',
+        'jsx-table__body-row',
         rowIndex % 2 === 0 ? 'even' : 'odd',
         { sticky, rowClassName }
       )}

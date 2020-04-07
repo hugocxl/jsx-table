@@ -1,11 +1,11 @@
 
-# hctable
+# jsx-table
 
-  [![NPM](https://img.shields.io/npm/v/react-table.svg)](https://www.npmjs.com/package/react-table)
+  [![NPM](https://img.shields.io/npm/v/jsx-table.svg)](https://www.npmjs.com/package/jsx-table)
   [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-  [![Build Status](https://travis-ci.com/hcorta/react-table.svg?branch=master)](https://travis-ci.com/hcorta/react-table)
-  [![dependencies Status](https://david-dm.org/hcorta/react-table/status.svg)](https://david-dm.org/hcorta/react-table)
-  [![devDependencies Status](https://david-dm.org/hcorta/react-table/dev-status.svg)](https://david-dm.org/hcorta/react-table?type=dev)
+  [![Build Status](https://travis-ci.com/hcorta/jsx-table.svg?branch=master)](https://travis-ci.com/hcorta/jsx-table)
+  [![dependencies Status](https://david-dm.org/hcorta/jsx-table/status.svg)](https://david-dm.org/hcorta/jsx-table)
+  [![devDependencies Status](https://david-dm.org/hcorta/jsx-table/dev-status.svg)](https://david-dm.org/hcorta/jsx-table?type=dev)
   [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
@@ -44,7 +44,7 @@
 ## Install
 
 ```bash
-yarn add hctable
+yarn add jsx-table
 ```
 
 ## Usage
@@ -53,7 +53,7 @@ yarn add hctable
 ### Simple use case
 
 ```jsx
-import { Table, Column } from 'hctable'
+import { Table, Column } from 'jsx-table'
 
 function Example () {
 
@@ -76,7 +76,7 @@ function Example () {
 ### Advanced use case
 
 ```jsx
-import { Table, Column } from 'hctable'
+import { Table, Column } from 'jsx-table'
 
 
 function CustomCell({ cellData, ...restOfCellProps }) {
@@ -174,4 +174,4 @@ No one’s perfect. If you’ve found any errors, want to suggest enhancements, 
 
 ## License
 
-`hctable` is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).
+`jsx-table` is open source software licensed as MIT © [Hugo Corta](https://github.com/hcorta).

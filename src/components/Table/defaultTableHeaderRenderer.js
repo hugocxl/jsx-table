@@ -22,7 +22,7 @@ export function defaultTableHeaderRenderer ({
   return (
     <div
       ref={tableHeaderRef}
-      className={'AwesomeTable_header'}
+      className={'jsx-table__header'}
       style={{
         height: headerHeight,
         overflow: 'hidden auto'

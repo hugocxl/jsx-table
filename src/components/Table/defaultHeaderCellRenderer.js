@@ -46,7 +46,7 @@ export function defaultHeaderCellRenderer ({
   return (
     <div
       {...headerCellProps}
-      className={cx('AwesomeTable__header-row-cell', { sticky })}
+      className={cx('jsx-table__header-row-cell', { sticky })}
       onClick={onClickHeader}
       style={{
         ...sticky && {
@@ -78,7 +78,7 @@ export function defaultHeaderCellRenderer ({
           width
         })
       ) : (
-        <span className={'AwesomeTable__header-row-cell-text'}>{header}</span>
+        <span className={'jsx-table__header-row-cell-text'}>{header}</span>
       )}
 
       {dataKey === sortBy && (

@@ -1,5 +1,5 @@
 {
-  "name": "hctable",
+  "name": "jsx-table",
   "version": "0.5.1",
   "description": "A simple but powerful lightweight table for React with highly-customizable options.",
   "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
@@ -9,9 +9,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hcorta/hctable"
+    "url": "https://github.com/hcorta/jsx-table"
   },
-  "homepage": "https://hcorta.github.io/hctable",
+  "homepage": "https://hcorta.github.io/jsx-table",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -28,7 +28,9 @@
     "data-tables",
     "grid",
     "react-component",
-    "data"
+    "data",
+    "jsx",
+    "component"
   ],
   "scripts": {
     "test": "yarn build",

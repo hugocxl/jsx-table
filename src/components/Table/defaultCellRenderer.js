@@ -29,7 +29,7 @@ export function defaultCellRenderer ({
       {...cellProps}
       key={rowIndex + cellIndex}
       className={cx(
-        'AwesomeTable__body-row-cell', {
+        'jsx-table__body-row-cell', {
           sticky,
           last: stickyColumns === cellIndex + 1,
           cellClassName
@@ -66,7 +66,7 @@ export function defaultCellRenderer ({
           id
         })
       ) : (
-        <span className={'AwesomeTable__body-row-cell-text'}>
+        <span className={'jsx-table__body-row-cell-text'}>
           {cellData}
         </span>
       )}
