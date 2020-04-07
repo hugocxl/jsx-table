@@ -1,50 +1,92 @@
 import React from 'react'
 import { SortIndicator } from '../SortIndicator'
+import cx from 'classnames'
 
+export function defaultHeaderCellRenderer ({
+  header,
+  align,
+  headerCellProps,
+  headerComponentProps,
+  onHeaderClick,
+  onSortableClick,
+  sortable,
+  dataKey,
+  columnSortMethod,
+  sortBy,
+  sortDirection,
+  sticky,
+  minColumnWidth,
+  headerIndex,
+  width,
+  previousColumnWidth,
+  ...rest
+}) {
 
-export function defaultHeaderCellRenderer(
-  {
-    header,
-    align,
-    headerCellProps,
-    headerComponentProps,
-    onHeaderClick,
-    onSortableClick,
-    sortable,
-    dataKey,
-    columnSortMethod,
-    sortBy,
-    sortDirection
-  }) {
+  function onClickHeader (event) {
+    if (sortable && onSortableClick) {
+      onSortableClick({
+        sortBy: dataKey,
+        event,
+        columnSortMethod
+      })
+    }
+
+    if (onHeaderClick) {
+      onHeaderClick({
+        event,
+        header,
+        dataKey,
+        headerCellProps,
+        headerComponentProps,
+        ...rest
+      })
+    }
+  }
 
   return (
     <div
       {...headerCellProps}
-      className={'AwesomeTable__header-row-cell'}
+      className={cx('jsx-table__header-row-cell', { sticky })}
+      onClick={onClickHeader}
       style={{
-        justifyContent: align || 'center'
-      }}
-      onClick={event => {
-        sortable && onSortableClick({
-          sortBy: dataKey,
-          event,
-          columnSortMethod
-        })
-        onHeaderClick && onHeaderClick({
-          event,
-          header,
-          dataKey,
-          headerCellProps,
-          headerComponentProps,
-        })
+        ...sticky && {
+          position: 'sticky',
+          left: headerIndex * (previousColumnWidth || minColumnWidth),
+        },
+        justifyContent: align || 'center',
+        ...headerCellProps && headerCellProps.style
       }}
     >
+
       {typeof header === 'function' ? (
-        header(headerComponentProps)
+        header({
+          ...headerComponentProps,
+          header,
+          align,
+          headerCellProps,
+          headerComponentProps,
+          onHeaderClick,
+          onSortableClick,
+          sortable,
+          dataKey,
+          columnSortMethod,
+          sortBy,
+          sortDirection,
+          sticky,
+          minColumnWidth,
+          headerIndex,
+          width
+        })
       ) : (
-        <div>{header}</div>
+        <span className={'jsx-table__header-row-cell-text'}>{header}</span>
       )}
-      {dataKey === sortBy && <SortIndicator sortDirection={sortDirection}/>}
+
+      {dataKey === sortBy && (
+        <SortIndicator
+          sortDirection={sortDirection}
+        />
+      )}
+
     </div>
   )
 }

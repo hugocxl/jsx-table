@@ -1,11 +1,13 @@
-export function calculateBodyHeight({
+export function calculateBodyHeight ({
   height,
   disableHeader,
   pagination,
   footer,
   headerHeight,
   footerHeight,
-  paginationHeight
+  paginationHeight,
+  rowHeight,
+  rows
 }) {
   // let calculatedHeight = `${height}`
   let calculatedHeight = `${height}px`

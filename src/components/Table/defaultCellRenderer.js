@@ -1,31 +1,47 @@
 import React from 'react'
 
+import cx from 'classnames'
 
-export function defaultCellRenderer(
-  {
-    onCellClick,
-    cellIndex,
-    cellData,
-    rowData,
-    cell,
-    align,
-    rowIndex,
-    cellProps,
-    cellComponentProps,
-    parentIndex,
-    id,
-  }) {
-
-  // TODO: cellClassname && cellStyle + WRONG ALIGN (FLEX)
+export function defaultCellRenderer ({
+  onCellClick,
+  cellIndex,
+  cellData,
+  rowData,
+  cell,
+  align,
+  rowIndex,
+  cellProps,
+  cellComponentProps,
+  parentIndex,
+  id,
+  sticky,
+  minColumnWidth,
+  rowHeight,
+  width,
+  previousColumnWidth,
+  stickyColumns,
+  cellClassName,
+  ...rest
+}) {
 
   return (
     <div
       {...cellProps}
-      key={cellIndex}
-      className={'AwesomeTable__body-cell'}
+      key={rowIndex + cellIndex}
+      className={cx(
+        'jsx-table__body-row-cell', {
+          sticky,
+          last: stickyColumns === cellIndex + 1,
+          cellClassName
+        })}
       style={{
-        justifyContent: align || 'center',
-        ...cellProps && cellProps.style
+        ...cellProps && cellProps.style,
+        ...sticky && {
+          left: cellIndex * (previousColumnWidth || minColumnWidth)
+        },
+        ...align && {
+          justifyContent: align
+        }
       }}
       onClick={event => {
         onCellClick && onCellClick({
@@ -50,9 +66,9 @@ export function defaultCellRenderer(
           id
         })
       ) : (
-        <div className={'AwesomeTable__body-cell-text'}>
+        <span className={'jsx-table__body-row-cell-text'}>
           {cellData}
-        </div>
+        </span>
       )}
     </div>
   )

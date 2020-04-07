@@ -1,46 +1,43 @@
+'use strict'
+
 import React from 'react'
 import { defaultHeaderCellRenderer } from './defaultHeaderCellRenderer'
 import cx from 'classnames'
 
-
-export function defaultHeaderRowRenderer(
-  {
-    headerClassName,
-    columns,
-    headerCellRenderer,
-    headerHeight,
-    headerRowProps,
-    computedRowGrid,
-    rowWidth,
-    ...rest
-  }) {
+export function defaultHeaderRowRenderer ({
+  headerClassName,
+  columns,
+  headerCellRenderer,
+  headerHeight,
+  headerRowProps,
+  computedRowGrid,
+  rowWidth,
+  stickyColumns,
+  ...rest
+}) {
 
   return (
     <div
       {...headerRowProps}
       style={{
-        position: 'sticky',
-        top: 0,
-        height: headerHeight,
+        height: '100%',
         gridTemplateColumns: computedRowGrid,
         display: 'grid',
         width: rowWidth,
-        zIndex: 2
       }}
       className={cx(
-        'AwesomeTable__header-row',
+        'jsx-table__header-row',
         headerClassName
       )}
     >
       {columns.map((column, headerIndex) => {
         const cellProps = {
-          column,
-          header: column.header,
+          columns,
+          stickyColumns,
+          previousColumnWidth: columns[(headerIndex || 1) - 1].width,
+          sticky: stickyColumns && headerIndex < stickyColumns,
           headerIndex,
-          align: column.align,
-          dataKey: column.dataKey,
-          sortable: column.sortable,
-          columnSortMethod: column.columnSortMethod,
+          ...column,
           ...rest
         }
         return headerCellRenderer

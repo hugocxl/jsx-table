@@ -1,5 +1,5 @@
 {
-  "name": "react-notable",
+  "name": "jsx-table",
   "version": "0.5.1",
   "description": "A simple but powerful lightweight table for React with highly-customizable options.",
   "author": "Hugo Corta Lorenzo <corta.hugo@gmail.com>",
@@ -9,9 +9,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "hhttps://github.com/hcorta/react-notable"
+    "url": "https://github.com/hcorta/jsx-table"
   },
-  "homepage": "https://hcorta.github.io/react-notable",
+  "homepage": "https://hcorta.github.io/jsx-table",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -27,22 +27,22 @@
     "data",
     "data-tables",
     "grid",
-    "react-component"
+    "react-component",
+    "data",
+    "jsx",
+    "component"
   ],
   "scripts": {
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
+    "test": "yarn build",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "predeploy": "cd docz && yarn install && yarn build",
+    "deploy": "gh-pages -d docs/build"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "memoize-one": "^5.0.0",
-    "prop-types": "^15.7.0",
-    "uuid": "^3.3.2"
+    "prop-types": "^15.7.0"
   },
   "peerDependencies": {
     "react": "^16.0.0",

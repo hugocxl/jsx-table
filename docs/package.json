@@ -1,0 +1,33 @@
+{
+  "name": "docz",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy"
+  },
+  "dependencies": {
+    "@docusaurus/core": "^2.0.0-alpha.48",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.48",
+    "classnames": "^2.2.6",
+    "react-notable": "link:..",
+    "react-scripts": "^1.1.4",
+    "prop-types": "^15.6.2",
+    "react": "link:../node_modules/react",
+    "react-dom": "link:../node_modules/react-dom"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
